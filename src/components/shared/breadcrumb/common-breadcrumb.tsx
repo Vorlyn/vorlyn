@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import type { CommonBreadCrumbsProps } from "./common-breadcrumb.types";
 import { Fragment } from "react";
+import { RenderIcon } from "@/utils/icon-utils";
 
 const CommonBreadCrumb = ({ items }: CommonBreadCrumbsProps) => {
   if (!items?.length) return null;
@@ -18,9 +19,24 @@ const CommonBreadCrumb = ({ items }: CommonBreadCrumbsProps) => {
           <Fragment key={item.id}>
             <BreadcrumbItem>
               {index === items.length - 1 ? (
-                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                <BreadcrumbPage className="flex items-center gap-1">
+                  {item.icon && <RenderIcon src={item.icon} />}
+                  {item.label}
+                </BreadcrumbPage>
+              ) : item.render ? (
+                <BreadcrumbLink
+                  render={item.render}
+                  className="flex items-center gap-1"
+                >
+                  {item.icon && <RenderIcon src={item.icon} />}
+                  {item.label}
+                </BreadcrumbLink>
               ) : (
-                <BreadcrumbLink href={item.href ?? "#"}>
+                <BreadcrumbLink
+                  href={item.href ?? "#"}
+                  className="flex items-center gap-1"
+                >
+                  {item.icon && <RenderIcon src={item.icon} />}
                   {item.label}
                 </BreadcrumbLink>
               )}
