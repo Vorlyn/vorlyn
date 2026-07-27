@@ -16,6 +16,13 @@ export type BreadcrumbItemsConfig =
       icon?: ReactNode;
     };
 
+export type EllipsisItemConfig = {
+  id: string;
+  isEllipses: boolean;
+  content: BreadcrumbItemsConfig[];
+};
+
 export interface CommonBreadCrumbsProps {
   items: BreadcrumbItemsConfig[];
+  maxVisible?: number;
 }

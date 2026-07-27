@@ -1,5 +1,4 @@
 import { CommonBreadCrumb } from "@/components/shared/breadcrumb";
-import { Home, Paperclip } from "lucide-react";
 
 const Landing = () => {
   const items = [
@@ -7,19 +6,26 @@ const Landing = () => {
       id: 1,
       label: "Home",
       href: "/",
-      icon: <Home size={16} />,
     },
     {
       id: 2,
       label: "About",
       href: "/about",
-      icon: <Paperclip size={16} />,
     },
     {
       id: 3,
       label: "Contact",
       href: "/about",
-      icon: <Paperclip />,
+    },
+    {
+      id: 4,
+      label: "Profile",
+      href: "/profile",
+    },
+    {
+      id: 5,
+      label: "Account",
+      href: "/account",
     },
   ];
   return (
