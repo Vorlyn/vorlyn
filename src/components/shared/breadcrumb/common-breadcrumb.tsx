@@ -14,6 +14,12 @@ import type {
 } from "./common-breadcrumb.types";
 import { Fragment } from "react";
 import { RenderIcon } from "@/utils/icon-utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const CommonBreadCrumb = ({
   items,
@@ -39,7 +45,40 @@ const CommonBreadCrumb = ({
             return (
               <Fragment key={item.id}>
                 <BreadcrumbItem>
-                  <BreadcrumbEllipsis />
+                  <DropdownMenu>
+                    <DropdownMenuTrigger render={<BreadcrumbEllipsis />} />
+                    <DropdownMenuContent>
+                      {item.content.map((content) =>
+                        content.render ? (
+                          <BreadcrumbLink
+                            key={content.id}
+                            render={content.render}
+                            className="flex items-center gap-1"
+                          >
+                            <DropdownMenuItem className="w-full">
+                              {content.icon && (
+                                <RenderIcon src={content.icon} />
+                              )}
+                              {content.label}
+                            </DropdownMenuItem>
+                          </BreadcrumbLink>
+                        ) : (
+                          <BreadcrumbLink
+                            key={content.id}
+                            href={content.href}
+                            className="flex items-center gap-1 w-full"
+                          >
+                            <DropdownMenuItem className="w-full">
+                              {content.icon && (
+                                <RenderIcon src={content.icon} />
+                              )}
+                              {content.label}
+                            </DropdownMenuItem>
+                          </BreadcrumbLink>
+                        ),
+                      )}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
               </Fragment>
@@ -62,10 +101,7 @@ const CommonBreadCrumb = ({
                     {item.label}
                   </BreadcrumbLink>
                 ) : (
-                  <BreadcrumbLink
-                    href={item.href ?? "#"}
-                    className="flex items-center gap-1"
-                  >
+                  <BreadcrumbLink href={item.href ?? "#"}>
                     {item.icon && <RenderIcon src={item.icon} />}
                     {item.label}
                   </BreadcrumbLink>
