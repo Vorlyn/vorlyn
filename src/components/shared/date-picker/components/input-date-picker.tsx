@@ -24,7 +24,7 @@ const InputDatePicker = ({
   const isControlled = controlledDate !== undefined;
   const date = isControlled ? controlledDate : internalDate;
   const [month, setMonth] = useState<Date | undefined>(date);
-  const [value, setValue] = useState(formatDate(date));
+  const [value, setValue] = useState(() => formatDate(date));
   const [prevDate, setPrevDate] = useState(date);
   const dateTime = date?.getTime();
   const prevDateTime = prevDate?.getTime();
