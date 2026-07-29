@@ -14,4 +14,5 @@ export interface CommonSelectProps {
   orientation?: "horizontal" | "vertical" | "responsive";
   fallback?: string;
   isLoading?: boolean;
+  showClose?: boolean
 }

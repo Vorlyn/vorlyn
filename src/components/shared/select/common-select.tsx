@@ -33,6 +33,7 @@ const CommonSelect = ({
   orientation = "vertical",
   fallback = "No option available!",
   isLoading = false,
+  showClose = true,
 }: CommonSelectProps) => {
   const generatedId = useId();
   const fieldId = id ?? generatedId;
@@ -82,7 +83,7 @@ const CommonSelect = ({
 
           {isLoading ? (
             <Spinner className="ml-auto size-4 shrink-0 opacity-50" />
-          ) : hasValue ? (
+          ) : hasValue && showClose ? (
             <CommonButton
               type="button"
               leftIcon={<X className="size-4 shrink-0 opacity-50" />}
