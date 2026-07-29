@@ -98,6 +98,7 @@ const CommonPagination = <T,>(props: CommonPaginationProps<T>) => {
             orientation="horizontal"
             className="w-fit"
             value={String(safeLimit)}
+            showClose={false}
           />
           <span>{`${startRange} - ${endRange} of ${totalRecords}`}</span>
           <PaginationContent>
