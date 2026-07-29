@@ -1,4 +1,3 @@
-import { useId } from "react";
 import type {
   CommonAvatarProps,
   GroupAvatarProps,
@@ -30,11 +29,10 @@ const SingleAvatar = ({
 };
 
 const GroupAvatar = ({ avatarList, className }: GroupAvatarProps) => {
-  const generateId = useId();
   return (
     <AvatarGroup>
-      {avatarList?.map((avatar, index) => (
-        <Avatar key={`${generateId}-${avatar.src ?? index}`}>
+      {avatarList?.map((avatar) => (
+        <Avatar key={avatar.id}>
           <AvatarImage
             src={avatar.src}
             alt={avatar.fallback ?? "Avatar"}

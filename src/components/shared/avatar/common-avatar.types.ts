@@ -5,7 +5,7 @@ export interface CommonAvatarProps {
   className?: string;
   badgeClassName?: string;
   variant?: "default" | "group";
-  avatarList?: { src?: string; fallback?: string }[];
+  avatarList?: { id: string; src?: string; fallback?: string }[];
   size?: "default" | "lg" | "sm";
 }
 
