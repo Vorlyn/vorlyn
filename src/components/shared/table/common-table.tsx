@@ -55,11 +55,12 @@ const CommonTable = <TData, TValue>({
     {},
   );
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(paginationProps?.limit ?? 10);
   const paginationState = {
     pageIndex,
-    pageSize: paginationProps?.limit ?? 10,
+    pageSize,
   };
 
   const tableColumns = useMemo(
@@ -77,32 +78,43 @@ const CommonTable = <TData, TValue>({
   const handlePageSizeChange = (value: string | null) => {
     paginationProps?.onPageSizeChange?.(value);
     if (pagination) {
+      const nextPageSize = Number(value ?? paginationProps?.limit ?? 10);
+      setPageSize(Number.isFinite(nextPageSize) ? nextPageSize : 10);
       setPageIndex(0);
     }
   };
 
   const handleRowSelectionChange: OnChangeFn<RowSelectionState> = (updater) => {
-    setRowSelection((prev) => {
-      const next = typeof updater === "function" ? updater(prev) : updater;
+    const next =
+      typeof updater === "function" ? updater(rowSelection) : updater;
 
-      if (enableRowSelection) {
-        const selectedRows = data.filter((_, index) => next[index]);
-        onRowSelectionChange?.(selectedRows);
-      }
-      return next;
-    });
+    setRowSelection(next);
+
+    if (enableRowSelection) {
+      const selectedRows = data.filter((_, index) => next[index]);
+      onRowSelectionChange?.(selectedRows);
+    }
   };
+
+  const isServerSide = paginationProps?.totalRecords !== undefined;
 
   const table = useReactTable({
     data,
     columns: tableColumns,
     getCoreRowModel: getCoreRowModel(),
-    ...(pagination && { getPaginationRowModel: getPaginationRowModel() }),
+    ...(pagination &&
+      !isServerSide && { getPaginationRowModel: getPaginationRowModel() }),
+    ...(pagination && isServerSide && { manualPagination: true }),
+    ...(pagination &&
+      isServerSide && {
+        pageCount: Math.ceil((paginationProps!.totalRecords ?? 0) / pageSize),
+      }),
     ...(pagination && {
       onPaginationChange: (updater) => {
         const next =
           typeof updater === "function" ? updater(paginationState) : updater;
         setPageIndex(next.pageIndex);
+        setPageSize(next.pageSize);
       },
     }),
     ...(sort && { onSortingChange: setSorting }),
@@ -127,6 +139,27 @@ const CommonTable = <TData, TValue>({
   if (!columns?.length) return null;
 
   const skeletonLoaderSize = Math.min(table.getState().pagination.pageSize, 5);
+
+  const columnItem: {
+    label: string;
+    value: string;
+    checked: boolean;
+    onCheckedChange: (checked: boolean) => void;
+  }[] = [];
+
+  if (enableColumnVisibility) {
+    for (const column of table.getAllColumns()) {
+      if (column.getCanHide()) {
+        columnItem.push({
+          label: column.id,
+          value: column.id,
+          checked: column.getIsVisible(),
+          onCheckedChange: (checked: boolean) =>
+            column.toggleVisibility(!!checked),
+        });
+      }
+    }
+  }
 
   return (
     <div className={cn("space-y-2 mx-2", tableWrapperClassName)}>
@@ -159,21 +192,7 @@ const CommonTable = <TData, TValue>({
             <CommonDropdown
               trigger={<CommonButton label="Columns" variant="outline" />}
               mode="checkboxes"
-              options={[
-                {
-                  id: "columns",
-                  items: table
-                    .getAllColumns()
-                    .filter((column) => column.getCanHide())
-                    .map((column) => ({
-                      label: column.id,
-                      value: column.id,
-                      checked: column.getIsVisible(),
-                      onCheckedChange: (checked: boolean) =>
-                        column.toggleVisibility(!!checked),
-                    })),
-                },
-              ]}
+              options={[{ id: "columns", items: columnItem }]}
             />
           )}
         </div>
@@ -263,12 +282,16 @@ const CommonTable = <TData, TValue>({
           <CommonPagination
             {...paginationProps}
             records={data}
-            totalRecords={data.length}
+            totalRecords={paginationProps.totalRecords ?? data.length}
             currentPage={table.getState().pagination.pageIndex + 1}
             limit={table.getState().pagination.pageSize}
             onPageChange={handlePageChange}
-            onPrev={() => table.previousPage()}
-            onNext={() => table.nextPage()}
+            onPrev={() =>
+              handlePageChange(table.getState().pagination.pageIndex)
+            }
+            onNext={() =>
+              handlePageChange(table.getState().pagination.pageIndex + 2)
+            }
             canPrev={table.getCanPreviousPage()}
             canNext={table.getCanNextPage()}
           />
@@ -276,7 +299,7 @@ const CommonTable = <TData, TValue>({
           <CommonPagination
             {...paginationProps}
             records={data}
-            totalRecords={data.length}
+            totalRecords={paginationProps.totalRecords ?? data.length}
             currentPage={table.getState().pagination.pageIndex + 1}
             limit={table.getState().pagination.pageSize}
             onPageChange={handlePageChange}
