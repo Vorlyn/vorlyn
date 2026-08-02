@@ -18,6 +18,8 @@ const CommonButton = ({
   labelClassName,
   leftIconClassName,
   rightIconClassName,
+  endSlot,
+  endSlotClassName,
   ...rest
 }: CommonButtonProps) => {
   const isLabel = label != null && label !== "";
@@ -49,6 +51,7 @@ const CommonButton = ({
           className={rightIconClassName}
         />
       )}
+      {!isLoading && endSlot && <span className={endSlotClassName}>{endSlot}</span>}
     </Button>
   );
 };

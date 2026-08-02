@@ -30,4 +30,6 @@ export interface CommonButtonProps extends Omit<ButtonProps, "children"> {
   leftIconClassName?: string;
   rightIconClassName?: string;
   spinnerColor?: string;
+  endSlot?: ReactNode;
+  endSlotClassName?: string;
 }
