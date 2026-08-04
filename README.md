@@ -88,8 +88,8 @@ This boilerplate uses a centralized API layer to ensure predictable data flow:
 ## 🔐 Environment Management
 This boilerplate is configured to handle multiple environments out-of-the-box using Vite's built-in mode detection. This eliminates the manual headache of switching URLs between local development and live production.
 
-- `.env.development`: Automatically loaded during `npm run dev`. Use this for your local or staging API URLs.
-- `.env.production`: Automatically loaded during `npm run build`. Use this for your live production endpoints.
+- `.env.development`: Automatically loaded during `bun run dev`. Use this for your local or staging API URLs.
+- `.env.production`: Automatically loaded during `bun run build`. Use this for your live production endpoints.
 - `.env.example`: A template file containing all required keys. Always keep this updated for new collaborators.
 
 **Note**: Never commit `.env.development` or `.env.production` to version control. They are already included in the `.gitignore` to protect your secrets.
@@ -118,9 +118,9 @@ const apiBaseUrl = env.VITE_API_BASE_URL;
 
 ### 1. Clone & Install
 ```
-git clone <your-repo-link>
-cd <your-repo-name>
-npm install
+git clone https://github.com/zohair636/react-boilerplate-shadcn.git
+cd react-boilerplate-shadcn
+bun install
 ```
 
 ### 2. Environment Setup
@@ -131,10 +131,10 @@ cp .env.example .env.production
 ```
 
 ### 3. Start Development
-`npm run dev`
+`bun run dev`
 
 ### 4. Build for Production
-`npm run build`
+`bun run build`
 
 ## 🤝 Contributing
 Contributions are welcome. Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) file before opening a pull request.
