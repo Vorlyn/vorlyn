@@ -9,11 +9,11 @@ Thanks for your interest in contributing. This project is designed to be clean, 
 3. Create a new branch:
    `git checkout -b feature/your-change`
 4. Install dependencies:
-   `npm install`
+   `bun install`
 5. Set up environment files:
-   cp `.env.example` `.env.development`
+   `cp .env.example .env.development`
 6. Start the dev server:
-   `npm run dev`
+   `bun run dev`
 
 ## Development Guidelines
 
