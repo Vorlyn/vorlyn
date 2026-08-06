@@ -1,6 +1,6 @@
-# React + Vite Boilerplate with shadcn/ui
+# Vorlyn
 
-**A high-scale, feature-oriented foundation for modern web applications**. Built with **Vite**, **TypeScript**, **TanStack Query**, and **shadcn/ui**, this boilerplate is structured for professional teams where maintainability is a requirement, not an option.
+**A production-ready, feature-based architecture for React — built with Vite, TypeScript, TanStack Query, and shadcn/ui.
 
 ## ✨ Tech Stack
 
@@ -104,7 +104,7 @@ import { env } from "@/config/env";
 const apiBaseUrl = env.VITE_API_BASE_URL;
 ```
 
-## 🎯 Who This Boilerplate Is For
+## 🎯 Who Vorlyn Is For
 
 - Developers building **production-grade applications**
 
@@ -118,8 +118,8 @@ const apiBaseUrl = env.VITE_API_BASE_URL;
 
 ### 1. Clone & Install
 ```
-git clone https://github.com/zohair636/react-boilerplate-shadcn.git
-cd react-boilerplate-shadcn
+git clone https://github.com/Vorlyn/vorlyn.git
+cd vorlyn
 bun install
 ```
 
@@ -149,7 +149,7 @@ Contributions are welcome. Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 For major changes or new features, please open an issue first to discuss the proposed changes.
 
 ## 📜 License
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/zohair636/react-boilerplate-shadcn/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Vorlyn/vorlyn.git/blob/main/LICENSE) file for details.
 
 ## 📌 Final Note
 This boilerplate prioritizes **clarity over cleverness**. If your app grows, this structure grows with it. Built for predictable growth and long-term maintainability.
