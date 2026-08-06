@@ -1,6 +1,6 @@
 # Vorlyn
 
-**A production-ready, feature-based architecture for React — built with Vite, TypeScript, TanStack Query, and shadcn/ui.
+** A production-ready, feature-based architecture for React — built with Vite, TypeScript, TanStack Query, and shadcn/ui.
 
 ## ✨ Tech Stack
 
