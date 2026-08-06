@@ -149,7 +149,7 @@ Contributions are welcome. Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 For major changes or new features, please open an issue first to discuss the proposed changes.
 
 ## 📜 License
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/Vorlyn/vorlyn.git/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Vorlyn/vorlyn/blob/main/LICENSE) file for details.
 
 ## 📌 Final Note
 This boilerplate prioritizes **clarity over cleverness**. If your app grows, this structure grows with it. Built for predictable growth and long-term maintainability.
