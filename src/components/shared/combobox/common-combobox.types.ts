@@ -60,10 +60,30 @@ export type GroupedVariantProps = BaseComboboxProps & {
   onChange?: (value: string) => void;
 };
 
+type PopoverInternalSearchProps = {
+  searchValue?: undefined;
+  onSearchChange?: undefined;
+};
+
+type PopoverExternalSearchProps = {
+  searchValue: string;
+  onSearchChange: (value: string) => void;
+};
+
+export type PopoverVariantProps = BaseComboboxProps & {
+  variant: "popover";
+  options: SimpleList | OptionList;
+  value?: string;
+  onChange?: (value: string) => void;
+  searchPlaceholder?: string;
+  isLoading?: boolean;
+} & (PopoverInternalSearchProps | PopoverExternalSearchProps);
+
 export type CommonComboboxProps =
   | DefaultVariantProps
   | MultipleVariantProps
-  | GroupedVariantProps;
+  | GroupedVariantProps
+  | PopoverVariantProps;
 
 export type DefaultComboboxProps = Omit<DefaultVariantProps, "variant"> & {
   id: string;
@@ -74,5 +94,9 @@ export type MultipleComboboxProps = Omit<MultipleVariantProps, "variant"> & {
 };
 
 export type GroupedComboboxProps = Omit<GroupedVariantProps, "variant"> & {
+  id: string;
+};
+
+export type PopoverComboboxProps = Omit<PopoverVariantProps, "variant"> & {
   id: string;
 };

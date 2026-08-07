@@ -1,10 +1,11 @@
 import type { CommonComboboxProps } from "./common-combobox.types";
-import { CommonLabel } from "../label";
 import { useId } from "react";
 import { cn } from "@/lib/utils";
 import Multiple from "./components/multiple";
 import Grouped from "./components/grouped";
 import Default from "./components/default";
+import CommonFieldLabel from "../label/field-label";
+import Popover from "./components/popover";
 
 const CommonCombobox = (props: CommonComboboxProps) => {
   const generatedId = useId();
@@ -12,7 +13,6 @@ const CommonCombobox = (props: CommonComboboxProps) => {
   const {
     label,
     labelClassName,
-    placeholder,
     fallback = "No items found.",
     required,
     disabled,
@@ -29,11 +29,12 @@ const CommonCombobox = (props: CommonComboboxProps) => {
       case "multiple":
         return (
           <Multiple
+            ref={ref}
             id={id}
             options={props.options}
             disabled={disabled}
             required={required}
-            placeholder={placeholder}
+            placeholder={props.placeholder}
             className={className}
             fallback={fallback}
             value={props.value}
@@ -45,9 +46,10 @@ const CommonCombobox = (props: CommonComboboxProps) => {
       case "grouped":
         return (
           <Grouped
+            ref={ref}
             id={id}
             options={props.options}
-            placeholder={placeholder}
+            placeholder={props.placeholder}
             fallback={fallback}
             disabled={disabled}
             required={required}
@@ -56,7 +58,27 @@ const CommonCombobox = (props: CommonComboboxProps) => {
             icon={icon}
             value={props.value}
             onChange={props.onChange}
+            contentClassName={contentClassName}
+          />
+        );
+      case "popover":
+        return (
+          <Popover
             ref={ref}
+            id={id}
+            options={props.options}
+            placeholder={props.placeholder}
+            searchPlaceholder={props.searchPlaceholder}
+            fallback={fallback}
+            value={props.value}
+            onChange={props.onChange}
+            searchValue={props.searchValue}
+            onSearchChange={props.onSearchChange}
+            isLoading={props.isLoading}
+            disabled={disabled}
+            required={required}
+            showClear={showClear}
+            className={className}
             contentClassName={contentClassName}
           />
         );
@@ -64,6 +86,7 @@ const CommonCombobox = (props: CommonComboboxProps) => {
       case undefined:
         return (
           <Default
+            ref={ref}
             id={id}
             options={props.options}
             placeholder={props.placeholder}
@@ -74,7 +97,6 @@ const CommonCombobox = (props: CommonComboboxProps) => {
             fallback={fallback}
             value={props.value}
             onChange={props.onChange}
-            ref={ref}
             required={required}
             contentClassName={contentClassName}
           />
@@ -85,7 +107,7 @@ const CommonCombobox = (props: CommonComboboxProps) => {
   return (
     <>
       {label && (
-        <CommonLabel
+        <CommonFieldLabel
           htmlFor={id}
           label={label}
           className={cn("font-semibold", labelClassName)}
