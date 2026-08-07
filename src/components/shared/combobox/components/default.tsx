@@ -28,12 +28,15 @@ const Default = ({
   required,
   contentClassName,
 }: DefaultComboboxProps) => {
+  const selectableOptions = options.filter(
+    (opt) => getOptionValue(opt) !== null,
+  );
   const selectedItem =
-    options.find((opt) => getOptionValue(opt) === value) ?? null;
+    selectableOptions.find((opt) => getOptionValue(opt) === value) ?? null;
   return (
     <Combobox
       id={id}
-      items={options}
+      items={selectableOptions}
       value={selectedItem}
       onValueChange={(val) => {
         onChange?.(val ? getOptionValue(val) : "");

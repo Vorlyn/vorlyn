@@ -28,10 +28,14 @@ const Grouped = ({
   required,
   contentClassName,
 }: GroupedComboboxProps) => {
+  const selectableOptions = options.filter((group) => ({
+    ...group,
+    items: group.items.filter((item) => item !== null),
+  }));
   return (
     <Combobox
       id={id}
-      items={options}
+      items={selectableOptions}
       value={value}
       onValueChange={(val: string | null) => {
         onChange?.(val ?? "");
