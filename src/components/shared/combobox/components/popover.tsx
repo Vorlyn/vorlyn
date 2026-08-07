@@ -107,12 +107,12 @@ const Popover = ({
       <ComboboxTrigger
         disabled={disabled}
         className={cn(
-            "flex h-10 w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 text-sm font-normal shadow-xs transition-colors outline-none select-none",
-            "data-placeholder:text-muted-foreground",
-            "[&>svg:last-child]:hidden",
-            "disabled:cursor-not-allowed disabled:opacity-50",
-            className,
-          )}
+          "flex h-10 w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 text-sm font-normal shadow-xs transition-colors outline-none select-none",
+          "data-placeholder:text-muted-foreground",
+          "[&>svg:last-child]:hidden",
+          "disabled:cursor-not-allowed disabled:opacity-50",
+          className,
+        )}
       >
         <span className="flex min-w-0 flex-1 truncate text-left">
           <ComboboxValue placeholder={placeholder} />
@@ -120,16 +120,22 @@ const Popover = ({
         {isLoading ? (
           <Spinner className="ml-auto size-4 shrink-0 opacity-50" />
         ) : showClear && hasValue && !disabled ? (
-          <CommonButton
-            type="button"
-            variant="ghost"
-            size="icon-xs"
-            rightIcon={<X className="size-4 shrink-0 opacity-50" />}
+          <span
+            role="button"
+            tabIndex={0}
+            aria-label="Clear selection"
             onPointerDown={preventTriggerPointerDown}
             onClick={handleClear}
-            className="shrink-0 rounded-full hover:bg-muted"
-            aria-label="Clear selection"
-          />
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleClear(e as unknown as MouseEvent);
+              }
+            }}
+            className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+          >
+            <X className="size-4 shrink-0 opacity-50" aria-hidden />
+          </span>
         ) : (
           <ChevronDown className="size-4 shrink-0 opacity-50" aria-hidden />
         )}
