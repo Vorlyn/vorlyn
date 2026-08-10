@@ -124,7 +124,7 @@ export const usePatchMutation = <TData = unknown, TResponse = unknown>(
 };
 
 export const useDeleteMutation = <TData = unknown, TResponse = unknown>(
-  key: string | string[],
+  key: string,
   url: string | ((variables: TData) => string),
   config: AxiosRequestConfig = {},
   options?: Omit<
