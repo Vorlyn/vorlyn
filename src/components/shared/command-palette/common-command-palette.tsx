@@ -13,7 +13,7 @@ import { RenderIcon } from "@/utils/icon-utils";
 import type { CommonCommandPaletteProps } from "./common-command-palette.types";
 import { Fragment } from "react";
 
-const CommonCommandPalette = ({
+export const CommonCommandPalette = ({
   open,
   onOpenChange,
   placeholder,
@@ -55,5 +55,3 @@ const CommonCommandPalette = ({
     </CommandDialog>
   );
 };
-
-export default CommonCommandPalette;

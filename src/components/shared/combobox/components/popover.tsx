@@ -23,7 +23,7 @@ import { useMemo, useState, type MouseEvent } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 
-const Popover = ({
+export const Popover = ({
   id,
   options,
   value,
@@ -165,5 +165,3 @@ const Popover = ({
     </Combobox>
   );
 };
-
-export default Popover;

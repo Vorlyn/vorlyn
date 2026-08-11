@@ -5,11 +5,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { CommonDropdownProps } from "./common-dropdown-types";
 import { cn } from "@/lib/utils";
-import DefaultDropdown from "./components/default-dropdown";
-import CheckboxesDropdown from "./components/checkboxes-dropdown";
-import RadioGroupsDropdown from "./components/radio-groups-dropdown";
+import { DefaultDropdown } from "./components/default-dropdown";
+import { CheckboxesDropdown } from "./components/checkboxes-dropdown";
+import { RadioGroupsDropdown } from "./components/radio-groups-dropdown";
 
-const CommonDropdown = (props: CommonDropdownProps) => {
+export const CommonDropdown = (props: CommonDropdownProps) => {
   const { mode, options, trigger, className, itemClassName } = props;
 
   if (!options?.length) return null;
@@ -40,5 +40,3 @@ const CommonDropdown = (props: CommonDropdownProps) => {
     </DropdownMenu>
   );
 };
-
-export default CommonDropdown;

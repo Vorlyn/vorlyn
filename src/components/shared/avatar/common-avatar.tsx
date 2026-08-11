@@ -47,7 +47,7 @@ const GroupAvatar = ({ avatarList, className }: GroupAvatarProps) => {
   );
 };
 
-const CommonAvatar = ({
+export const CommonAvatar = ({
   src,
   fallback,
   badge,
@@ -75,5 +75,3 @@ const CommonAvatar = ({
     />
   );
 };
-
-export default CommonAvatar;

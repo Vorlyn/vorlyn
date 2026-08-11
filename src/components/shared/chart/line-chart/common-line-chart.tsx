@@ -6,7 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const CommonLineChart = <TData extends Record<string, unknown>>({
+export const CommonLineChart = <TData extends Record<string, unknown>>({
   data,
   config,
   line,
@@ -64,5 +64,3 @@ const CommonLineChart = <TData extends Record<string, unknown>>({
     </ChartContainer>
   );
 };
-
-export default CommonLineChart;

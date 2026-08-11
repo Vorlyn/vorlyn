@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { CommonSelect } from "../select";
 import { getPagination } from "./common-pagination.utils";
 
-const CommonPagination = <T,>(props: CommonPaginationProps<T>) => {
+export const CommonPagination = <T,>(props: CommonPaginationProps<T>) => {
   const {
     records,
     currentPage,
@@ -155,5 +155,3 @@ const CommonPagination = <T,>(props: CommonPaginationProps<T>) => {
   };
   return renderPagination();
 };
-
-export default CommonPagination;

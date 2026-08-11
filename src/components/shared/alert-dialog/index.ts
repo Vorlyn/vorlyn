@@ -1,1 +1,1 @@
-export { default as CommonAlertDialog } from "./common-alert-dialog";
+export { CommonAlertDialog } from "./common-alert-dialog";

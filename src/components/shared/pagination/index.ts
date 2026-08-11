@@ -1,1 +1,1 @@
-export { default as CommonPagination } from "./common-pagination";
+export { CommonPagination } from "./common-pagination";

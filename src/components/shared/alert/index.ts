@@ -1,1 +1,1 @@
-export { default as CommonAlertProps } from "./common-alert";
+export { CommonAlert } from "./common-alert";

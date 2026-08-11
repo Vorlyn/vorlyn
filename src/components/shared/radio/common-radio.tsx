@@ -9,7 +9,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 
-const CommonRadio = ({
+export const CommonRadio = ({
   id,
   defaultValue,
   options,
@@ -61,5 +61,3 @@ const CommonRadio = ({
     </FieldSet>
   );
 };
-
-export default CommonRadio;

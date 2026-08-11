@@ -1,1 +1,1 @@
-export { default as CommonKbd } from "./common-kbd";
+export { CommonKbd } from "./common-kbd";

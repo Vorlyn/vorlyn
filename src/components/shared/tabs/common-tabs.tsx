@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { CommonTabsProps } from "./common-tabs.types";
 import { RenderIcon } from "@/utils/icon-utils";
 
-const CommonTabs = ({
+export const CommonTabs = ({
   options,
   children,
   defaultValue,
@@ -40,5 +40,3 @@ const CommonTabs = ({
     </Tabs>
   );
 };
-
-export default CommonTabs;

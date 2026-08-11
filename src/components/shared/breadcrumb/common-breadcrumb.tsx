@@ -21,7 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const CommonBreadCrumb = ({
+export const CommonBreadCrumb = ({
   items,
   maxVisible = 4,
 }: CommonBreadCrumbsProps) => {
@@ -115,5 +115,3 @@ const CommonBreadCrumb = ({
     </Breadcrumb>
   );
 };
-
-export default CommonBreadCrumb;

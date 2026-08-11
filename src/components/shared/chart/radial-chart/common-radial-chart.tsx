@@ -7,7 +7,7 @@ import { LabelList, PolarGrid, RadialBar, RadialBarChart } from "recharts";
 import type { CommonRadialChartProps } from "./common-radial-chart.types";
 import { cn } from "@/lib/utils";
 
-const CommonRadialChart = <TData extends Record<string, unknown>>({
+export const CommonRadialChart = <TData extends Record<string, unknown>>({
   data,
   config,
   innerRadius = 30,
@@ -62,5 +62,3 @@ const CommonRadialChart = <TData extends Record<string, unknown>>({
     </ChartContainer>
   );
 };
-
-export default CommonRadialChart;

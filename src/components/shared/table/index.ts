@@ -1,1 +1,1 @@
-export { default as CommonTable } from "./common-table";
+export { CommonTable } from "./common-table";

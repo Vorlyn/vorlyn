@@ -2,7 +2,7 @@ import type { CommonCheckboxProps } from "./common-checkbox.types";
 import { GroupCheckbox } from "./components/grouped-checkbox";
 import { DefaultCheckbox } from "./components/default-checkbox";
 
-const CommonCheckbox = (props: CommonCheckboxProps) => {
+export const CommonCheckbox = (props: CommonCheckboxProps) => {
   const {
     label,
     description,
@@ -50,5 +50,3 @@ const CommonCheckbox = (props: CommonCheckboxProps) => {
     />
   );
 };
-
-export default CommonCheckbox;

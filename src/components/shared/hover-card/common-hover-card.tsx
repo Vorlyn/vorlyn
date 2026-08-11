@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/hover-card";
 import type { CommonHoverCardProps } from "./common-hover-card.types";
 
-const CommonHoverCard = ({
+export const CommonHoverCard = ({
   trigger,
   delay = 10,
   closeDelay = 10,
@@ -23,5 +23,3 @@ const CommonHoverCard = ({
     </HoverCard>
   );
 };
-
-export default CommonHoverCard;

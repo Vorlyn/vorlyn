@@ -1,1 +1,1 @@
-export { default as CommonProgress } from "./common-progress";
+export { CommonProgress } from "./common-progress";

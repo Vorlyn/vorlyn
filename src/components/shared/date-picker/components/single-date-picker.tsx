@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import type { SingleDatePickerProps } from "../common-date-picker.types";
 import { useId } from "react";
 
-const SingleDatePicker = ({
+export const SingleDatePicker = ({
   id,
   open,
   onOpenChange,
@@ -55,5 +55,3 @@ const SingleDatePicker = ({
     </CommonPopover>
   );
 };
-
-export default SingleDatePicker;

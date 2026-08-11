@@ -8,7 +8,7 @@ import {
 import type { CommonAreaChartProps } from "./common-area-chart.types";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-const CommonAreaChart = <TData extends Record<string, unknown>>({
+export const CommonAreaChart = <TData extends Record<string, unknown>>({
   data,
   config,
   showVerticalGridLines = false,
@@ -66,5 +66,3 @@ const CommonAreaChart = <TData extends Record<string, unknown>>({
     </ChartContainer>
   );
 };
-
-export default CommonAreaChart;

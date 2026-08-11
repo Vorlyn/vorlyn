@@ -4,7 +4,7 @@ import {
 } from "@/components/ui/input-group";
 import type { InputGroupTextareaFieldProps } from "../common-input-group.types";
 
-const TextareaField = ({
+export const TextareaField = ({
   fieldId,
   placeholder,
   disabled,
@@ -46,5 +46,3 @@ const TextareaField = ({
     </>
   );
 };
-
-export default TextareaField;

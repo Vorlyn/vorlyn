@@ -1,1 +1,2 @@
-export { default as CommonLabel } from "./common-label";
+export { CommonLabel } from "./common-label";
+export { CommonFieldLabel } from "./field-label";

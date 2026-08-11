@@ -10,7 +10,7 @@ import type { CommonBarChartProps } from "./common-bar-chart.types";
 import { BarChartHorizontalAxis } from "./components/horizontal-axis";
 import { BarChartVerticalAxis } from "./components/vertical-axis";
 
-const CommonBarChart = <TData extends Record<string, unknown>>({
+export const CommonBarChart = <TData extends Record<string, unknown>>({
   data,
   config,
   bars,
@@ -88,5 +88,3 @@ const CommonBarChart = <TData extends Record<string, unknown>>({
     </ChartContainer>
   );
 };
-
-export default CommonBarChart;

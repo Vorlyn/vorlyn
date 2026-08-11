@@ -3,7 +3,7 @@ import { CommonButton } from "../../button";
 import type { ButtonModeProps } from "../common-kbd.types";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
-const ButtonKbd = ({
+export const ButtonKbd = ({
   label,
   keys,
   onClick,
@@ -27,5 +27,3 @@ const ButtonKbd = ({
     />
   );
 };
-
-export default ButtonKbd;

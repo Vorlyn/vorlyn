@@ -1,1 +1,1 @@
-export { default as CommonSwitch } from "./common-switch";
+export { CommonSwitch } from "./common-switch";

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import type { CommonCardProps } from "./common-card.types";
 
-const CommonCard = ({
+export const CommonCard = ({
   title,
   description,
   action,
@@ -31,5 +31,3 @@ const CommonCard = ({
     </Card>
   );
 };
-
-export default CommonCard;

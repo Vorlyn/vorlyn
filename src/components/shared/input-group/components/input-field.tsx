@@ -4,7 +4,7 @@ import {
 } from "@/components/ui/input-group";
 import type { InputGroupInputFieldProps } from "../common-input-group.types";
 
-const InputField = ({
+export const InputField = ({
   fieldId,
   placeholder,
   type,
@@ -45,5 +45,3 @@ const InputField = ({
     </>
   );
 };
-
-export default InputField;

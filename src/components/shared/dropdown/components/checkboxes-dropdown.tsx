@@ -9,7 +9,7 @@ import { RenderIcon } from "@/utils/icon-utils";
 import { Fragment } from "react";
 import type { CheckboxesDropdownModeProps } from "../common-dropdown-types";
 
-const CheckboxesDropdown = ({
+export const CheckboxesDropdown = ({
   options,
   itemClassName,
 }: CheckboxesDropdownModeProps) => {
@@ -57,5 +57,3 @@ const CheckboxesDropdown = ({
     </>
   );
 };
-
-export default CheckboxesDropdown;

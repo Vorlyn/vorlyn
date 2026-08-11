@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/tooltip";
 import type { CommonTooltipProps } from "./common-tooltip.types";
 
-const CommonToolTip = ({
+export const CommonTooltip = ({
   trigger,
   children,
   side,
@@ -28,5 +28,3 @@ const CommonToolTip = ({
     </Tooltip>
   );
 };
-
-export default CommonToolTip;

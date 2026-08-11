@@ -1,1 +1,1 @@
-export { default as CommonTabs } from "./common-tabs";
+export { CommonTabs } from "./common-tabs";

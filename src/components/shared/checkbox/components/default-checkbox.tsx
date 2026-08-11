@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/field";
 import type { DefaultCheckboxProps } from "../common-checkbox.types";
 import { Checkbox } from "@/components/ui/checkbox";
-import CommonFieldLabel from "../../label/field-label";
+import { CommonFieldLabel } from "../../label/field-label";
 import { useId } from "react";
 
 export const DefaultCheckbox = ({

@@ -8,13 +8,9 @@ import {
   useFormContext,
   type FieldValues,
 } from "react-hook-form";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldError } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
-import CommonFieldLabel from "../label/field-label";
+import { CommonFieldLabel } from "../label/field-label";
 
 export const FormProvider = <T extends FieldValues>({
   onSubmit,

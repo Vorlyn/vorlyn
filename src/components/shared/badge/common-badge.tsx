@@ -3,7 +3,7 @@ import type { CommonBadgeProps } from "./common-badge.types";
 import { Spinner } from "@/components/ui/spinner";
 import { RenderIcon } from "@/utils/icon-utils";
 
-const CommonBadge = ({
+export const CommonBadge = ({
   label,
   variant,
   className,
@@ -31,5 +31,3 @@ const CommonBadge = ({
     </Badge>
   );
 };
-
-export default CommonBadge;

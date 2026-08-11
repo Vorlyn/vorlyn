@@ -2,9 +2,9 @@ import { Field, FieldDescription, FieldError } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { useId } from "react";
 import type { CommonTextAreaProps } from "./common-textarea.types";
-import CommonFieldLabel from "../label/field-label";
+import { CommonFieldLabel } from "../label/field-label";
 
-const CommonTextArea = ({
+export const CommonTextArea = ({
   id,
   label,
   description,
@@ -57,5 +57,3 @@ const CommonTextArea = ({
     </Field>
   );
 };
-
-export default CommonTextArea;

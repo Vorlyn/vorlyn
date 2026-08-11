@@ -1,1 +1,1 @@
-export { default as CommonCarousel } from "./common-carousel";
+export { CommonCarousel } from "./common-carousel";

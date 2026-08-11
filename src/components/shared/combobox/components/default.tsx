@@ -13,7 +13,7 @@ import type {
   SelectableItem,
 } from "../common-combobox.types";
 
-const Default = ({
+export const Default = ({
   id,
   options,
   placeholder,
@@ -74,5 +74,3 @@ const Default = ({
     </Combobox>
   );
 };
-
-export default Default;

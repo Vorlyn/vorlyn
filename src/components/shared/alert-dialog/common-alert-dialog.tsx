@@ -13,7 +13,7 @@ import {
 import type { CommonAlertDialogProps } from "./common-alert-dialog.types";
 import { RenderIcon } from "@/utils/icon-utils";
 
-const CommonAlertDialog = ({
+export const CommonAlertDialog = ({
   trigger,
   title,
   description,
@@ -47,5 +47,3 @@ const CommonAlertDialog = ({
     </AlertDialog>
   );
 };
-
-export default CommonAlertDialog;

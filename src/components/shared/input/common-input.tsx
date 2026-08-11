@@ -3,11 +3,11 @@ import { useId } from "react";
 import type { CommonInputProps } from "./common-input.types";
 import { cn } from "@/lib/utils";
 import { CircleAlert } from "lucide-react";
-import CommonFieldLabel from "../label/field-label";
+import { CommonFieldLabel } from "../label/field-label";
 import { Field, FieldError } from "@/components/ui/field";
 import { RenderIcon } from "@/utils/icon-utils";
 
-const CommonInput = ({
+export const CommonInput = ({
   id,
   label,
   labelClassName,
@@ -83,5 +83,3 @@ const CommonInput = ({
     </Field>
   );
 };
-
-export default CommonInput;

@@ -12,7 +12,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CommonButton } from "../button";
 import { cn } from "@/lib/utils";
 
-const CommonCarousel = <T,>({
+export const CommonCarousel = <T,>({
   options,
   renderItem,
   getItemKey,
@@ -120,5 +120,3 @@ const CommonCarousel = <T,>({
     </div>
   );
 };
-
-export default CommonCarousel;

@@ -10,14 +10,14 @@ import {
 import type { CommonSelectProps } from "./common-select.types";
 import React, { useId } from "react";
 import { Field, FieldError } from "@/components/ui/field";
-import CommonFieldLabel from "../label/field-label";
+import { CommonFieldLabel } from "../label/field-label";
 import { ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CommonButton } from "../button";
 import { preventTriggerPointerDown } from "@/utils/event-handlers";
 import { Spinner } from "@/components/ui/spinner";
 
-const CommonSelect = ({
+export const CommonSelect = ({
   id,
   options,
   value,
@@ -125,5 +125,3 @@ const CommonSelect = ({
     </Field>
   );
 };
-
-export default CommonSelect;

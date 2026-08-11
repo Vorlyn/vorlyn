@@ -14,7 +14,7 @@ import { RenderIcon } from "@/utils/icon-utils";
 import { Fragment } from "react";
 import type { DefaultDropdownModeProps } from "../common-dropdown-types";
 
-const DefaultDropdown = ({
+export const DefaultDropdown = ({
   options,
   itemClassName,
   className,
@@ -147,5 +147,3 @@ const DefaultDropdown = ({
     </>
   );
 };
-
-export default DefaultDropdown;

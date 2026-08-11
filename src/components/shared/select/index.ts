@@ -1,1 +1,1 @@
-export { default as CommonSelect } from "./common-select";
+export { CommonSelect } from "./common-select";

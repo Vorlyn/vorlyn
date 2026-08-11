@@ -29,7 +29,7 @@ import { RenderIcon } from "@/utils/icon-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CommonPagination } from "../pagination";
 
-const CommonTable = <TData, TValue>({
+export const CommonTable = <TData, TValue>({
   columns,
   data,
   fallback = "No results.",
@@ -309,5 +309,3 @@ const CommonTable = <TData, TValue>({
     </div>
   );
 };
-
-export default CommonTable;

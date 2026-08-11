@@ -1,1 +1,1 @@
-export { default as CommonRadio } from "./common-radio";
+export { CommonRadio } from "./common-radio";

@@ -1,1 +1,1 @@
-export { default as CommonSheet } from "./common-sheet";
+export { CommonSheet } from "./common-sheet";

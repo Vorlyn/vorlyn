@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/progress";
 import type { CommonProgressProps } from "./common-progress.types";
 
-const CommonProgress = ({
+export const CommonProgress = ({
   value,
   label,
   max = 100,
@@ -25,5 +25,3 @@ const CommonProgress = ({
     </Progress>
   );
 };
-
-export default CommonProgress;

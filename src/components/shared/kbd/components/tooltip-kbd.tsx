@@ -1,9 +1,9 @@
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
-import { CommonToolTip } from "../../tooltip";
 import type { TooltipModeProps } from "../common-kbd.types";
 import { cn } from "@/lib/utils";
+import { CommonTooltip } from "../../tooltip";
 
-const TooltipKbd = ({
+export const TooltipKbd = ({
   trigger,
   label,
   keys,
@@ -16,7 +16,7 @@ const TooltipKbd = ({
   kbdClassName,
 }: TooltipModeProps) => {
   return (
-    <CommonToolTip
+    <CommonTooltip
       trigger={trigger}
       side={side}
       sideOffset={sideOffset}
@@ -31,8 +31,6 @@ const TooltipKbd = ({
           <Kbd key={key}>{key}</Kbd>
         ))}
       </KbdGroup>
-    </CommonToolTip>
+    </CommonTooltip>
   );
 };
-
-export default TooltipKbd;

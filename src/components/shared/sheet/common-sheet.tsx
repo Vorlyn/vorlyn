@@ -8,7 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const CommonSheet = ({
+export const CommonSheet = ({
   open,
   onOpenChange,
   trigger,
@@ -36,5 +36,3 @@ const CommonSheet = ({
     </Sheet>
   );
 };
-
-export default CommonSheet;

@@ -1,1 +1,1 @@
-export { default as CommonDatePicker } from "./common-date-picker";
+export { CommonDatePicker } from "./common-date-picker";

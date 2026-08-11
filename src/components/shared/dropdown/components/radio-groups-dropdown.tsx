@@ -9,7 +9,7 @@ import { RenderIcon } from "@/utils/icon-utils";
 import { Fragment } from "react";
 import type { RadioGroupDropdownModeProps } from "../common-dropdown-types";
 
-const RadioGroupsDropdown = ({
+export const RadioGroupsDropdown = ({
   options,
   value,
   onValueChange,
@@ -49,5 +49,3 @@ const RadioGroupsDropdown = ({
     </>
   );
 };
-
-export default RadioGroupsDropdown;

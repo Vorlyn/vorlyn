@@ -1,7 +1,7 @@
 import { Slider } from "@/components/ui/slider";
 import type { CommonSliderProps } from "./common-slider.types";
 
-const CommonSlider = ({
+export const CommonSlider = ({
   min,
   max,
   step,
@@ -24,5 +24,3 @@ const CommonSlider = ({
     />
   );
 };
-
-export default CommonSlider;

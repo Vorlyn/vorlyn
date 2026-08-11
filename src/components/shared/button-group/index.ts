@@ -1,4 +1,4 @@
-export { default as CommonButtonGroup } from "./common-button-group";
+export { CommonButtonGroup } from "./common-button-group";
 export type {
   ButtonGroupItem,
   CommonButtonGroupProps,

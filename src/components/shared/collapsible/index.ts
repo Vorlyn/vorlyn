@@ -1,1 +1,1 @@
-export { default as CommonCollapsible } from "./common-collapsible";
+export { CommonCollapsible } from "./common-collapsible";

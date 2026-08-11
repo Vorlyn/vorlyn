@@ -1,6 +1,6 @@
 import { ButtonGroupSeparator } from "@/components/ui/button-group";
 import type { ButtonGroupItem } from "./common-button-group.types";
-import CommonButton from "../button/common-button";
+import { CommonButton } from "../button/common-button";
 import { CommonDropdown } from "../dropdown";
 import { CommonPopover } from "../popover";
 import { CommonInput } from "../input";

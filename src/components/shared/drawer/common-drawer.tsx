@@ -12,7 +12,7 @@ import type { CommonDrawerProps } from "./common-drawer.types";
 import { cn } from "@/lib/utils";
 import { CommonButton } from "../button";
 
-const CommonDrawer = ({
+export const CommonDrawer = ({
   open,
   onOpenChange,
   trigger,
@@ -67,5 +67,3 @@ const CommonDrawer = ({
     </Drawer>
   );
 };
-
-export default CommonDrawer;

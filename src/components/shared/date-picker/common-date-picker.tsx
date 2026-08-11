@@ -1,12 +1,12 @@
 import type { CommonDatePickerProps } from "./common-date-picker.types";
-import SingleDatePicker from "./components/single-date-picker";
-import RangeDatePicker from "./components/range-date-picker";
-import InputDatePicker from "./components/input-date-picker";
+import { SingleDatePicker } from "./components/single-date-picker";
+import { RangeDatePicker } from "./components/range-date-picker";
+import { InputDatePicker } from "./components/input-date-picker";
 import { Field } from "@/components/ui/field";
-import CommonFieldLabel from "../label/field-label";
+import { CommonFieldLabel } from "../label/field-label";
 import { cn } from "@/lib/utils";
 
-const CommonDatePicker = (props: CommonDatePickerProps) => {
+export const CommonDatePicker = (props: CommonDatePickerProps) => {
   const content = () => {
     switch (props.mode) {
       case "single":
@@ -37,5 +37,3 @@ const CommonDatePicker = (props: CommonDatePickerProps) => {
     </Field>
   );
 };
-
-export default CommonDatePicker;

@@ -5,7 +5,7 @@ import {
   withInjectedSeparators,
 } from "./common-button-group.utils";
 
-const CommonButtonGroup = ({
+export const CommonButtonGroup = ({
   items,
   widthSeparators = false,
   ...rest
@@ -18,5 +18,3 @@ const CommonButtonGroup = ({
 
   return <ButtonGroup {...rest}>{content}</ButtonGroup>;
 };
-
-export default CommonButtonGroup;

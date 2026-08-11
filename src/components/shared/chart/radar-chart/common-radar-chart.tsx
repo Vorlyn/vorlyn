@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/chart";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
-const CommonRadarChart = <TData extends Record<string, unknown>>({
+export const CommonRadarChart = <TData extends Record<string, unknown>>({
   data,
   config,
   angleAxisDataKey,
@@ -70,5 +70,3 @@ const CommonRadarChart = <TData extends Record<string, unknown>>({
     </ChartContainer>
   );
 };
-
-export default CommonRadarChart;

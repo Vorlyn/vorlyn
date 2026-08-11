@@ -13,7 +13,7 @@ import {
 import { InputGroupAddon } from "@/components/ui/input-group";
 import type { GroupedComboboxProps } from "../common-combobox.types";
 
-const Grouped = ({
+export const Grouped = ({
   id,
   options,
   placeholder,
@@ -77,5 +77,3 @@ const Grouped = ({
     </Combobox>
   );
 };
-
-export default Grouped;

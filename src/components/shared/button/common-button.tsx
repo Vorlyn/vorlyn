@@ -3,7 +3,7 @@ import { Button } from "../../ui/button";
 import type { CommonButtonProps } from "./common-button.types";
 import { Spinner } from "@/components/ui/spinner";
 
-const CommonButton = ({
+export const CommonButton = ({
   label,
   leftIcon,
   rightIcon,
@@ -55,5 +55,3 @@ const CommonButton = ({
     </Button>
   );
 };
-
-export default CommonButton;

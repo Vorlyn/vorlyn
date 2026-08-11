@@ -2,7 +2,7 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import type { ComboModeProps } from "../common-kbd.types";
 import { cn } from "@/lib/utils";
 
-const ComboKbd = ({ parts, wrapperClassName, className }: ComboModeProps) => {
+export const ComboKbd = ({ parts, wrapperClassName, className }: ComboModeProps) => {
   return (
     <div className={cn("flex flex-col items-center gap-4", wrapperClassName)}>
       <p className={cn("text-sm text-muted-foreground", className)}>
@@ -21,5 +21,3 @@ const ComboKbd = ({ parts, wrapperClassName, className }: ComboModeProps) => {
     </div>
   );
 };
-
-export default ComboKbd;

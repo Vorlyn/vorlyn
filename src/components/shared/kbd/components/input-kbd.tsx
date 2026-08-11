@@ -3,7 +3,7 @@ import { CommonInputGroup } from "../../input-group";
 import { Kbd } from "@/components/ui/kbd";
 import { cn } from "@/lib/utils";
 
-const InputKbd = ({ inputProps, label, keys, kbdClassName }: InputKbdProps) => {
+export const InputKbd = ({ inputProps, label, keys, kbdClassName }: InputKbdProps) => {
   return (
     <div className="flex w-full max-w-xs flex-col gap-6">
       <CommonInputGroup
@@ -19,5 +19,3 @@ const InputKbd = ({ inputProps, label, keys, kbdClassName }: InputKbdProps) => {
     </div>
   );
 };
-
-export default InputKbd;

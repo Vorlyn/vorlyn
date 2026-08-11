@@ -1,7 +1,7 @@
 import type { CommonFieldLabelProps } from "./common-label.types";
 import { FieldLabel } from "@/components/ui/field";
 
-const CommonFieldLabel = ({
+export const CommonFieldLabel = ({
   htmlFor,
   label,
   required,
@@ -24,5 +24,3 @@ const CommonFieldLabel = ({
     </div>
   );
 };
-
-export default CommonFieldLabel;

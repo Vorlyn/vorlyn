@@ -1,1 +1,1 @@
-export { default as CommonCard } from "./common-card";
+export { CommonCard } from "./common-card";

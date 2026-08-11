@@ -16,7 +16,7 @@ import type {
 } from "../common-combobox.types";
 import { getOptionLabel, getOptionValue } from "../common-combobox.utils";
 
-const Multiple = ({
+export const Multiple = ({
   id,
   options,
   fallback,
@@ -90,5 +90,3 @@ const Multiple = ({
     </Combobox>
   );
 };
-
-export default Multiple;

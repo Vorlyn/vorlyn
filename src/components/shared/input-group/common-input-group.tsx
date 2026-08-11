@@ -1,12 +1,12 @@
 import { Field, FieldDescription, FieldError } from "@/components/ui/field";
 import type { CommonInputGroupProps } from "./common-input-group.types";
 import { useId } from "react";
-import CommonFieldLabel from "../label/field-label";
+import { CommonFieldLabel } from "../label/field-label";
 import { InputGroup } from "@/components/ui/input-group";
-import InputField from "./components/input-field";
-import TextareaField from "./components/textarea-field";
+import { InputField } from "./components/input-field";
+import { TextareaField } from "./components/textarea-field";
 
-const CommonInputGroup = (props: CommonInputGroupProps) => {
+export const CommonInputGroup = (props: CommonInputGroupProps) => {
   const generatedId = useId();
   const {
     id,
@@ -62,5 +62,3 @@ const CommonInputGroup = (props: CommonInputGroupProps) => {
     </Field>
   );
 };
-
-export default CommonInputGroup;

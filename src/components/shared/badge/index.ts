@@ -1,1 +1,1 @@
-export {default as CommonBadge} from "./common-badge";
+export { CommonBadge } from "./common-badge";

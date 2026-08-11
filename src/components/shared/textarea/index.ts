@@ -1,1 +1,1 @@
-export { default as CommonTextArea } from "./common-textarea";
+export { CommonTextArea } from "./common-textarea";

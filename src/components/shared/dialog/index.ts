@@ -1,1 +1,1 @@
-export {default as CommonDialog} from './common-dialog'
+export { CommonDialog } from "./common-dialog";

@@ -2,7 +2,7 @@ import type { CommonLabelProps } from "./common-label.types";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 
-const CommonLabel = ({
+export const CommonLabel = ({
   htmlFor,
   label,
   required,
@@ -32,5 +32,3 @@ const CommonLabel = ({
     </Label>
   );
 };
-
-export default CommonLabel;

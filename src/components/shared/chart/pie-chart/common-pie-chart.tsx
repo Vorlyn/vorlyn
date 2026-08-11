@@ -8,7 +8,7 @@ import {
 import type { CommonPieChartProps } from "./common-pie-chart.types";
 import { LabelList, Pie, PieChart } from "recharts";
 
-const CommonPieChart = <TData extends Record<string, unknown>>({
+export const CommonPieChart = <TData extends Record<string, unknown>>({
   data,
   config,
   indicator = "dot",
@@ -72,5 +72,3 @@ const CommonPieChart = <TData extends Record<string, unknown>>({
     </ChartContainer>
   );
 };
-
-export default CommonPieChart;

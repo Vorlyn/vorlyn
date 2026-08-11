@@ -1,1 +1,1 @@
-export { default as CommonErrorBoundary } from "./common-error-boundary";
+export { CommonErrorBoundary } from "./common-error-boundary";

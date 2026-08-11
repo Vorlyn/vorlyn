@@ -1,13 +1,13 @@
 import type { CommonComboboxProps } from "./common-combobox.types";
 import { useId } from "react";
 import { cn } from "@/lib/utils";
-import Multiple from "./components/multiple";
-import Grouped from "./components/grouped";
-import Default from "./components/default";
-import CommonFieldLabel from "../label/field-label";
-import Popover from "./components/popover";
+import { Multiple } from "./components/multiple";
+import { Grouped } from "./components/grouped";
+import { Default } from "./components/default";
+import { CommonFieldLabel } from "../label/field-label";
+import { Popover } from "./components/popover";
 
-const CommonCombobox = (props: CommonComboboxProps) => {
+export const CommonCombobox = (props: CommonComboboxProps) => {
   const generatedId = useId();
   const id = `${generatedId}-combobox`;
   const {
@@ -118,5 +118,3 @@ const CommonCombobox = (props: CommonComboboxProps) => {
     </>
   );
 };
-
-export default CommonCombobox;

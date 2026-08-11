@@ -1,1 +1,1 @@
-export { default as CommonCombobox } from "./common-combobox";
+export { CommonCombobox } from "./common-combobox";

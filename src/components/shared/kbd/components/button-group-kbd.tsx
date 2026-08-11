@@ -1,9 +1,12 @@
 import type { ButtonGroupModeProps } from "../common-kbd.types";
 import { ButtonGroup } from "@/components/ui/button-group";
-import TooltipKbd from "./tooltip-kbd";
+import { TooltipKbd } from "./tooltip-kbd";
 import { CommonButton } from "../../button";
 
-const ButtonGroupKbd = ({ items, wrapperClassName }: ButtonGroupModeProps) => {
+export const ButtonGroupKbd = ({
+  items,
+  wrapperClassName,
+}: ButtonGroupModeProps) => {
   return (
     <ButtonGroup className={wrapperClassName}>
       {items.map((item) =>
@@ -21,5 +24,3 @@ const ButtonGroupKbd = ({ items, wrapperClassName }: ButtonGroupModeProps) => {
     </ButtonGroup>
   );
 };
-
-export default ButtonGroupKbd;

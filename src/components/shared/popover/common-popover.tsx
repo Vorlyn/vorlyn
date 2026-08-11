@@ -5,7 +5,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const CommonPopover = ({
+export const CommonPopover = ({
   trigger,
   children,
   open,
@@ -24,5 +24,3 @@ const CommonPopover = ({
     </Popover>
   );
 };
-
-export default CommonPopover;

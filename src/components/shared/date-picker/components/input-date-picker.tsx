@@ -11,7 +11,7 @@ import { CommonPopover } from "../../popover";
 import { Calendar } from "@/components/ui/calendar";
 import { formatDate, isValidDate } from "../common-date-picker.utils";
 
-const InputDatePicker = ({
+export const InputDatePicker = ({
   id,
   placeholder,
   date: controlledDate,
@@ -95,5 +95,3 @@ const InputDatePicker = ({
     </InputGroup>
   );
 };
-
-export default InputDatePicker;

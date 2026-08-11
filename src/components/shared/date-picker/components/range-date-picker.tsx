@@ -7,7 +7,7 @@ import { Calendar } from "@/components/ui/calendar";
 import type { DateRangePickerProps } from "../common-date-picker.types";
 import { useId } from "react";
 
-const RangeDatePicker = ({
+export const RangeDatePicker = ({
   id,
   open,
   onOpenChange,
@@ -60,5 +60,3 @@ const RangeDatePicker = ({
     </CommonPopover>
   );
 };
-
-export default RangeDatePicker;

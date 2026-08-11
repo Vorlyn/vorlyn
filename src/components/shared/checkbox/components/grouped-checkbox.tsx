@@ -8,7 +8,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
-import CommonFieldLabel from "../../label/field-label";
+import { CommonFieldLabel } from "../../label/field-label";
 
 export const GroupCheckbox = ({
   id,
@@ -22,7 +22,7 @@ export const GroupCheckbox = ({
   className,
   options,
 }: GroupCheckboxProps) => {
-    const generatedId = useId();
+  const generatedId = useId();
   const fieldId = id ?? generatedId;
   const checkedSet = useMemo(() => {
     return new Set<string>(Array.isArray(checked) ? checked : []);

@@ -1,7 +1,7 @@
 import { Component, type ErrorInfo } from "react";
 import type { Props, State } from "./common-error-boundary.types";
 
-class CommonErrorBoundary extends Component<Props, State> {
+export const CommonErrorBoundary = class extends Component<Props, State> {
   public state: State = {
     hasError: false,
     error: null,
@@ -23,5 +23,3 @@ class CommonErrorBoundary extends Component<Props, State> {
     return this.props.children;
   }
 }
-
-export default CommonErrorBoundary;

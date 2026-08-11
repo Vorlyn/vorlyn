@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactElement, ReactNode } from "react";
 import { CommonButton } from "../button";
-import { CommonToolTip } from "../tooltip";
 import { CommonInputGroup } from "../input-group";
+import { CommonTooltip } from "../tooltip";
 
 type ComboPart =
   | { type: "text"; content: ReactNode }
@@ -29,7 +29,7 @@ export type TooltipModeProps = {
   trigger: ReactElement;
   keys: string[];
   label?: ReactNode;
-  side?: ComponentProps<typeof CommonToolTip>["side"];
+  side?: ComponentProps<typeof CommonTooltip>["side"];
   sideOffset?: number;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;

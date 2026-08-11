@@ -1,6 +1,6 @@
 import type { CommonImageProps } from "./common-image.types";
 
-const CommonImage = ({
+export const CommonImage = ({
   src,
   alt,
   loading = "lazy",
@@ -23,5 +23,3 @@ const CommonImage = ({
     />
   );
 };
-
-export default CommonImage;

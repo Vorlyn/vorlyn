@@ -12,7 +12,7 @@ import type { CommonDialogProps } from "./common-dialog.types";
 import { cn } from "@/lib/utils";
 import { CommonButton } from "../button";
 
-const CommonDialog = ({
+export const CommonDialog = ({
   trigger,
   title,
   description,
@@ -52,5 +52,3 @@ const CommonDialog = ({
     </Dialog>
   );
 };
-
-export default CommonDialog;

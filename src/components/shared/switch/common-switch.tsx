@@ -4,7 +4,7 @@ import { useId } from "react";
 import type { CommonSwitchProps } from "./common-switch.types";
 import { cn } from "@/lib/utils";
 
-const CommonSwitch = ({
+export const CommonSwitch = ({
   id,
   label,
   disabled,
@@ -44,5 +44,3 @@ const CommonSwitch = ({
     </div>
   );
 };
-
-export default CommonSwitch;

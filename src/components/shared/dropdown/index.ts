@@ -1,1 +1,1 @@
-export { default as CommonDropdown } from "./common-dropdown";
+export { CommonDropdown } from "./common-dropdown";

@@ -1,11 +1,11 @@
 import type { CommonKbdProps } from "./common-kbd.types";
-import ButtonGroupKbd from "./components/button-group-kbd";
-import ButtonKbd from "./components/button-kbd";
-import ComboKbd from "./components/combo-kbd";
-import InputKbd from "./components/input-kbd";
-import TooltipKbd from "./components/tooltip-kbd";
+import { ButtonGroupKbd } from "./components/button-group-kbd";
+import { ButtonKbd } from "./components/button-kbd";
+import { ComboKbd } from "./components/combo-kbd";
+import { InputKbd } from "./components/input-kbd";
+import { TooltipKbd } from "./components/tooltip-kbd";
 
-const CommonKbd = (props: CommonKbdProps) => {
+export const CommonKbd = (props: CommonKbdProps) => {
   const content = () => {
     switch (props.mode) {
       case "combo":
@@ -29,5 +29,3 @@ const CommonKbd = (props: CommonKbdProps) => {
   };
   return content();
 };
-
-export default CommonKbd;

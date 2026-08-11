@@ -7,7 +7,7 @@ import {
 import type { CommonAlertProps } from "./common-alert.type";
 import { RenderIcon } from "@/utils/icon-utils";
 
-const CommonAlert = ({
+export const CommonAlert = ({
   icon,
   title,
   description,
@@ -24,5 +24,3 @@ const CommonAlert = ({
     </Alert>
   );
 };
-
-export default CommonAlert;

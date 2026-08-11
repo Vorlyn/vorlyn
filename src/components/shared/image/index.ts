@@ -1,1 +1,1 @@
-export { default as CommonImage } from "./common-image";
+export { CommonImage } from "./common-image";

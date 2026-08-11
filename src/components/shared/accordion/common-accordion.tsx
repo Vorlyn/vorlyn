@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import type { CommonAccordionProps } from "./common-accordion.types";
 
-const CommonAccordion = ({
+export const CommonAccordion = ({
   options,
   value,
   onValueChange,
@@ -45,5 +45,3 @@ const CommonAccordion = ({
     </Accordion>
   );
 };
-
-export default CommonAccordion;

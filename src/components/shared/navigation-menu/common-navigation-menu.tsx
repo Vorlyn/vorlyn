@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { RenderIcon } from "@/utils/icon-utils";
 
-const CommonNavigationMenu = ({
+export const CommonNavigationMenu = ({
   trigger,
   options,
   className,
@@ -69,5 +69,3 @@ const CommonNavigationMenu = ({
     </NavigationMenu>
   );
 };
-
-export default CommonNavigationMenu;
