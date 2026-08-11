@@ -37,7 +37,7 @@ export const DefaultCheckbox = ({
           disabled={disabled}
         />
         <FieldContent>
-          <CommonFieldLabel id={fieldId} label={label} />
+          <CommonFieldLabel htmlFor={fieldId} label={label} />
           {description && <FieldDescription>{description}</FieldDescription>}
         </FieldContent>
       </Field>

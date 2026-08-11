@@ -60,7 +60,7 @@ export const GroupCheckbox = ({
                 aria-invalid={isInvalid}
                 disabled={disabled}
               />
-              <CommonFieldLabel id={optionId} label={option.label} />
+              <CommonFieldLabel htmlFor={optionId} label={option.label} />
             </Field>
           );
         })}

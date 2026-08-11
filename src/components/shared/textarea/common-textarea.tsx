@@ -27,7 +27,7 @@ const CommonTextArea = ({
     <Field>
       {label && (
         <CommonFieldLabel
-          id={fieldId}
+          htmlFor={fieldId}
           label={label}
           className={labelClassName}
           required={required}

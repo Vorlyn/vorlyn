@@ -31,7 +31,7 @@ const CommonInput = ({
     <Field>
       {label && (
         <CommonFieldLabel
-          id={inputId}
+          htmlFor={inputId}
           label={label}
           required={required}
           className={labelClassName}
