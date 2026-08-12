@@ -12,6 +12,8 @@ export interface CommonTabsProps {
   value?: string;
   onValueChange?: (value: string) => void;
   className?: string;
+  listClassName?: string;
+  lisWrapperClassName?: string;
   contentClassName?: string;
   variant?: "default" | "line";
   orientation?: "horizontal" | "vertical";
