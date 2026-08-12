@@ -3,8 +3,8 @@ import type { CommonButtonProps } from "../button";
 
 export interface CommonDialogProps {
   trigger: ReactElement;
-  title: string;
-  description?: string;
+  title?: ReactNode;
+  description?: ReactNode;
   cancel?: Partial<CommonButtonProps> & { label: string };
   confirm?: Partial<CommonButtonProps> & { label: string };
   children: ReactNode;

@@ -30,7 +30,7 @@ export const CommonDialog = ({
       {trigger && <DialogTrigger render={trigger} />}
       <DialogContent showCloseButton={showCloseControls}>
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
+          {title && <DialogTitle>{title}</DialogTitle>}
           {description && <DialogDescription>{description}</DialogDescription>}
         </DialogHeader>
         <div className={cn("py-4", contentClassName)}>{children}</div>
