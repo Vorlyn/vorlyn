@@ -19,6 +19,9 @@ export const CommonDialog = ({
   cancel,
   confirm,
   children,
+  className,
+  headerClassName,
+  bodyClassName,
   contentClassName,
   footerClassName,
   showCloseControls,
@@ -28,14 +31,24 @@ export const CommonDialog = ({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       {trigger && <DialogTrigger render={trigger} />}
-      <DialogContent showCloseButton={showCloseControls}>
-        <DialogHeader>
+      <DialogContent
+        className={cn(
+          "flex max-h-[90vh] min-w-full md:min-w-2xl flex-col gap-0 overflow-hidden p-0",
+          className,
+        )}
+        showCloseButton={showCloseControls}
+      >
+        <DialogHeader className={cn("shrink-0 px-4 pt-4", headerClassName)}>
           {title && <DialogTitle>{title}</DialogTitle>}
           {description && <DialogDescription>{description}</DialogDescription>}
         </DialogHeader>
-        <div className={cn("py-4", contentClassName)}>{children}</div>
+        <div
+          className={cn("min-h-0 flex-1 overflow-y-auto px-4", bodyClassName)}
+        >
+          <div className={cn("py-4", contentClassName)}>{children}</div>
+        </div>
         {!!showCloseControls && (
-          <DialogFooter className={footerClassName}>
+          <DialogFooter className={cn("mx-0 mb-0 shrink-0", footerClassName)}>
             <DialogClose
               render={
                 <CommonButton

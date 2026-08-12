@@ -8,6 +8,9 @@ export interface CommonDialogProps {
   cancel?: Partial<CommonButtonProps> & { label: string };
   confirm?: Partial<CommonButtonProps> & { label: string };
   children: ReactNode;
+  className?: string;
+  headerClassName?: string;
+  bodyClassName?: string;
   contentClassName?: string;
   footerClassName?: string;
   showCloseControls?: boolean;
