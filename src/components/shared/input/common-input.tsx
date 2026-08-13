@@ -4,19 +4,21 @@ import type { CommonInputProps } from "./common-input.types";
 import { cn } from "@/lib/utils";
 import { CircleAlert } from "lucide-react";
 import { CommonFieldLabel } from "../label/field-label";
-import { Field, FieldError } from "@/components/ui/field";
+import { Field, FieldDescription, FieldError } from "@/components/ui/field";
 import { RenderIcon } from "@/utils/icon-utils";
 
 export const CommonInput = ({
   id,
   label,
-  labelClassName,
+  description,
   value,
   onChange,
   leftIcon,
   rightIcon,
   leftIconClassName,
   rightIconClassName,
+  labelClassName,
+  descriptionClassName,
   className,
   onClick,
   error,
@@ -71,6 +73,11 @@ export const CommonInput = ({
           </span>
         )}
       </div>
+      {description && (
+        <FieldDescription className={cn("text-xs mt-1!", descriptionClassName)}>
+          {description}
+        </FieldDescription>
+      )}
       {error && (
         <FieldError
           id={errorId}
