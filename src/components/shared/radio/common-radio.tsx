@@ -8,12 +8,14 @@ import {
   FieldLabel,
   FieldSet,
 } from "@/components/ui/field";
+import { cn } from "@/lib/utils";
 
 export const CommonRadio = ({
   id,
   defaultValue,
   options,
   className,
+  optionClassName,
   disabled,
   required,
   value,
@@ -40,6 +42,7 @@ export const CommonRadio = ({
               key={optionId}
               data-invalid={isInvalid}
               orientation={orientation}
+              className={cn("flex items-center gap-2", optionClassName)}
             >
               <RadioGroupItem
                 value={option.value}

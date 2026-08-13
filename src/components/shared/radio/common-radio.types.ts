@@ -3,6 +3,7 @@ export interface CommonRadioProps {
   defaultValue?: string;
   options: { label: string; description?: string; value: string }[];
   className?: string;
+  optionClassName?: string;
   disabled?: boolean;
   required?: boolean;
   value?: string;
