@@ -10,6 +10,7 @@ export const CommonCheckbox = (props: CommonCheckboxProps) => {
     disabled,
     className,
     orientation = "horizontal",
+    optionClassName,
     id,
   } = props;
   const isInvalid =
@@ -30,6 +31,7 @@ export const CommonCheckbox = (props: CommonCheckboxProps) => {
         disabled={disabled}
         isInvalid={isInvalid}
         className={className}
+        optionClassName={optionClassName}
         orientation={orientation}
       />
     );
@@ -47,6 +49,7 @@ export const CommonCheckbox = (props: CommonCheckboxProps) => {
       disabled={disabled}
       isInvalid={isInvalid}
       className={className}
+      optionClassName={optionClassName}
     />
   );
 };

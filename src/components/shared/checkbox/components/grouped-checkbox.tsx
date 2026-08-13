@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CommonFieldLabel } from "../../label/field-label";
+import { cn } from "@/lib/utils";
 
 export const GroupCheckbox = ({
   id,
@@ -20,6 +21,7 @@ export const GroupCheckbox = ({
   disabled,
   isInvalid,
   className,
+  optionClassName,
   options,
 }: GroupCheckboxProps) => {
   const generatedId = useId();
@@ -49,6 +51,7 @@ export const GroupCheckbox = ({
               key={optionId}
               orientation={orientation}
               data-invalid={isInvalid}
+              className={cn("flex items-center gap-2", optionClassName)}
             >
               <Checkbox
                 id={optionId}

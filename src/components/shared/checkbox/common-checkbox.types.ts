@@ -4,6 +4,7 @@ type CommonCheckboxBaseProps = {
   description?: string;
   required?: boolean;
   className?: string;
+  optionClassName?: string;
   orientation?: "horizontal" | "vertical" | "responsive";
   disabled?: boolean;
   isInvalid?: boolean;

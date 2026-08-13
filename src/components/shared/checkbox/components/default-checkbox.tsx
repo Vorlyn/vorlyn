@@ -8,6 +8,7 @@ import type { DefaultCheckboxProps } from "../common-checkbox.types";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CommonFieldLabel } from "../../label/field-label";
 import { useId } from "react";
+import { cn } from "@/lib/utils";
 
 export const DefaultCheckbox = ({
   id,
@@ -20,12 +21,17 @@ export const DefaultCheckbox = ({
   disabled,
   isInvalid,
   className,
+  optionClassName,
 }: DefaultCheckboxProps) => {
   const generatedId = useId();
   const fieldId = id ?? generatedId;
   return (
     <FieldGroup className={className}>
-      <Field orientation={orientation} data-invalid={isInvalid}>
+      <Field
+        orientation={orientation}
+        data-invalid={isInvalid}
+        className={cn("flex items-center gap-2", optionClassName)}
+      >
         <Checkbox
           id={fieldId}
           name={fieldId}
