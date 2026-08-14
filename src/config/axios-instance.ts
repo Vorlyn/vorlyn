@@ -1,6 +1,9 @@
 import axios from "axios";
 import { env } from "./env";
-import { getLocalStorage, removeLocalStorageItem } from "@/utils/storage-utils";
+import {
+  getLocalStorage,
+  removeLocalStorageItem,
+} from "@/utils/storage-utils";
 import { showErrorSonner } from "@/components/shared/sonner";
 
 const axiosInstance = axios.create({
@@ -18,17 +21,17 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response.status === 401) {
-      removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
-    }
+  async (error) => {
     if (!error.response) {
       showErrorSonner({
         message: "Network Error",
         description: "Please check your internet connection and try again.",
       });
+    }
+    if (error.response.status === 401) {
+      removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
     }
     return Promise.reject(error);
   },
