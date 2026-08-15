@@ -1,20 +1,38 @@
 import { isAxiosError, type AxiosRequestConfig } from "axios";
 import axiosInstance from "./axios-instance";
-import { removeLocalStorageItem } from "@/utils/storage-utils";
+import { showErrorSonner, showWarningSonner } from "@/components/shared/sonner";
+import { ApiError } from "./api-error";
 
 const handleError = (error: unknown) => {
   if (isAxiosError(error)) {
     const status = error.response?.status;
     const message = error.response?.data?.message;
 
-    if (status === 401) {
-      removeLocalStorageItem("token");
-      window.location.href = "/auth/login";
+    if (status === 404) {
+      showErrorSonner({
+        message: "Not found",
+        description:
+          message || "The resource you're looking for doesn't exist.",
+      });
+    } else if (status === 422) {
+      showWarningSonner({
+        message: "Validation error",
+        description: message || "Please check your input and try again.",
+      });
+    } else if (status && status >= 500) {
+      showErrorSonner({
+        message: "Server error",
+        description: "Something went wrong on our end. Please try again later.",
+      });
+    } else {
+      showErrorSonner({
+        message: "Something went wrong",
+        description: message || "Please try again.",
+      });
     }
 
-    throw new Error(message || "Something went wrong");
+    throw new ApiError(message || "Something went wrong", status);
   }
-
   throw new Error("Unexpected error");
 };
 
