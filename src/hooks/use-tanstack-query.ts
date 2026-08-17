@@ -38,7 +38,7 @@ export const useGetMutation = <TData = unknown, TResponse = unknown>(
     "mutationKey" | "mutationFn"
   > = {},
 ) => {
-  const mutation = useMutation({
+  const mutation = useMutation<TResponse, Error, TData>({
     mutationKey: [key],
     mutationFn: async (params: TData) => {
       const response = await apiClient.get<TResponse>(
@@ -75,7 +75,10 @@ export const usePostMutation = <TData = unknown, TResponse = unknown>(
   return mutation;
 };
 
-export const usePutMutation = <TData = unknown, TResponse = unknown>(
+export const usePutMutation = <
+  TData extends Record<string, unknown> = Record<string, unknown>,
+  TResponse = unknown,
+>(
   key: string,
   url: string | ((variables: TData) => string),
   config: AxiosRequestConfig = {},
@@ -87,11 +90,29 @@ export const usePutMutation = <TData = unknown, TResponse = unknown>(
   const mutation = useMutation<TResponse, Error, TData>({
     mutationKey: [key],
     mutationFn: async (data: TData) => {
-      const resolvedUrl =
-        typeof url === "function" ? url(data) : url;
-      const payload = typeof url === "function" ? {} : data;
-      const response = await apiClient.put<TResponse>(resolvedUrl, payload, config);
-      return response;
+      if (data instanceof FormData) {
+        const resolvedUrl = typeof url === "function" ? url(data) : url;
+        const payload = new FormData();
+        for (const [key, value] of data.entries()) {
+          if (key !== "id") payload.append(key, value);
+        }
+        const response = await apiClient.put<TResponse>(
+          resolvedUrl,
+          payload,
+          config,
+        );
+        return response;
+      } else {
+        const resolvedUrl = typeof url === "function" ? url(data) : url;
+        const { id, ...rest } = data;
+        const payload = typeof url === "function" ? rest : data;
+        const response = await apiClient.put<TResponse>(
+          resolvedUrl,
+          payload,
+          config,
+        );
+        return response;
+      }
     },
     ...options,
   });
@@ -99,7 +120,10 @@ export const usePutMutation = <TData = unknown, TResponse = unknown>(
   return mutation;
 };
 
-export const usePatchMutation = <TData = unknown, TResponse = unknown>(
+export const usePatchMutation = <
+  TData extends Record<string, unknown> = Record<string, unknown>,
+  TResponse = unknown,
+>(
   key: string,
   url: string | ((variables: TData) => string),
   config: AxiosRequestConfig = {},
@@ -111,11 +135,29 @@ export const usePatchMutation = <TData = unknown, TResponse = unknown>(
   const mutation = useMutation<TResponse, Error, TData>({
     mutationKey: [key],
     mutationFn: async (data: TData) => {
-      const resolvedUrl =
-        typeof url === "function" ? url(data) : url;
-      const payload = typeof url === "function" ? {} : data;
-      const response = await apiClient.patch<TResponse>(resolvedUrl, payload, config);
-      return response;
+      if (data instanceof FormData) {
+        const resolvedUrl = typeof url === "function" ? url(data) : url;
+        const payload = new FormData();
+        for (const [key, value] of data.entries()) {
+          if (key !== "id") payload.append(key, value);
+        }
+        const response = await apiClient.patch<TResponse>(
+          resolvedUrl,
+          payload,
+          config,
+        );
+        return response;
+      } else {
+        const resolvedUrl = typeof url === "function" ? url(data) : url;
+        const { id, ...rest } = data;
+        const payload = typeof url === "function" ? rest : data;
+        const response = await apiClient.patch<TResponse>(
+          resolvedUrl,
+          payload,
+          config,
+        );
+        return response;
+      }
     },
     ...options,
   });
@@ -135,8 +177,7 @@ export const useDeleteMutation = <TData = unknown, TResponse = unknown>(
   return useMutation<TResponse, Error, TData>({
     mutationKey: [key],
     mutationFn: (data: TData) => {
-      const resolvedUrl =
-        typeof url === "function" ? url(data) : url;
+      const resolvedUrl = typeof url === "function" ? url(data) : url;
       if (typeof url === "function") {
         return apiClient.delete<TResponse>(resolvedUrl, config);
       }
