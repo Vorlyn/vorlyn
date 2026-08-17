@@ -6,6 +6,9 @@ const handleError = (error: unknown) => {
   if (isAxiosError(error)) {
     const status = error.response?.status;
     const message = error.response?.data?.message;
+    if (error.code === "ERR_CANCELED") {
+      throw error;
+    }
 
     throw new ApiError(message || "Something went wrong", status);
   }
