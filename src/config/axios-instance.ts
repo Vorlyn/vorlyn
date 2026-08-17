@@ -1,4 +1,4 @@
-import axios, { type AxiosPromise } from "axios";
+import axios, { type AxiosPromise, type AxiosRequestConfig } from "axios";
 import { env } from "./env";
 import {
   getLocalStorage,
@@ -6,6 +6,10 @@ import {
   setLocalStorage,
 } from "@/utils/storage-utils";
 import { showErrorSonner } from "@/components/shared/sonner";
+
+interface RetryableRequestConfig extends AxiosRequestConfig {
+  _retry?: boolean;
+}
 
 let refreshPromise: AxiosPromise | null = null;
 
@@ -28,7 +32,9 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    let isRefreshEndpoint = error.config.url.includes("refresh");
+    if (error.code === "ERR_CANCELED") {
+      return Promise.reject(error);
+    }
     if (!error.response) {
       showErrorSonner({
         message: "Network Error",
@@ -37,12 +43,21 @@ axiosInstance.interceptors.response.use(
 
       return Promise.reject(error);
     }
+    const isRefreshEndpoint = error.config?.url?.includes("refresh") ?? false;
     if (error.response.status === 401 && isRefreshEndpoint) {
       removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
 
       return Promise.reject(error);
     }
+    const originalRequest = error.config as RetryableRequestConfig;
     if (error.response.status === 401 && !isRefreshEndpoint) {
+      if (originalRequest._retry) {
+        removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
+
+        return Promise.reject(error);
+      }
+
+      originalRequest._retry = true;
       try {
         if (!refreshPromise) {
           refreshPromise = axiosInstance.get("refresh_api").finally(() => {
@@ -52,15 +67,24 @@ axiosInstance.interceptors.response.use(
         const newToken = await refreshPromise;
         if (newToken) {
           const token = newToken.data?.payload?.access_token;
+
+          if (!token) {
+            throw new Error("Refresh response did not contain an access token");
+          }
+
           setLocalStorage(env.VITE_AUTH_TOKEN_SECRET, token);
-          error.config.headers.Authorization = `Bearer ${token}`;
-          return axiosInstance(error.config);
+
+          originalRequest.headers = originalRequest.headers ?? {};
+          originalRequest.headers.Authorization = `Bearer ${token}`;
+
+          return axiosInstance(originalRequest);
         }
-      } catch {
+      } catch (refreshError) {
+        removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
         showErrorSonner({
-          message: error.message || "Something went wrong!",
+          message: "Session expired. Please login again.",
         });
-        return Promise.reject(error);
+        return Promise.reject(refreshError);
       }
     }
     return Promise.reject(error);
