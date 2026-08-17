@@ -19,9 +19,13 @@ export const useGetQuery = <TData = unknown>(
 ) => {
   const query = useQuery({
     queryKey: [...key, url, params],
-    queryFn: async (): Promise<TData> => {
-      const response = await apiClient.get(url, config, params);
-      return (response ?? {}) as TData;
+    queryFn: async (context): Promise<TData> => {
+      const response = await apiClient.get<TData>(
+        url,
+        { ...config, signal: context.signal },
+        params,
+      );
+      return response;
     },
     ...options,
   });
