@@ -4,11 +4,12 @@ import { ApiError } from "./api-error";
 
 const handleError = (error: unknown) => {
   if (isAxiosError(error)) {
-    const status = error.response?.status;
-    const message = error.response?.data?.message;
     if (error.code === "ERR_CANCELED") {
       throw error;
     }
+
+    const status = error.response?.status;
+    const message = error.response?.data?.message;
 
     throw new ApiError(message || "Something went wrong", status);
   }
