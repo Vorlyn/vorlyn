@@ -16,11 +16,13 @@ const queryClient = new QueryClient({
       gcTime: 60 * 60 * 1000,
     },
     queries: {
-      retry: false,
-      staleTime: 60 * 60 * 1000,
+      retry: 2,
+      retryDelay: 3000,
+      staleTime: 5 * 60 * 1000,
       gcTime: 60 * 60 * 1000,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true
     },
   },
 });
