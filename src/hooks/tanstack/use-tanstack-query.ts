@@ -2,11 +2,14 @@ import { apiClient } from "@/config/api-client";
 import {
   useMutation,
   useQuery,
+  useSuspenseQuery,
   type UseMutationOptions,
   type UseQueryOptions,
+  type UseSuspenseQueryOptions,
 } from "@tanstack/react-query";
 import type { AxiosRequestConfig } from "axios";
 import { buildAndSend } from "./tanstack-query.utils";
+import { unknown } from "zod";
 
 export const useGetQuery = <TData = unknown>(
   key: string[],
@@ -19,6 +22,32 @@ export const useGetQuery = <TData = unknown>(
   > = {},
 ) => {
   const query = useQuery({
+    queryKey: [...key, url, params],
+    queryFn: async (context): Promise<TData> => {
+      const response = await apiClient.get<TData>(
+        url,
+        { ...config, signal: context.signal },
+        params,
+      );
+      return response;
+    },
+    ...options,
+  });
+
+  return query;
+};
+
+export const useGetSuspenseQuery = <TData = unknown>(
+  key: string[],
+  url: string,
+  config: AxiosRequestConfig = {},
+  params = {},
+  options: Omit<
+    UseSuspenseQueryOptions<TData, Error, TData>,
+    "queryKey" | "queryFn"
+  > = {},
+) => {
+  const query = useSuspenseQuery({
     queryKey: [...key, url, params],
     queryFn: async (context): Promise<TData> => {
       const response = await apiClient.get<TData>(
