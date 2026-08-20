@@ -11,23 +11,23 @@ export const CommonBadge = ({
   rightIcon,
   renderLink,
   isLoading,
+  ...rest
 }: CommonBadgeProps) => {
-  if (label === "") return null;
+  if (!label.trim()) return null;
   return (
     <Badge
       render={variant === "link" ? renderLink : undefined}
       variant={variant}
       className={className}
+      {...rest}
     >
-      {isLoading && variant !== "link" ? (
+      {isLoading ? (
         <Spinner data-icon="inline-start" />
       ) : (
-        leftIcon && <RenderIcon src={leftIcon} alt={label as string} />
+        leftIcon && <RenderIcon src={leftIcon} alt={label} />
       )}
       {label}
-      {!isLoading && rightIcon && (
-        <RenderIcon src={rightIcon} alt={label as string} />
-      )}
+      {rightIcon && <RenderIcon src={rightIcon} alt={label} />}
     </Badge>
   );
 };
