@@ -49,7 +49,7 @@ export const Multiple = ({
       }
       multiple
     >
-      <ComboboxChips ref={anchor} className="w-full">
+      <ComboboxChips ref={anchor} className="w-full h-auto min-h-0">
         <ComboboxValue>
           {(values) => (
             <>
