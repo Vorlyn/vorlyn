@@ -9,53 +9,68 @@ import {
 import { CalendarIcon } from "lucide-react";
 import { CommonPopover } from "../../popover";
 import { Calendar } from "@/components/ui/calendar";
-import { formatDate, isValidDate } from "../common-date-picker.utils";
+import {
+  formatDate,
+  isValidDate,
+  parseDateFieldValue,
+} from "../common-date-picker.utils";
 
 export const InputDatePicker = ({
   id,
   placeholder,
-  date: controlledDate,
+  value: valueProp,
+  onChange,
+  onBlur,
+  date: dateProp,
   onDateChange,
 }: InputDatePickerProps) => {
+  const rawValue = valueProp ?? dateProp;
+  const handleChange = onChange ?? onDateChange;
+  const isControlled = valueProp !== undefined || dateProp !== undefined;
+  const controlledDate = parseDateFieldValue(rawValue);
+
   const [open, setOpen] = useState(false);
   const [internalDate, setInternalDate] = useState<Date | undefined>(
-    controlledDate ?? new Date(),
+    controlledDate,
   );
-  const isControlled = controlledDate !== undefined;
-  const date = isControlled ? controlledDate : internalDate;
-  const [month, setMonth] = useState<Date | undefined>(date);
-  const [value, setValue] = useState(() => formatDate(date));
-  const [prevDate, setPrevDate] = useState(date);
-  const dateTime = date?.getTime();
+  const selectedDate = isControlled ? controlledDate : internalDate;
+
+  const [month, setMonth] = useState<Date | undefined>(selectedDate);
+  const [inputValue, setInputValue] = useState(() => formatDate(selectedDate));
+  const [prevDate, setPrevDate] = useState(selectedDate);
+  const dateTime = selectedDate?.getTime();
   const prevDateTime = prevDate?.getTime();
   const generateId = useId();
   const fieldId = id ?? generateId;
 
-  const setDate = (next: Date | undefined) => {
+  const setDate = (next: Date | undefined, shouldBlur = false) => {
     setPrevDate(next);
     if (!isControlled) setInternalDate(next);
-    onDateChange?.(next);
+    handleChange?.(next);
+    if (shouldBlur) onBlur?.();
   };
 
   if (dateTime !== prevDateTime) {
-    setPrevDate(date);
-    setValue(formatDate(date));
-    setMonth(date);
+    setPrevDate(selectedDate);
+    setInputValue(formatDate(selectedDate));
+    setMonth(selectedDate);
   }
+
   return (
     <InputGroup>
       <InputGroupInput
         id={fieldId}
-        value={value}
+        value={inputValue}
         placeholder={placeholder}
         onChange={(e) => {
-          const date = new Date(e.target.value);
-          setValue(e.target.value);
-          if (isValidDate(date)) {
-            setDate(date);
-            setMonth(date);
+          const parsed = new Date(e.target.value);
+          setInputValue(e.target.value);
+          if (isValidDate(parsed)) {
+            setDate(parsed);
+            setMonth(parsed);
           }
         }}
+        onBlur={onBlur}
         onKeyDown={(e) => {
           if (e.key === "ArrowDown") {
             e.preventDefault();
@@ -81,12 +96,12 @@ export const InputDatePicker = ({
         >
           <Calendar
             mode="single"
-            selected={date}
+            selected={selectedDate}
             month={month}
             onMonthChange={setMonth}
             onSelect={(date) => {
-              setDate(date);
-              setValue(formatDate(date));
+              setDate(date, true);
+              setInputValue(formatDate(date));
               setOpen(false);
             }}
           />

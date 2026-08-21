@@ -12,10 +12,13 @@ interface DatePickerBaseProps {
   labelClassName?: string;
 }
 
+export type DateFieldValue = Date | string | null | undefined;
+
 export type SingleDatePickerProps = DatePickerBaseProps & {
   mode: "single";
-  value: Date | undefined;
-  onChange: (select: Date | undefined) => void;
+  value?: DateFieldValue;
+  onChange?: (date: Date | undefined) => void;
+  onBlur?: () => void;
   showWeekNumber?: boolean;
   disabled?: boolean;
   captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
@@ -31,11 +34,12 @@ export type DateRangePickerProps = DatePickerBaseProps & {
 
 export type InputDatePickerProps = DatePickerBaseProps & {
   mode: "input";
-  date?: Date;
+  value?: DateFieldValue;
+  onChange?: (date: Date | undefined) => void;
+  onBlur?: () => void;
+  date?: DateFieldValue;
   onDateChange?: (date: Date | undefined) => void;
 };
 
 export type CommonDatePickerProps =
-  | SingleDatePickerProps
-  | DateRangePickerProps
-  | InputDatePickerProps;
+  SingleDatePickerProps | DateRangePickerProps | InputDatePickerProps;
