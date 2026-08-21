@@ -13,7 +13,6 @@ import { Field, FieldError } from "@/components/ui/field";
 import { CommonFieldLabel } from "../label/field-label";
 import { ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CommonButton } from "../button";
 import { preventTriggerPointerDown } from "@/utils/event-handlers";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -84,16 +83,22 @@ export const CommonSelect = ({
           {isLoading ? (
             <Spinner className="ml-auto size-4 shrink-0 opacity-50" />
           ) : hasValue && showClose ? (
-            <CommonButton
-              type="button"
-              leftIcon={<X className="size-4 shrink-0 opacity-50" />}
-              variant="ghost"
-              size="icon"
+            <span
+              role="button"
+              tabIndex={0}
               onPointerDown={preventTriggerPointerDown}
               onClick={handleClear}
-              className="rounded-full hover:bg-muted"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleClear;
+                }
+              }}
+              className="ml-auto flex size-6 items-center justify-center rounded-full hover:bg-muted"
               aria-label="Clear selection"
-            />
+            >
+              <X className="size-4 shrink-0 opacity-50" />
+            </span>
           ) : (
             <ChevronDown className="ml-auto size-4 shrink-0 opacity-50" />
           )}
