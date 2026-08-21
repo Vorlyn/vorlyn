@@ -10,10 +10,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import type { CommonAlertDialogProps } from "./common-alert-dialog.types";
 import { RenderIcon } from "@/utils/icon-utils";
+import type { CommonAlertDialogProps } from "./common-alert-dialog.types";
 
 export const CommonAlertDialog = ({
+  open,
+  onOpenChange,
   trigger,
   title,
   description,
@@ -22,8 +24,9 @@ export const CommonAlertDialog = ({
   cancel,
   confirm,
 }: CommonAlertDialogProps) => {
+  const { label, isLoading, variant, ...confirmProps } = confirm ?? {};
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogTrigger render={trigger} />
       <AlertDialogContent size={size}>
         <AlertDialogHeader>
@@ -38,9 +41,15 @@ export const CommonAlertDialog = ({
           )}
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>{cancel?.label ?? "Cancel"}</AlertDialogCancel>
-          <AlertDialogAction {...confirm} variant={confirm?.variant}>
-            {confirm?.label ?? "Proceed"}
+          <AlertDialogCancel className={"cursor-pointer"}>
+            {cancel?.label ?? "Cancel"}
+          </AlertDialogCancel>
+          <AlertDialogAction
+            {...confirmProps}
+            variant={variant}
+            className={"cursor-pointer"}
+          >
+            {label ?? "Proceed"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
