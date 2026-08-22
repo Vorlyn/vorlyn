@@ -3,7 +3,7 @@ interface ActionConfig {
   onClick: () => void;
 }
 
-export interface CommonSonnerProps {
+export interface CommonToastProps {
   message: string;
   description?: string;
   action?: ActionConfig;

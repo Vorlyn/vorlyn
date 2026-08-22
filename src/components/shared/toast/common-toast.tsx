@@ -1,9 +1,9 @@
 import { toast } from "@/components/ui/toast";
-import type { CommonSonnerProps } from "./common-toast.types";
+import type { CommonToastProps } from "./common-toast.types";
 
 const createToast =
   (type?: "default" | "success" | "info" | "warning" | "error" | "loading") =>
-  ({ message, description, action }: CommonSonnerProps) =>
+  ({ message, description, action }: CommonToastProps) =>
     toast.add({
       title: message,
       description,
