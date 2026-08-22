@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-query";
 import type { AxiosRequestConfig } from "axios";
 import { buildAndSend } from "./tanstack-query.utils";
-import { unknown } from "zod";
 
 export const useGetQuery = <TData = unknown>(
   key: string[],
