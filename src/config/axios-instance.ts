@@ -5,7 +5,7 @@ import {
   removeLocalStorageItem,
   setLocalStorage,
 } from "@/utils/storage-utils";
-import { showErrorSonner } from "@/components/shared/sonner";
+import { showErrorToast } from "@/components/shared/toast";
 
 interface RetryableRequestConfig extends AxiosRequestConfig {
   _retry?: boolean;
@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(error);
     }
     if (!error.response) {
-      showErrorSonner({
+      showErrorToast({
         message: "Network Error",
         description: "Please check your internet connection and try again.",
       });
@@ -81,7 +81,7 @@ axiosInstance.interceptors.response.use(
         }
       } catch (refreshError) {
         removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
-        showErrorSonner({
+        showErrorToast({
           message: "Session expired. Please login again.",
         });
         return Promise.reject(refreshError);
