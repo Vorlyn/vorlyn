@@ -11,6 +11,7 @@
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"]
     }
