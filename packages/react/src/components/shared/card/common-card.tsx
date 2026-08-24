@@ -1,0 +1,33 @@
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import type { CommonCardProps } from "./common-card.types";
+
+export const CommonCard = ({
+  title,
+  description,
+  action,
+  children,
+  size,
+  footer,
+  className,
+  ...rest
+}: CommonCardProps) => {
+  return (
+    <Card size={size} className={className} {...rest}>
+      <CardHeader>
+        {title && <CardTitle>{title}</CardTitle>}
+        {description && <CardDescription>{description}</CardDescription>}
+        {action && <CardAction>{action}</CardAction>}
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+      {footer && <CardFooter>{footer}</CardFooter>}
+    </Card>
+  );
+};
