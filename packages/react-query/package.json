@@ -1,5 +1,5 @@
 {
-  "name": "@vorlyn/utils",
+  "name": "@vorlyn/react-query",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,10 +11,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.4.0"
+    "@vorlyn/react": "workspace:*",
+    "@tanstack/react-query": "^5.90.20",
+    "@tanstack/react-query-devtools": "^5.91.3",
+    "axios": "^1.17.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.91.4",
     "typescript": "^7.0.2",
     "eslint": "^9.39.1"
   }
