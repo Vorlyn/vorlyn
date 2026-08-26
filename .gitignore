@@ -27,3 +27,5 @@ dist-ssr
 .env.development
 .env.production
 config.bat
+
+.turbo/*
