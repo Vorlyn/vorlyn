@@ -139,6 +139,79 @@ importers:
         specifier: ^8.2.0
         version: 8.2.2(@types/node@24.13.3)(jiti@2.7.0)
 
+  apps/playground:
+    dependencies:
+      '@fontsource-variable/inter':
+        specifier: ^5.2.8
+        version: 5.3.0
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.9.1(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.86.0(react@19.2.8))(zod@4.4.3)
+      '@tanstack/react-query':
+        specifier: ^5.90.20
+        version: 5.102.0(react@19.2.8)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.91.3
+        version: 5.102.0(@tanstack/react-query@5.102.0(react@19.2.8))(react@19.2.8)
+      '@vorlyn/react':
+        specifier: workspace:*
+        version: link:../../packages/react
+      '@vorlyn/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+      lucide-react:
+        specifier: ^0.563.0
+        version: 0.563.0(react@19.2.8)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      react:
+        specifier: ^19.2.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.8(react@19.2.8)
+      react-hook-form:
+        specifier: ^7.71.1
+        version: 7.86.0(react@19.2.8)
+      react-router-dom:
+        specifier: ^7.13.0
+        version: 7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      zod:
+        specifier: ^4.3.6
+        version: 4.4.3
+    devDependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.1.17
+        version: 4.3.3(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0))
+      '@types/react':
+        specifier: ^19.2.18
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: ^19.2.4
+        version: 19.2.4(@types/react@19.2.18)
+      eslint:
+        specifier: ^9.39.1
+        version: 9.39.5(jiti@2.7.0)(supports-color@7.2.0)
+      shadcn:
+        specifier: ^4.14.1
+        version: 4.19.0(supports-color@7.2.0)(typescript@7.0.2)
+      tailwindcss:
+        specifier: ^4.1.17
+        version: 4.3.3
+      tsc-alias:
+        specifier: ^1.9.2
+        version: 1.9.2
+      tw-animate-css:
+        specifier: ^1.4.0
+        version: 1.4.0
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vite:
+        specifier: ^8.2.2
+        version: 8.2.2(@types/node@24.13.3)(jiti@2.7.0)
+
   packages/react:
     dependencies:
       '@base-ui/react':
