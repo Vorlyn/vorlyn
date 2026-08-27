@@ -13,8 +13,8 @@ import { Field, FieldError } from "@/components/ui/field";
 import { CommonFieldLabel } from "../label/field-label";
 import { ChevronDown, X } from "lucide-react";
 import { cn } from "@vorlyn/utils";
-import { preventTriggerPointerDown } from "@vorlyn/utils";
 import { Spinner } from "@/components/ui/spinner";
+import { preventTriggerPointerDown } from "@/lib";
 
 export const CommonSelect = ({
   id,

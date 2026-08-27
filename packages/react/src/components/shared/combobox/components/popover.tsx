@@ -18,10 +18,10 @@ import {
   internalFilter,
 } from "../common-combobox.utils";
 import { ChevronDown, X } from "lucide-react";
-import { preventTriggerPointerDown } from "@vorlyn/utils";
 import { useMemo, useState, type MouseEvent } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@vorlyn/utils";
+import { preventTriggerPointerDown } from "@/lib";
 
 export const Popover = ({
   id,

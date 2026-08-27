@@ -1,1 +1,0 @@
-export const SIDEBAR_DESKTOP_BREAKPOINT_PX = 1024;
