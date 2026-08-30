@@ -23,6 +23,7 @@ export const InputDatePicker = ({
   onBlur,
   date: dateProp,
   onDateChange,
+  captionLayout,
 }: InputDatePickerProps) => {
   const rawValue = valueProp ?? dateProp;
   const handleChange = onChange ?? onDateChange;
@@ -104,6 +105,7 @@ export const InputDatePicker = ({
               setInputValue(formatDate(date));
               setOpen(false);
             }}
+            captionLayout={captionLayout}
           />
         </CommonPopover>
       </InputGroupAddon>

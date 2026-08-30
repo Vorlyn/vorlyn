@@ -39,6 +39,7 @@ export type InputDatePickerProps = DatePickerBaseProps & {
   onBlur?: () => void;
   date?: DateFieldValue;
   onDateChange?: (date: Date | undefined) => void;
+  captionLayout?: "dropdown" | "dropdown-months" | "dropdown-years" | "label";
 };
 
 export type CommonDatePickerProps =
