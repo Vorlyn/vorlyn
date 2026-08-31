@@ -1,0 +1,25 @@
+{
+  "name": "vorlyn",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "vorlyn": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "vorlyn": "link:"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "typescript": "^7.0.2"
+  }
+}
