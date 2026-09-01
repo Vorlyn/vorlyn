@@ -1,17 +1,17 @@
-import type { CommonFieldLabelProps } from "./common-label.types";
-import { FieldLabel } from "@/components/ui/field";
+import type { FieldLabelProps } from "./label.types";
+import { FieldLabel as DefaultFieldLabel } from "@/components/ui/field";
 
-export const CommonFieldLabel = ({
+export const FieldLabel = ({
   htmlFor,
   label,
   required,
   className,
   ref,
   ...rest
-}: CommonFieldLabelProps) => {
+}: FieldLabelProps) => {
   return (
     <div className="flex items-start gap-1">
-      <FieldLabel
+      <DefaultFieldLabel
         htmlFor={htmlFor}
         aria-required={required}
         ref={ref}
@@ -19,7 +19,7 @@ export const CommonFieldLabel = ({
         {...rest}
       >
         {label}
-      </FieldLabel>
+      </DefaultFieldLabel>
       {required && <span aria-hidden="true" className="text-destructive">*</span>}
     </div>
   );

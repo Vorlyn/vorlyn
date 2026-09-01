@@ -1,1 +1,1 @@
-export { CommonProgress } from "./common-progress";
+export { Progress } from "./progress";

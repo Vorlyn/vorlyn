@@ -1,7 +1,7 @@
-import type { ButtonGroupModeProps } from "../common-kbd.types";
+import type { ButtonGroupModeProps } from "../kbd.types";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { TooltipKbd } from "./tooltip-kbd";
-import { CommonButton } from "../../button";
+import { Button } from "../../button";
 
 export const ButtonGroupKbd = ({
   items,
@@ -13,12 +13,12 @@ export const ButtonGroupKbd = ({
         item.keys ? (
           <TooltipKbd
             key={item.id}
-            trigger={<CommonButton {...item.buttonProps} />}
+            trigger={<Button {...item.buttonProps} />}
             keys={item.keys}
             label={item.tooltipLabel}
           />
         ) : (
-          <CommonButton key={item.id} {...item.buttonProps} />
+          <Button key={item.id} {...item.buttonProps} />
         ),
       )}
     </ButtonGroup>

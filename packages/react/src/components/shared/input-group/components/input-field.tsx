@@ -2,7 +2,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import type { InputGroupInputFieldProps } from "../common-input-group.types";
+import type { InputGroupInputFieldProps } from "../input-group.types";
 
 export const InputField = ({
   fieldId,

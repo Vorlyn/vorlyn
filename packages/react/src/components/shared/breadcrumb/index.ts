@@ -1,2 +1,2 @@
-export { CommonBreadCrumb } from "./common-breadcrumb";
-export { type BreadcrumbItemsConfig } from "./common-breadcrumb.types";
+export { BreadCrumb } from "./breadcrumb";
+export { type BreadcrumbItemsConfig } from "./breadcrumb.types";

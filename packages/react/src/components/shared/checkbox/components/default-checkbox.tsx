@@ -4,9 +4,9 @@ import {
   FieldDescription,
   FieldGroup,
 } from "@/components/ui/field";
-import type { DefaultCheckboxProps } from "../common-checkbox.types";
+import type { DefaultCheckboxProps } from "../checkbox.types";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CommonFieldLabel } from "../../label/field-label";
+import { FieldLabel } from "../../label/field-label";
 import { useId } from "react";
 import { cn } from "@vorlyn/utils";
 
@@ -43,7 +43,7 @@ export const DefaultCheckbox = ({
           disabled={disabled}
         />
         <FieldContent>
-          <CommonFieldLabel htmlFor={fieldId} label={label} />
+          <FieldLabel htmlFor={fieldId} label={label} />
           {description && <FieldDescription>{description}</FieldDescription>}
         </FieldContent>
       </Field>

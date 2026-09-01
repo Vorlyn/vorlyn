@@ -1,1 +1,1 @@
-export { CommonCard } from "./common-card";
+export { Card } from "./card";

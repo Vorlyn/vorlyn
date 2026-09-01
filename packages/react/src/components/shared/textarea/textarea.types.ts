@@ -1,0 +1,16 @@
+import type { Ref, TextareaHTMLAttributes } from "react";
+
+export interface TextAreaProps extends Omit<
+  TextareaHTMLAttributes<HTMLTextAreaElement>,
+  "value" | "onChange"
+> {
+  label?: string;
+  description?: string;
+  error?: string;
+  labelClassName?: string;
+  descriptionClassName?: string;
+  errorClassName?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  ref?: Ref<HTMLTextAreaElement>;
+}

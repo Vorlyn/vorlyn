@@ -1,2 +1,2 @@
-export { CommonLabel } from "./common-label";
-export { CommonFieldLabel } from "./field-label";
+export { Label } from "./label";
+export { FieldLabel } from "./field-label";

@@ -1,5 +1,5 @@
 import { useId, useMemo } from "react";
-import type { GroupCheckboxProps } from "../common-checkbox.types";
+import type { GroupCheckboxProps } from "../checkbox.types";
 import {
   Field,
   FieldDescription,
@@ -8,7 +8,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CommonFieldLabel } from "../../label/field-label";
+import { FieldLabel } from "../../label/field-label";
 import { cn } from "@vorlyn/utils";
 
 export const GroupCheckbox = ({
@@ -63,7 +63,7 @@ export const GroupCheckbox = ({
                 aria-invalid={isInvalid}
                 disabled={disabled}
               />
-              <CommonFieldLabel htmlFor={optionId} label={option.label} />
+              <FieldLabel htmlFor={optionId} label={option.label} />
             </Field>
           );
         })}

@@ -1,1 +1,1 @@
-export { CommonToggleGroup } from "./common-toggle-group";
+export { ToggleGroup } from "./toggle-group";

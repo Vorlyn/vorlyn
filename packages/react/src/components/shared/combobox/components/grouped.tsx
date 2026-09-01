@@ -11,7 +11,7 @@ import {
   ComboboxSeparator,
 } from "@/components/ui/combobox";
 import { InputGroupAddon } from "@/components/ui/input-group";
-import type { GroupedComboboxProps } from "../common-combobox.types";
+import type { GroupedComboboxProps } from "../combobox.types";
 
 export const Grouped = ({
   id,

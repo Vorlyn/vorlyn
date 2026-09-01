@@ -1,1 +1,1 @@
-export { CommonAvatar } from "./common-avatar";
+export { Avatar } from "./avatar";

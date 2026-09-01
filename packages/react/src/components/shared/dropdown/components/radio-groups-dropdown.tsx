@@ -7,7 +7,7 @@ import {
 import { cn } from "@vorlyn/utils";
 import { RenderIcon } from "@/components/shared/icon";
 import { Fragment } from "react";
-import type { RadioGroupDropdownModeProps } from "../common-dropdown-types";
+import type { RadioGroupDropdownModeProps } from "../dropdown-types";
 
 export const RadioGroupsDropdown = ({
   options,

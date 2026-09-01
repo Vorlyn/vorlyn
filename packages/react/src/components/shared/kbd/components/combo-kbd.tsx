@@ -1,5 +1,5 @@
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
-import type { ComboModeProps } from "../common-kbd.types";
+import type { ComboModeProps } from "../kbd.types";
 import { cn } from "@vorlyn/utils";
 
 export const ComboKbd = ({ parts, wrapperClassName, className }: ComboModeProps) => {

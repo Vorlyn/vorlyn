@@ -1,1 +1,1 @@
-export { CommonSlider } from "./common-slider";
+export { Slider } from "./slider";

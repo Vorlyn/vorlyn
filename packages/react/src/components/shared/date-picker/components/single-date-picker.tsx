@@ -1,11 +1,11 @@
-import { CommonPopover } from "../../popover";
-import { CommonButton } from "../../button";
+import { Popover } from "../../popover";
+import { Button } from "../../button";
 import { ChevronDownIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@vorlyn/utils";
 import { format } from "date-fns";
-import type { SingleDatePickerProps } from "../common-date-picker.types";
-import { parseDateFieldValue } from "../common-date-picker.utils";
+import type { SingleDatePickerProps } from "../date-picker.types";
+import { parseDateFieldValue } from "../date-picker.utils";
 import { useId } from "react";
 
 export const SingleDatePicker = ({
@@ -26,11 +26,11 @@ export const SingleDatePicker = ({
   const fieldId = id ?? generateId;
 
   return (
-    <CommonPopover
+    <Popover
       open={open}
       onOpenChange={onOpenChange}
       trigger={
-        <CommonButton
+        <Button
           id={fieldId}
           label={
             selectedDate ? (
@@ -63,6 +63,6 @@ export const SingleDatePicker = ({
         showWeekNumber={showWeekNumber}
         disabled={disabled}
       />
-    </CommonPopover>
+    </Popover>
   );
 };

@@ -1,5 +1,6 @@
 export * from "./components/shared";
-export * from "./components/ui";
+export { Toaster } from "./components/ui/toast";
+export { TooltipProvider } from "./components/ui/tooltip";
 export * from "./config";
 export * from "./hooks";
 export * from "./constants";

@@ -1,1 +1,1 @@
-export { CommonSwitch } from "./common-switch";
+export { Switch } from "./switch";

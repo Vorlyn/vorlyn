@@ -1,5 +1,5 @@
 import { XAxis } from "recharts";
-import type { BarChartHorizontalAxisProps } from "../common-bar-chart.types";
+import type { BarChartHorizontalAxisProps } from "../bar-chart.types";
 
 export const BarChartHorizontalAxis = <TData extends Record<string, unknown>>({
   xAxisDataKey,

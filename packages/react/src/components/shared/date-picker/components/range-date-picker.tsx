@@ -1,10 +1,10 @@
 import { cn } from "@vorlyn/utils";
-import { CommonPopover } from "../../popover";
-import { CommonButton } from "../../button";
+import { Popover } from "../../popover";
+import { Button } from "../../button";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
-import type { DateRangePickerProps } from "../common-date-picker.types";
+import type { DateRangePickerProps } from "../date-picker.types";
 import { useId } from "react";
 
 export const RangeDatePicker = ({
@@ -20,11 +20,11 @@ export const RangeDatePicker = ({
   const generateId = useId();
   const fieldId = id ?? generateId;
   return (
-    <CommonPopover
+    <Popover
       open={open}
       onOpenChange={onOpenChange}
       trigger={
-        <CommonButton
+        <Button
           id={fieldId}
           label={
             value?.from ? (
@@ -57,6 +57,6 @@ export const RangeDatePicker = ({
         onSelect={onChange}
         numberOfMonths={numberOfMonths}
       />
-    </CommonPopover>
+    </Popover>
   );
 };

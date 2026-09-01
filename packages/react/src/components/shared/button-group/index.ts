@@ -1,5 +1,5 @@
-export { CommonButtonGroup } from "./common-button-group";
+export { ButtonGroup } from "./button-group";
 export type {
   ButtonGroupItem,
-  CommonButtonGroupProps,
-} from "./common-button-group.types";
+  ButtonGroupProps,
+} from "./button-group.types";

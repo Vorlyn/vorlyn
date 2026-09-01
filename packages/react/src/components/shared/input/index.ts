@@ -1,1 +1,1 @@
-export { CommonInput } from "./common-input";
+export { Input } from "./input";

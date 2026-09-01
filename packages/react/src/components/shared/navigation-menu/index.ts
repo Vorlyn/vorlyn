@@ -1,1 +1,1 @@
-export { CommonNavigationMenu } from "./common-navigation-menu";
+export { NavigationMenu } from "./navigation-menu";

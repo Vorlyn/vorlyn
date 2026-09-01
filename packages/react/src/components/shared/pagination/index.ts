@@ -1,1 +1,1 @@
-export { CommonPagination } from "./common-pagination";
+export { Pagination } from "./pagination";

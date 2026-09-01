@@ -1,1 +1,1 @@
-export { CommonInputGroup } from "./common-input-group";
+export { InputGroup } from "./input-group";

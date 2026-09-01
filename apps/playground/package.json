@@ -29,6 +29,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^9.39.1",
     "shadcn": "^4.14.1",
     "tailwindcss": "^4.1.17",

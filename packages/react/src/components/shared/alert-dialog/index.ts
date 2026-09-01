@@ -1,1 +1,1 @@
-export { CommonAlertDialog } from "./common-alert-dialog";
+export { AlertDialog } from "./alert-dialog";

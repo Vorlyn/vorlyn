@@ -1,1 +1,1 @@
-export { CommonPopover } from "./common-popover";
+export { Popover } from "./popover";

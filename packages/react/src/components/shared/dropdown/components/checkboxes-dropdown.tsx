@@ -7,7 +7,7 @@ import {
 import { cn } from "@vorlyn/utils";
 import { RenderIcon } from "@/components/shared/icon";
 import { Fragment } from "react";
-import type { CheckboxesDropdownModeProps } from "../common-dropdown-types";
+import type { CheckboxesDropdownModeProps } from "../dropdown-types";
 
 export const CheckboxesDropdown = ({
   options,

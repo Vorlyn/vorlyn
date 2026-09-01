@@ -1,0 +1,92 @@
+import { Input as DefaultInput } from "@/components/ui/input";
+import { useId } from "react";
+import type { InputProps } from "./input.types";
+import { cn } from "@vorlyn/utils";
+import { CircleAlert } from "lucide-react";
+import { FieldLabel } from "../label/field-label";
+import { Field, FieldDescription, FieldError } from "@/components/ui/field";
+import { RenderIcon } from "@/components/shared/icon";
+
+export const Input = ({
+  id,
+  label,
+  description,
+  value,
+  onChange,
+  leftIcon,
+  rightIcon,
+  leftIconClassName,
+  rightIconClassName,
+  labelClassName,
+  descriptionClassName,
+  className,
+  onClick,
+  error,
+  required,
+  ref,
+  ...rest
+}: InputProps) => {
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const errorId = error ? `${inputId}-error` : undefined;
+  return (
+    <Field>
+      {label && (
+        <FieldLabel
+          htmlFor={inputId}
+          label={label}
+          required={required}
+          className={labelClassName}
+        />
+      )}
+      <div className="relative">
+        {leftIcon && (
+          <span
+            className={cn(
+              "absolute left-3 top-1/2 -translate-y-1/2 z-10 shrink-0",
+              leftIconClassName,
+            )}
+          >
+            <RenderIcon src={leftIcon} alt={label} />
+          </span>
+        )}
+        <DefaultInput
+          id={inputId}
+          ref={ref}
+          value={value}
+          onChange={onChange}
+          onClick={onClick}
+          aria-invalid={!!error}
+          aria-errormessage={errorId}
+          aria-required={required}
+          className={cn(leftIcon && "pl-9", rightIcon && "pr-9", className)}
+          {...rest}
+        />
+        {rightIcon && (
+          <span
+            className={cn(
+              "absolute right-3 top-1/2 -translate-y-1/2 z-10 shrink-0",
+              rightIconClassName,
+            )}
+          >
+            <RenderIcon src={rightIcon} alt={label} />
+          </span>
+        )}
+      </div>
+      {description && (
+        <FieldDescription className={cn("text-xs mt-1!", descriptionClassName)}>
+          {description}
+        </FieldDescription>
+      )}
+      {error && (
+        <FieldError
+          id={errorId}
+          className="flex items-center gap-1 error-message text-sm text-destructive"
+        >
+          <CircleAlert className="size-3 shrink-0" />
+          {error}
+        </FieldError>
+      )}
+    </Field>
+  );
+};

@@ -1,1 +1,1 @@
-export { CommonCommandPalette } from "./common-command-palette";
+export { CommandPalette } from "./command-palette";

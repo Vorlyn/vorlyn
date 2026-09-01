@@ -1,6 +1,6 @@
 import { cn } from "@vorlyn/utils";
-import { CommonButton } from "../../button";
-import type { ButtonModeProps } from "../common-kbd.types";
+import { Button } from "../../button";
+import type { ButtonModeProps } from "../kbd.types";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
 export const ButtonKbd = ({
@@ -12,7 +12,7 @@ export const ButtonKbd = ({
   wrapperClassName,
 }: ButtonModeProps) => {
   return (
-    <CommonButton
+    <Button
       label={label}
       onClick={onClick}
       className={cn("gap-2", wrapperClassName)}

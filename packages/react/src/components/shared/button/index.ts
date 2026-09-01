@@ -1,2 +1,2 @@
-export { CommonButton } from "./common-button";
-export type { CommonButtonProps } from "./common-button.types";
+export { Button } from "./button";
+export type { ButtonProps } from "./button.types";

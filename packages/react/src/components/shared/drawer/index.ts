@@ -1,1 +1,1 @@
-export { CommonDrawer } from "./common-drawer";
+export { Drawer } from "./drawer";

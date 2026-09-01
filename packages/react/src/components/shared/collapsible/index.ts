@@ -1,1 +1,1 @@
-export { CommonCollapsible } from "./common-collapsible";
+export { Collapsible } from "./collapsible";

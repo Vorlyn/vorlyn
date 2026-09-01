@@ -1,1 +1,1 @@
-export { CommonAlert } from "./common-alert";
+export { Alert } from "./alert";

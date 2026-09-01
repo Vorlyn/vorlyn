@@ -1,7 +1,7 @@
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
-import type { TooltipModeProps } from "../common-kbd.types";
+import type { TooltipModeProps } from "../kbd.types";
 import { cn } from "@vorlyn/utils";
-import { CommonTooltip } from "../../tooltip";
+import { Tooltip } from "../../tooltip";
 
 export const TooltipKbd = ({
   trigger,
@@ -16,7 +16,7 @@ export const TooltipKbd = ({
   kbdClassName,
 }: TooltipModeProps) => {
   return (
-    <CommonTooltip
+    <Tooltip
       trigger={trigger}
       side={side}
       sideOffset={sideOffset}
@@ -31,6 +31,6 @@ export const TooltipKbd = ({
           <Kbd key={key}>{key}</Kbd>
         ))}
       </KbdGroup>
-    </CommonTooltip>
+    </Tooltip>
   );
 };

@@ -1,5 +1,5 @@
 import { XAxis, YAxis } from "recharts";
-import type { BarChartVerticalAxisProps } from "../common-bar-chart.types";
+import type { BarChartVerticalAxisProps } from "../bar-chart.types";
 
 export const BarChartVerticalAxis = <TData extends Record<string, unknown>>({
   xAxisDataKey,

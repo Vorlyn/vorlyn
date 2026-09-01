@@ -1,4 +1,4 @@
-import { CommonImage } from "../image";
+import { Image } from "../image";
 import { RenderIconProps } from "./render-icon.types";
 
 export const RenderIcon = ({
@@ -11,7 +11,7 @@ export const RenderIcon = ({
   if (!src) return null;
   if (typeof src === "string") {
     return (
-      <CommonImage
+      <Image
         src={src}
         alt={alt}
         width={width}

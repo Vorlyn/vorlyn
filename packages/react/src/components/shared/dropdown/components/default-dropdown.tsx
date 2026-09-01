@@ -12,7 +12,7 @@ import {
 import { cn } from "@vorlyn/utils";
 import { RenderIcon } from "@/components/shared/icon";
 import { Fragment } from "react";
-import type { DefaultDropdownModeProps } from "../common-dropdown-types";
+import type { DefaultDropdownModeProps } from "../dropdown-types";
 
 export const DefaultDropdown = ({
   options,

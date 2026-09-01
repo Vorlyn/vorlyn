@@ -13,8 +13,8 @@ import {
 import type {
   MultipleComboboxProps,
   SelectableItem,
-} from "../common-combobox.types";
-import { getOptionLabel, getOptionValue } from "../common-combobox.utils";
+} from "../combobox.types";
+import { getOptionLabel, getOptionValue } from "../combobox.utils";
 
 export const Multiple = ({
   id,

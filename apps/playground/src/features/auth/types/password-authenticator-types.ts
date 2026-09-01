@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
+import type { ReactElement } from "react";
 
 export interface PasswordAuthenticatorProps {
-  trigger: ReactNode;
+  trigger: ReactElement;
   password: string;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;

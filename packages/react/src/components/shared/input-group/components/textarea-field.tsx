@@ -2,7 +2,7 @@ import {
   InputGroupAddon,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
-import type { InputGroupTextareaFieldProps } from "../common-input-group.types";
+import type { InputGroupTextareaFieldProps } from "../input-group.types";
 
 export const TextareaField = ({
   fieldId,

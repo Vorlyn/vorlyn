@@ -11,12 +11,12 @@ import {
 import type {
   PopoverComboboxProps,
   SelectableItem,
-} from "../common-combobox.types";
+} from "../combobox.types";
 import {
   getOptionLabel,
   getOptionValue,
   internalFilter,
-} from "../common-combobox.utils";
+} from "../combobox.utils";
 import { ChevronDown, X } from "lucide-react";
 import { useMemo, useState, type MouseEvent } from "react";
 import { Spinner } from "@/components/ui/spinner";

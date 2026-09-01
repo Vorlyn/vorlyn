@@ -1,1 +1,1 @@
-export { CommonAccordion } from "./common-accordion";
+export { Accordion } from "./accordion";

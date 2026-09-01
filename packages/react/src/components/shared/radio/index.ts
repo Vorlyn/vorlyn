@@ -1,1 +1,1 @@
-export { CommonRadio } from "./common-radio";
+export { Radio } from "./radio";

@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import type { InputDatePickerProps } from "../common-date-picker.types";
+import type { InputDatePickerProps } from "../date-picker.types";
 import {
   InputGroup,
   InputGroupAddon,
@@ -7,13 +7,13 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { CalendarIcon } from "lucide-react";
-import { CommonPopover } from "../../popover";
+import { Popover } from "../../popover";
 import { Calendar } from "@/components/ui/calendar";
 import {
   formatDate,
   isValidDate,
   parseDateFieldValue,
-} from "../common-date-picker.utils";
+} from "../date-picker.utils";
 
 export const InputDatePicker = ({
   id,
@@ -80,7 +80,7 @@ export const InputDatePicker = ({
         }}
       />
       <InputGroupAddon align="inline-end">
-        <CommonPopover
+        <Popover
           open={open}
           onOpenChange={setOpen}
           trigger={
@@ -107,7 +107,7 @@ export const InputDatePicker = ({
             }}
             captionLayout={captionLayout}
           />
-        </CommonPopover>
+        </Popover>
       </InputGroupAddon>
     </InputGroup>
   );

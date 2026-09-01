@@ -7,11 +7,11 @@ import {
   ComboboxList,
 } from "@/components/ui/combobox";
 import { InputGroupAddon } from "@/components/ui/input-group";
-import { getOptionLabel, getOptionValue } from "../common-combobox.utils";
+import { getOptionLabel, getOptionValue } from "../combobox.utils";
 import type {
   DefaultComboboxProps,
   SelectableItem,
-} from "../common-combobox.types";
+} from "../combobox.types";
 
 export const Default = ({
   id,
