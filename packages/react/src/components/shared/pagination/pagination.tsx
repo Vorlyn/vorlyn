@@ -92,6 +92,7 @@ export const Pagination = <T,>(props: PaginationProps<T>) => {
             label="Show per page"
             options={rowsPerPage}
             onValueChange={(value) => {
+              if(!value) return;
               onPageSizeChange?.(value);
               onPageChange(1);
             }}
