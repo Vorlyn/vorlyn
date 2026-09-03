@@ -11,15 +11,16 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate-registry": "tsx scripts/generate-registry.ts"
   },
   "dependencies": {
-    "commander": "^12.1.0",
-    "vorlyn": "link:"
+    "commander": "^12.1.0"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
     "eslint": "^9.39.1",
+    "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   }
 }
