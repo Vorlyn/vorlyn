@@ -15,10 +15,12 @@
     "generate-registry": "tsx scripts/generate-registry.ts"
   },
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^12.1.0",
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "@types/prompts": "^2.4.9",
     "eslint": "^9.39.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"

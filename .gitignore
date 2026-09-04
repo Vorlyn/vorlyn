@@ -31,3 +31,4 @@ config.bat
 .turbo/*
 
 packages/cli/registry/
+packages/cli/test-project/
