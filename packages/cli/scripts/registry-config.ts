@@ -80,4 +80,80 @@ export const registryConfig = [
       },
     ],
   },
+  {
+    name: "badge",
+    type: "registry:ui",
+    dependencies: [
+      "@base-ui/react",
+      "class-variance-authority",
+      "@vorlyn/utils",
+    ],
+    registryDependencies: ["icon", "spinner"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/badge.tsx",
+        targetPath: "components/ui/badge.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/badge/badge.tsx",
+        targetPath: "components/shared/badge/badge.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/badge/badge.types.ts",
+        targetPath: "components/shared/badge/badge.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/badge/index.ts",
+        targetPath: "components/shared/badge/index.ts",
+      },
+    ],
+  },
+  {
+    name: "avatar",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/avatar.tsx",
+        targetPath: "components/ui/avatar.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/avatar/avatar.tsx",
+        targetPath: "components/shared/avatar/avatar.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/avatar/avatar.types.ts",
+        targetPath: "components/shared/avatar/avatar.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/avatar/index.ts",
+        targetPath: "components/shared/avatar/index.ts",
+      },
+    ],
+  },
+  {
+    name: "toast",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/toast.tsx",
+        targetPath: "components/ui/toast.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/toast/toast.tsx",
+        targetPath: "components/shared/toast/toast.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/toast/toast.types.ts",
+        targetPath: "components/shared/toast/toast.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/toast/index.ts",
+        targetPath: "components/shared/toast/index.ts",
+      },
+    ],
+  },
 ];

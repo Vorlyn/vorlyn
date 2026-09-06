@@ -84,7 +84,15 @@ export async function installComponent(
       filesToWrite = registry.files.filter(
         (f) => !existingTargets.has(f.target),
       );
-      console.log("Skipping existing files.");
+      console.log(`\nSkipping ${existingFiles.length} existing file(s).`);
+      if (filesToWrite.length > 0) {
+        console.log(`Proceeding with ${filesToWrite.length} new file(s):`);
+        for (const f of filesToWrite) {
+          console.log(`  - ${f.target}`);
+        }
+      } else {
+        console.log("No new files to add.");
+      }
     }
   }
 
@@ -99,14 +107,19 @@ export async function installComponent(
     const shouldInstall = await confirmInstall(registry.dependencies);
     if (shouldInstall) {
       const pm = detectPackageManager(cwd);
-      const command = getInstallCommand(pm, registry.dependencies);
-      console.log(`\nRunning: ${command}`);
-      try {
-        execSync(command, { cwd, stdio: "inherit" });
-      } catch (error) {
+      const failed: string[] = [];
+      for (const dep of registry.dependencies) {
+        const command = getInstallCommand(pm, [dep]);
+        console.log(`\nRunning: ${command}`);
+        try {
+          execSync(command, { cwd, stdio: "inherit" });
+        } catch (error) {
+          failed.push(dep);
+        }
+      }
+      if (failed.length > 0) {
         console.error(
-          "\n⚠️  Dependency install failed. Files were still added — install manually:\n  " +
-            command,
+          `\n⚠️  Failed to install: ${failed.join(", ")}\nInstall manually once available.`,
         );
       }
     } else {
