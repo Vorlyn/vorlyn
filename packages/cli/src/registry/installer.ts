@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import { execSync } from "child_process";
 import prompts from "prompts";
+import { loadConfig } from "../config.js";
 
 interface RegistryFile {
   path: string;
@@ -37,6 +38,11 @@ function getInstallCommand(pm: PackageManager, packages: string[]): string {
   }
 }
 
+function rewriteAlias(content: string, alias: string): string {
+  if (alias === "@/") return content;
+  return content.replaceAll('"@/', `"${alias}`).replaceAll("'@/", `'${alias}`);
+}
+
 async function confirmOverwrite(existingFiles: string[]): Promise<boolean> {
   console.log("\nThe following files already exist:");
   for (const file of existingFiles) {
@@ -69,8 +75,10 @@ export async function installComponent(
   registry: ResolvedRegistry,
   cwd: string = process.cwd(),
 ): Promise<void> {
+  const config = loadConfig(cwd);
+
   const existingFiles = registry.files.filter((file) =>
-    existsSync(join(cwd, file.target)),
+    existsSync(join(cwd, config.baseDir, file.target)),
   );
 
   let filesToWrite = registry.files;
@@ -94,6 +102,14 @@ export async function installComponent(
         console.log("No new files to add.");
       }
     }
+  }
+
+  for (const file of filesToWrite) {
+    const fullPath = join(cwd, config.baseDir, file.target);
+    const content = rewriteAlias(file.content, config.alias);
+    mkdirSync(dirname(fullPath), { recursive: true });
+    writeFileSync(fullPath, content);
+    console.log(`✅ ${join(config.baseDir, file.target)}`);
   }
 
   for (const file of filesToWrite) {
