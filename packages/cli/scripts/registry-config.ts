@@ -156,4 +156,108 @@ export const registryConfig = [
       },
     ],
   },
+  {
+    name: "accordion",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/accordion.tsx",
+        targetPath: "components/ui/accordion.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/accordion/accordion.tsx",
+        targetPath: "components/shared/accordion/accordion.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/accordion/accordion.types.ts",
+        targetPath: "components/shared/accordion/accordion.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/accordion/index.ts",
+        targetPath: "components/shared/accordion/index.ts",
+      },
+    ],
+  },
+  {
+    name: "alert",
+    type: "registry:ui",
+    dependencies: [
+      "@base-ui/react",
+      "@vorlyn/utils",
+      "class-variance-authority",
+      "lucide-react",
+    ],
+    registryDependencies: ["icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/alert.tsx",
+        targetPath: "components/ui/alert.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/alert/alert.tsx",
+        targetPath: "components/shared/alert/alert.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/alert/alert.type.ts",
+        targetPath: "components/shared/alert/alert.type.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/alert/index.ts",
+        targetPath: "components/shared/alert/index.ts",
+      },
+    ],
+  },
+  {
+    name: "alert-dialog",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: ["button", "icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/alert-dialog.tsx",
+        targetPath: "components/ui/alert-dialog.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/alert-dialog/alert-dialog.tsx",
+        targetPath: "components/shared/alert-dialog/alert-dialog.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/alert-dialog/alert-dialog.types.ts",
+        targetPath: "components/shared/alert-dialog/alert-dialog.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/alert-dialog/index.ts",
+        targetPath: "components/shared/alert-dialog/index.ts",
+      },
+    ],
+  },
+  {
+    name: "card",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/card.tsx",
+        targetPath: "components/ui/card.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/card/card.tsx",
+        targetPath: "components/shared/card/card.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/card/card.types.ts",
+        targetPath: "components/shared/card/card.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/card/index.ts",
+        targetPath: "components/shared/card/index.ts",
+      },
+    ],
+  },
 ];
