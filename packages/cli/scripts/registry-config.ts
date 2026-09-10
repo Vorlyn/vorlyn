@@ -260,4 +260,89 @@ export const registryConfig = [
       },
     ],
   },
+  {
+    name: "button-group",
+    type: "registry:ui",
+    dependencies: [
+      "@base-ui/react",
+      "class-variance-authority",
+      "@vorlyn/utils",
+    ],
+    registryDependencies: [
+      "button",
+      "dropdown",
+      "popover",
+      "input",
+      "separator",
+    ],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/button-group.tsx",
+        targetPath: "components/ui/button-group.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/button-group/button-group.tsx",
+        targetPath: "components/shared/button-group/button-group.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/button-group/button-group.types.ts",
+        targetPath: "components/shared/button-group/button-group.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/button-group/index.ts",
+        targetPath: "components/shared/button-group/index.ts",
+      },
+    ],
+  },
+  {
+    name: "tooltip",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/tooltip.tsx",
+        targetPath: "components/ui/tooltip.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/tooltip/tooltip.tsx",
+        targetPath: "components/shared/tooltip/tooltip.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/tooltip/tooltip.types.ts",
+        targetPath: "components/shared/tooltip/tooltip.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/tooltip/index.ts",
+        targetPath: "components/shared/tooltip/index.ts",
+      },
+    ],
+  },
+  {
+    name: "toast",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/toast.tsx",
+        targetPath: "components/ui/toast.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/toast/toast.tsx",
+        targetPath: "components/shared/toast/toast.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/toast/toast.types.ts",
+        targetPath: "components/shared/toast/toast.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/toast/index.ts",
+        targetPath: "components/shared/toast/index.ts",
+      },
+    ],
+  },
 ];
