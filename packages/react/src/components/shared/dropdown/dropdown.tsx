@@ -3,7 +3,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { DropdownProps } from "./dropdown-types";
+import type { DropdownProps } from "./dropdown.types";
 import { cn } from "@vorlyn/utils";
 import { DefaultDropdown } from "./components/default-dropdown";
 import { CheckboxesDropdown } from "./components/checkboxes-dropdown";

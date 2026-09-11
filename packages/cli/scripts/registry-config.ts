@@ -345,4 +345,47 @@ export const registryConfig = [
       },
     ],
   },
+  {
+    name: "dropdown",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/dropdown-menu.tsx",
+        targetPath: "components/ui/dropdown-menu.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/dropdown/dropdown.tsx",
+        targetPath: "components/shared/dropdown/dropdown.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/dropdown/dropdown.types.ts",
+        targetPath: "components/shared/dropdown/dropdown.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/dropdown/index.ts",
+        targetPath: "components/shared/dropdown/index.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/dropdown/components/default-dropdown.tsx",
+        targetPath:
+          "components/shared/dropdown/components/default-dropdown.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/dropdown/components/checkboxes-dropdown.tsx",
+        targetPath:
+          "components/shared/dropdown/components/checkboxes-dropdown.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/dropdown/components/radio-groups-dropdown.tsx",
+        targetPath:
+          "components/shared/dropdown/components/radio-groups-dropdown.tsx",
+      },
+    ],
+  },
 ];
