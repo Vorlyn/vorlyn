@@ -20,7 +20,7 @@ export const Sheet = ({
   className,
 }: SheetProps) => {
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
+    <DefaultSheet open={open} onOpenChange={onOpenChange}>
       {trigger && <SheetTrigger render={trigger} />}
       <SheetContent
         side={side}
@@ -33,6 +33,6 @@ export const Sheet = ({
         </SheetHeader>
         {children}
       </SheetContent>
-    </Sheet>
+    </DefaultSheet>
   );
 };

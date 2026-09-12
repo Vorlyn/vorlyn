@@ -450,6 +450,102 @@ export const registryConfig = [
     ],
   },
   {
+    name: "dialog",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/dialog.tsx",
+        targetPath: "components/ui/dialog.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/dialog/dialog.tsx",
+        targetPath: "components/shared/dialog/dialog.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/dialog/dialog.types.ts",
+        targetPath: "components/shared/dialog/dialog.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/dialog/index.ts",
+        targetPath: "components/shared/dialog/index.ts",
+      },
+    ],
+  },
+  {
+    name: "sheet",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/sheet.tsx",
+        targetPath: "components/ui/sheet.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/sheet/sheet.tsx",
+        targetPath: "components/shared/sheet/sheet.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/sheet/sheet.types.ts",
+        targetPath: "components/shared/sheet/sheet.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/sheet/index.ts",
+        targetPath: "components/shared/sheet/index.ts",
+      },
+    ],
+  },
+  {
+    name: "slider",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/slider.tsx",
+        targetPath: "components/ui/slider.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/slider/slider.tsx",
+        targetPath: "components/shared/slider/slider.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/slider/slider.types.ts",
+        targetPath: "components/shared/slider/slider.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/slider/index.ts",
+        targetPath: "components/shared/slider/index.ts",
+      },
+    ],
+  },
+  {
+    name: "switch",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: ["label"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/switch.tsx",
+        targetPath: "components/ui/switch.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/switch/switch.tsx",
+        targetPath: "components/shared/switch/switch.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/switch/switch.types.ts",
+        targetPath: "components/shared/switch/switch.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/switch/index.ts",
+        targetPath: "components/shared/switch/index.ts",
+      },
+    ],
+  },
+  {
     name: "label",
     type: "registry:ui",
     dependencies: ["@vorlyn/utils"],
