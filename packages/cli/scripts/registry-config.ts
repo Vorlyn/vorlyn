@@ -388,4 +388,105 @@ export const registryConfig = [
       },
     ],
   },
+  {
+    name: "popover",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/popover.tsx",
+        targetPath: "components/ui/popover.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/popover/popover.tsx",
+        targetPath: "components/shared/popover/popover.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/popover/popover.types.ts",
+        targetPath: "components/shared/popover/popover.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/popover/index.ts",
+        targetPath: "components/shared/popover/index.ts",
+      },
+    ],
+  },
+  {
+    name: "input",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["icon", "field", "label", "separator"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/input.tsx",
+        targetPath: "components/ui/input.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/input/input.tsx",
+        targetPath: "components/shared/input/input.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/input/input.types.ts",
+        targetPath: "components/shared/input/input.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/input/index.ts",
+        targetPath: "components/shared/input/index.ts",
+      },
+    ],
+  },
+  {
+    name: "separator",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/separator.tsx",
+        targetPath: "components/ui/separator.tsx",
+      },
+    ],
+  },
+  {
+    name: "label",
+    type: "registry:ui",
+    dependencies: ["@vorlyn/utils"],
+    registryDependencies: ["field"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/label.tsx",
+        targetPath: "components/ui/label.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/label/label.tsx",
+        targetPath: "components/shared/label/label.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/label/field-label.tsx",
+        targetPath: "components/shared/label/field-label.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/label/label.types.ts",
+        targetPath: "components/shared/label/label.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/label/index.ts",
+        targetPath: "components/shared/label/index.ts",
+      },
+    ],
+  },
+  {
+    name: "field",
+    type: "registry:ui",
+    dependencies: ["class-variance-authority", "@vorlyn/utils"],
+    registryDependencies: ["label", "separator"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/field.tsx",
+        targetPath: "components/ui/field.tsx",
+      },
+    ],
+  },
 ];
