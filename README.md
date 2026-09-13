@@ -1,6 +1,6 @@
 # Vorlyn
 
-A production-ready, feature-based architecture for React — built with Vite, TypeScript, TanStack Query, and shadcn/ui.
+Vorlyn is evolving into a complete React engineering ecosystem — copy-paste components, composable packages, and CLI tooling that let you own your architecture instead of importing it.
 
 ## ✨ Tech Stack
 
