@@ -192,7 +192,8 @@ export const registryConfig = [
         targetPath: "components/ui/breadcrumb.tsx",
       },
       {
-        sourcePath: "../../react/src/components/shared/breadcrumb/breadcrumb.tsx",
+        sourcePath:
+          "../../react/src/components/shared/breadcrumb/breadcrumb.tsx",
         targetPath: "components/shared/breadcrumb/breadcrumb.tsx",
       },
       {
@@ -609,8 +610,7 @@ export const registryConfig = [
         targetPath: "components/ui/carousel.tsx",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/carousel/carousel.tsx",
+        sourcePath: "../../react/src/components/shared/carousel/carousel.tsx",
         targetPath: "components/shared/carousel/carousel.tsx",
       },
       {
@@ -641,8 +641,7 @@ export const registryConfig = [
       {
         sourcePath:
           "../../react/src/components/shared/command-palette/command-palette.tsx",
-        targetPath:
-          "components/shared/command-palette/command-palette.tsx",
+        targetPath: "components/shared/command-palette/command-palette.tsx",
       },
       {
         sourcePath:
@@ -687,8 +686,7 @@ export const registryConfig = [
         targetPath: "components/shared/date-picker/date-picker.utils.ts",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/date-picker/index.ts",
+        sourcePath: "../../react/src/components/shared/date-picker/index.ts",
         targetPath: "components/shared/date-picker/index.ts",
       },
       {
@@ -744,18 +742,15 @@ export const registryConfig = [
       {
         sourcePath:
           "../../react/src/components/shared/error-boundary/error-boundary.tsx",
-        targetPath:
-          "components/shared/error-boundary/error-boundary.tsx",
+        targetPath: "components/shared/error-boundary/error-boundary.tsx",
       },
       {
         sourcePath:
           "../../react/src/components/shared/error-boundary/error-boundary.types.ts",
-        targetPath:
-          "components/shared/error-boundary/error-boundary.types.ts",
+        targetPath: "components/shared/error-boundary/error-boundary.types.ts",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/error-boundary/index.ts",
+        sourcePath: "../../react/src/components/shared/error-boundary/index.ts",
         targetPath: "components/shared/error-boundary/index.ts",
       },
     ],
@@ -769,18 +764,15 @@ export const registryConfig = [
       {
         sourcePath:
           "../../react/src/components/shared/form-provider/form-provider.tsx",
-        targetPath:
-          "components/shared/form-provider/form-provider.tsx",
+        targetPath: "components/shared/form-provider/form-provider.tsx",
       },
       {
         sourcePath:
           "../../react/src/components/shared/form-provider/form-provider.types.ts",
-        targetPath:
-          "components/shared/form-provider/form-provider.types.ts",
+        targetPath: "components/shared/form-provider/form-provider.types.ts",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/form-provider/index.ts",
+        sourcePath: "../../react/src/components/shared/form-provider/index.ts",
         targetPath: "components/shared/form-provider/index.ts",
       },
     ],
@@ -794,6 +786,260 @@ export const registryConfig = [
       {
         sourcePath: "../../react/src/components/ui/field.tsx",
         targetPath: "components/ui/field.tsx",
+      },
+    ],
+  },
+  {
+    name: "input-group",
+    type: "registry:ui",
+    dependencies: ["class-variance-authority", "@vorlyn/utils"],
+    registryDependencies: ["field", "label"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/input-group.tsx",
+        targetPath: "components/ui/input-group.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/input-group/input-group.tsx",
+        targetPath: "components/shared/input-group/input-group.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/input-group/input-group.types.ts",
+        targetPath: "components/shared/input-group/input-group.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/input-group/index.ts",
+        targetPath: "components/shared/input-group/index.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/input-group/components/input-field.tsx",
+        targetPath:
+          "components/shared/input-group/components/input-field.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/input-group/components/textarea-field.tsx",
+        targetPath:
+          "components/shared/input-group/components/textarea-field.tsx",
+      },
+    ],
+  },
+  {
+    name: "kbd",
+    type: "registry:ui",
+    dependencies: ["@vorlyn/utils"],
+    registryDependencies: ["button", "input-group", "tooltip"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/kbd.tsx",
+        targetPath: "components/ui/kbd.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/kbd/kbd.tsx",
+        targetPath: "components/shared/kbd/kbd.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/kbd/kbd.types.ts",
+        targetPath: "components/shared/kbd/kbd.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/kbd/index.ts",
+        targetPath: "components/shared/kbd/index.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/kbd/components/button-group-kbd.tsx",
+        targetPath:
+          "components/shared/kbd/components/button-group-kbd.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/kbd/components/button-kbd.tsx",
+        targetPath: "components/shared/kbd/components/button-kbd.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/kbd/components/combo-kbd.tsx",
+        targetPath: "components/shared/kbd/components/combo-kbd.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/kbd/components/input-kbd.tsx",
+        targetPath: "components/shared/kbd/components/input-kbd.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/kbd/components/tooltip-kbd.tsx",
+        targetPath: "components/shared/kbd/components/tooltip-kbd.tsx",
+      },
+    ],
+  },
+  {
+    name: "navigation-menu",
+    type: "registry:ui",
+    dependencies: [
+      "@base-ui/react",
+      "class-variance-authority",
+      "@vorlyn/utils",
+      "lucide-react",
+      "react-router-dom",
+    ],
+    registryDependencies: ["icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/navigation-menu.tsx",
+        targetPath: "components/ui/navigation-menu.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/navigation-menu/navigation-menu.tsx",
+        targetPath:
+          "components/shared/navigation-menu/navigation-menu.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/navigation-menu/navigation-menu.types.ts",
+        targetPath:
+          "components/shared/navigation-menu/navigation-menu.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/navigation-menu/index.ts",
+        targetPath: "components/shared/navigation-menu/index.ts",
+      },
+    ],
+  },
+  {
+    name: "pagination",
+    type: "registry:ui",
+    dependencies: ["@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button", "select"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/pagination.tsx",
+        targetPath: "components/ui/pagination.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/pagination/pagination.tsx",
+        targetPath: "components/shared/pagination/pagination.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/pagination/pagination.types.ts",
+        targetPath: "components/shared/pagination/pagination.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/pagination/pagination.utils.ts",
+        targetPath: "components/shared/pagination/pagination.utils.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/pagination/index.ts",
+        targetPath: "components/shared/pagination/index.ts",
+      },
+    ],
+  },
+  {
+    name: "progress",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/progress.tsx",
+        targetPath: "components/ui/progress.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/progress/progress.tsx",
+        targetPath: "components/shared/progress/progress.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/progress/progress.types.ts",
+        targetPath: "components/shared/progress/progress.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/progress/index.ts",
+        targetPath: "components/shared/progress/index.ts",
+      },
+    ],
+  },
+  {
+    name: "radio",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: ["field"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/radio-group.tsx",
+        targetPath: "components/ui/radio-group.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/radio/radio.tsx",
+        targetPath: "components/shared/radio/radio.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/radio/radio.types.ts",
+        targetPath: "components/shared/radio/radio.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/radio/index.ts",
+        targetPath: "components/shared/radio/index.ts",
+      },
+    ],
+  },
+  {
+    name: "select",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["field", "label", "spinner"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/select.tsx",
+        targetPath: "components/ui/select.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/select/select.tsx",
+        targetPath: "components/shared/select/select.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/select/select.types.ts",
+        targetPath: "components/shared/select/select.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/select/index.ts",
+        targetPath: "components/shared/select/index.ts",
+      },
+    ],
+  },
+  {
+    name: "hover-card",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/hover-card.tsx",
+        targetPath: "components/ui/hover-card.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/hover-card/hover-card.tsx",
+        targetPath: "components/shared/hover-card/hover-card.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/hover-card/hover-card.types.ts",
+        targetPath: "components/shared/hover-card/hover-card.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/hover-card/index.ts",
+        targetPath: "components/shared/hover-card/index.ts",
       },
     ],
   },
