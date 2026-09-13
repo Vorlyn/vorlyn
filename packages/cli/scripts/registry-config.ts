@@ -182,6 +182,31 @@ export const registryConfig = [
     ],
   },
   {
+    name: "breadcrumb",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["icon", "dropdown"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/breadcrumb.tsx",
+        targetPath: "components/ui/breadcrumb.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/breadcrumb/breadcrumb.tsx",
+        targetPath: "components/shared/breadcrumb/breadcrumb.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/breadcrumb/breadcrumb.types.ts",
+        targetPath: "components/shared/breadcrumb/breadcrumb.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/breadcrumb/index.ts",
+        targetPath: "components/shared/breadcrumb/index.ts",
+      },
+    ],
+  },
+  {
     name: "alert",
     type: "registry:ui",
     dependencies: [
@@ -570,6 +595,193 @@ export const registryConfig = [
       {
         sourcePath: "../../react/src/components/shared/label/index.ts",
         targetPath: "components/shared/label/index.ts",
+      },
+    ],
+  },
+  {
+    name: "carousel",
+    type: "registry:ui",
+    dependencies: ["embla-carousel-react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/carousel.tsx",
+        targetPath: "components/ui/carousel.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/carousel/carousel.tsx",
+        targetPath: "components/shared/carousel/carousel.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/carousel/carousel.types.ts",
+        targetPath: "components/shared/carousel/carousel.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/carousel/index.ts",
+        targetPath: "components/shared/carousel/index.ts",
+      },
+    ],
+  },
+  {
+    name: "command-palette",
+    type: "registry:ui",
+    dependencies: ["cmdk", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["dialog", "icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/command.tsx",
+        targetPath: "components/ui/command.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/ui/input-group.tsx",
+        targetPath: "components/ui/input-group.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/command-palette/command-palette.tsx",
+        targetPath:
+          "components/shared/command-palette/command-palette.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/command-palette/command-palette.types.ts",
+        targetPath:
+          "components/shared/command-palette/command-palette.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/command-palette/index.ts",
+        targetPath: "components/shared/command-palette/index.ts",
+      },
+    ],
+  },
+  {
+    name: "date-picker",
+    type: "registry:ui",
+    dependencies: ["react-day-picker", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["field", "label"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/calendar.tsx",
+        targetPath: "components/ui/calendar.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/ui/input-group.tsx",
+        targetPath: "components/ui/input-group.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/date-picker/date-picker.tsx",
+        targetPath: "components/shared/date-picker/date-picker.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/date-picker/date-picker.types.ts",
+        targetPath: "components/shared/date-picker/date-picker.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/date-picker/date-picker.utils.ts",
+        targetPath: "components/shared/date-picker/date-picker.utils.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/date-picker/index.ts",
+        targetPath: "components/shared/date-picker/index.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/date-picker/components/single-date-picker.tsx",
+        targetPath:
+          "components/shared/date-picker/components/single-date-picker.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/date-picker/components/range-date-picker.tsx",
+        targetPath:
+          "components/shared/date-picker/components/range-date-picker.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/date-picker/components/input-date-picker.tsx",
+        targetPath:
+          "components/shared/date-picker/components/input-date-picker.tsx",
+      },
+    ],
+  },
+  {
+    name: "drawer",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/drawer.tsx",
+        targetPath: "components/ui/drawer.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/drawer/drawer.tsx",
+        targetPath: "components/shared/drawer/drawer.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/drawer/drawer.types.ts",
+        targetPath: "components/shared/drawer/drawer.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/drawer/index.ts",
+        targetPath: "components/shared/drawer/index.ts",
+      },
+    ],
+  },
+  {
+    name: "error-boundary",
+    type: "registry:ui",
+    dependencies: [],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath:
+          "../../react/src/components/shared/error-boundary/error-boundary.tsx",
+        targetPath:
+          "components/shared/error-boundary/error-boundary.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/error-boundary/error-boundary.types.ts",
+        targetPath:
+          "components/shared/error-boundary/error-boundary.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/error-boundary/index.ts",
+        targetPath: "components/shared/error-boundary/index.ts",
+      },
+    ],
+  },
+  {
+    name: "form-provider",
+    type: "registry:ui",
+    dependencies: ["react-hook-form", "@vorlyn/utils"],
+    registryDependencies: ["field", "label"],
+    files: [
+      {
+        sourcePath:
+          "../../react/src/components/shared/form-provider/form-provider.tsx",
+        targetPath:
+          "components/shared/form-provider/form-provider.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/form-provider/form-provider.types.ts",
+        targetPath:
+          "components/shared/form-provider/form-provider.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/form-provider/index.ts",
+        targetPath: "components/shared/form-provider/index.ts",
       },
     ],
   },
