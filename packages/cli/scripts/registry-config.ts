@@ -348,30 +348,6 @@ export const registryConfig = [
     ],
   },
   {
-    name: "toast",
-    type: "registry:ui",
-    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
-    registryDependencies: ["button"],
-    files: [
-      {
-        sourcePath: "../../react/src/components/ui/toast.tsx",
-        targetPath: "components/ui/toast.tsx",
-      },
-      {
-        sourcePath: "../../react/src/components/shared/toast/toast.tsx",
-        targetPath: "components/shared/toast/toast.tsx",
-      },
-      {
-        sourcePath: "../../react/src/components/shared/toast/toast.types.ts",
-        targetPath: "components/shared/toast/toast.types.ts",
-      },
-      {
-        sourcePath: "../../react/src/components/shared/toast/index.ts",
-        targetPath: "components/shared/toast/index.ts",
-      },
-    ],
-  },
-  {
     name: "dropdown",
     type: "registry:ui",
     dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
@@ -1014,6 +990,309 @@ export const registryConfig = [
       {
         sourcePath: "../../react/src/components/shared/select/index.ts",
         targetPath: "components/shared/select/index.ts",
+      },
+    ],
+  },
+  {
+    name: "chart",
+    type: "registry:ui",
+    dependencies: ["recharts", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/chart.tsx",
+        targetPath: "components/ui/chart.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/chart/index.ts",
+        targetPath: "components/shared/chart/index.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/chart/types.ts",
+        targetPath: "components/shared/chart/types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/area-chart/area-chart.tsx",
+        targetPath: "components/shared/chart/area-chart/area-chart.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/area-chart/area-chart.types.ts",
+        targetPath: "components/shared/chart/area-chart/area-chart.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/bar-chart/bar-chart.tsx",
+        targetPath: "components/shared/chart/bar-chart/bar-chart.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/bar-chart/bar-chart.types.ts",
+        targetPath: "components/shared/chart/bar-chart/bar-chart.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/line-chart/line-chart.tsx",
+        targetPath: "components/shared/chart/line-chart/line-chart.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/line-chart/line-chart.types.ts",
+        targetPath: "components/shared/chart/line-chart/line-chart.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/pie-chart/pie-chart.tsx",
+        targetPath: "components/shared/chart/pie-chart/pie-chart.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/pie-chart/pie-chart.types.ts",
+        targetPath: "components/shared/chart/pie-chart/pie-chart.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/radar-chart/radar-chart.tsx",
+        targetPath: "components/shared/chart/radar-chart/radar-chart.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/radar-chart/radar-chart.types.ts",
+        targetPath: "components/shared/chart/radar-chart/radar-chart.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/radial-chart/radial-chart.tsx",
+        targetPath: "components/shared/chart/radial-chart/radial-chart.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/radial-chart/radial-chart.types.ts",
+        targetPath: "components/shared/chart/radial-chart/radial-chart.types.ts",
+      },
+    ],
+  },
+  {
+    name: "checkbox",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["field", "label"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/checkbox.tsx",
+        targetPath: "components/ui/checkbox.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/checkbox/checkbox.tsx",
+        targetPath: "components/shared/checkbox/checkbox.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/checkbox/checkbox.types.ts",
+        targetPath: "components/shared/checkbox/checkbox.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/checkbox/index.ts",
+        targetPath: "components/shared/checkbox/index.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/checkbox/components/default-checkbox.tsx",
+        targetPath:
+          "components/shared/checkbox/components/default-checkbox.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/checkbox/components/grouped-checkbox.tsx",
+        targetPath:
+          "components/shared/checkbox/components/grouped-checkbox.tsx",
+      },
+    ],
+  },
+  {
+    name: "collapsible",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/collapsible.tsx",
+        targetPath: "components/ui/collapsible.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/collapsible/collapsible.tsx",
+        targetPath: "components/shared/collapsible/collapsible.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/collapsible/collapsible.types.ts",
+        targetPath: "components/shared/collapsible/collapsible.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/collapsible/index.ts",
+        targetPath: "components/shared/collapsible/index.ts",
+      },
+    ],
+  },
+  {
+    name: "combobox",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button", "input-group", "label", "icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/combobox.tsx",
+        targetPath: "components/ui/combobox.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/combobox/combobox.tsx",
+        targetPath: "components/shared/combobox/combobox.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/combobox/combobox.types.ts",
+        targetPath: "components/shared/combobox/combobox.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/combobox/combobox.utils.ts",
+        targetPath: "components/shared/combobox/combobox.utils.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/combobox/index.ts",
+        targetPath: "components/shared/combobox/index.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/combobox/components/default.tsx",
+        targetPath: "components/shared/combobox/components/default.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/combobox/components/grouped.tsx",
+        targetPath: "components/shared/combobox/components/grouped.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/combobox/components/multiple.tsx",
+        targetPath: "components/shared/combobox/components/multiple.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/combobox/components/popover.tsx",
+        targetPath: "components/shared/combobox/components/popover.tsx",
+      },
+    ],
+  },
+  {
+    name: "table",
+    type: "registry:ui",
+    dependencies: ["@tanstack/react-table", "@vorlyn/utils", "lucide-react"],
+    registryDependencies: ["button", "dropdown", "pagination", "icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/table.tsx",
+        targetPath: "components/ui/table.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/table/table.tsx",
+        targetPath: "components/shared/table/table.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/table/table.types.ts",
+        targetPath: "components/shared/table/table.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/table/table.utils.tsx",
+        targetPath: "components/shared/table/table.utils.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/table/index.ts",
+        targetPath: "components/shared/table/index.ts",
+      },
+    ],
+  },
+  {
+    name: "tabs",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "class-variance-authority", "@vorlyn/utils"],
+    registryDependencies: ["icon"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/tabs.tsx",
+        targetPath: "components/ui/tabs.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/tabs/tabs.tsx",
+        targetPath: "components/shared/tabs/tabs.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/tabs/tabs.types.ts",
+        targetPath: "components/shared/tabs/tabs.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/tabs/index.ts",
+        targetPath: "components/shared/tabs/index.ts",
+      },
+    ],
+  },
+  {
+    name: "textarea",
+    type: "registry:ui",
+    dependencies: ["@vorlyn/utils"],
+    registryDependencies: ["field", "label"],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/textarea.tsx",
+        targetPath: "components/ui/textarea.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/textarea/textarea.tsx",
+        targetPath: "components/shared/textarea/textarea.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/textarea/textarea.types.ts",
+        targetPath: "components/shared/textarea/textarea.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/textarea/index.ts",
+        targetPath: "components/shared/textarea/index.ts",
+      },
+    ],
+  },
+  {
+    name: "toggle-group",
+    type: "registry:ui",
+    dependencies: ["@base-ui/react", "class-variance-authority", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/toggle-group.tsx",
+        targetPath: "components/ui/toggle-group.tsx",
+      },
+      {
+        sourcePath: "../../react/src/components/ui/toggle.tsx",
+        targetPath: "components/ui/toggle.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/toggle-group/toggle-group.tsx",
+        targetPath: "components/shared/toggle-group/toggle-group.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/toggle-group/toggle-group.types.ts",
+        targetPath: "components/shared/toggle-group/toggle-group.types.ts",
+      },
+      {
+        sourcePath: "../../react/src/components/shared/toggle-group/index.ts",
+        targetPath: "components/shared/toggle-group/index.ts",
       },
     ],
   },
