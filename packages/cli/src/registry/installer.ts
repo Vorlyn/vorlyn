@@ -112,13 +112,6 @@ export async function installComponent(
     console.log(`✅ ${join(config.baseDir, file.target)}`);
   }
 
-  for (const file of filesToWrite) {
-    const fullPath = join(cwd, file.target);
-    mkdirSync(dirname(fullPath), { recursive: true });
-    writeFileSync(fullPath, file.content);
-    console.log(`✅ ${file.target}`);
-  }
-
   if (registry.dependencies.length > 0) {
     const shouldInstall = await confirmInstall(registry.dependencies);
     if (shouldInstall) {
