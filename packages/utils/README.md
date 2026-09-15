@@ -65,4 +65,6 @@ removeAllFromLocalStorage();
 
 ## License
 
-MIT
+MIT © [Zohair Ajmal](https://github.com/vorlyn)
+
+See [LICENSE](../../LICENSE) for details.
