@@ -1,6 +1,6 @@
 import { cn } from "@vorlyn/utils";
 import { Label as DefaultLabel } from "@/components/ui/label";
-import { LabelProps } from "./label.types";
+import type { LabelProps } from "./label.types";
 
 export const Label = ({
   htmlFor,

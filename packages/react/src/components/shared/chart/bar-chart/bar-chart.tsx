@@ -6,7 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Bar, BarChart as DefaultBarChart, CartesianGrid, LabelList } from "recharts";
-import { BarChartProps } from "./bar-chart.types";
+import type { BarChartProps } from "./bar-chart.types";
 import { BarChartHorizontalAxis } from "./components/horizontal-axis";
 import { BarChartVerticalAxis } from "./components/vertical-axis";
 

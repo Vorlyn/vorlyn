@@ -4,7 +4,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { LineChartProps } from "./line-chart.types";
+import type { LineChartProps } from "./line-chart.types";
 
 export const LineChart = <TData extends Record<string, unknown>>({
   data,

@@ -1,5 +1,5 @@
 import { toast } from "@/components/ui/toast";
-import { ToastProps } from "./toast.types";
+import type { ToastProps } from "./toast.types";
 
 const createToast =
   (type?: "default" | "success" | "info" | "warning" | "error" | "loading") =>

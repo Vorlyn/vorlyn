@@ -27,7 +27,7 @@ import { Dropdown } from "../dropdown";
 import { RenderIcon } from "@/components/shared/icon";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Pagination } from "../pagination";
-import { TableProps } from "./table.types";
+import type { TableProps } from "./table.types";
 
 export const Table = <TData, TValue>({
   columns,

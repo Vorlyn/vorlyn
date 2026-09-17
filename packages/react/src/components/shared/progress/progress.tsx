@@ -3,7 +3,7 @@ import {
   ProgressLabel,
   ProgressValue,
 } from "@/components/ui/progress";
-import { ProgressProps } from "./progress.types";
+import type { ProgressProps } from "./progress.types";
 
 export const Progress = ({
   value,

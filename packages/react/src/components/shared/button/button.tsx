@@ -1,7 +1,7 @@
 import { RenderIcon } from "@/components/shared/icon";
 import { Button as DefaultButton } from "../../ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { ButtonProps } from "./button.types";
+import type { ButtonProps } from "./button.types";
 
 export const Button = ({
   label,

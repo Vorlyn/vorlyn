@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/tabs";
 import { RenderIcon } from "@/components/shared/icon";
 import { cn } from "@vorlyn/utils";
-import { TabsProps } from "./tabs.types";
+import type { TabsProps } from "./tabs.types";
 
 export const Tabs = ({
   options,

@@ -3,7 +3,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { PopoverProps } from "./popover.types";
+import type { PopoverProps } from "./popover.types";
 
 export const Popover = ({
   trigger,

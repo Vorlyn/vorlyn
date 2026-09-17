@@ -2,7 +2,7 @@ import { Field, FieldDescription, FieldError } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { useId } from "react";
 import { FieldLabel } from "../label/field-label";
-import { TextAreaProps } from "./textarea.types";
+import type { TextAreaProps } from "./textarea.types";
 
 export const TextArea = ({
   id,

@@ -6,7 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart as DefaultRadarChart } from "recharts";
-import { RadarChartProps } from "./radar-chart.types";
+import type { RadarChartProps } from "./radar-chart.types";
 
 export const RadarChart = <TData extends Record<string, unknown>>({
   data,

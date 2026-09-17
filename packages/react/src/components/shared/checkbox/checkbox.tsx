@@ -1,6 +1,6 @@
 import { GroupCheckbox } from "./components/grouped-checkbox";
 import { DefaultCheckbox } from "./components/default-checkbox";
-import { CheckboxProps } from "./checkbox.types";
+import type { CheckboxProps } from "./checkbox.types";
 
 export const Checkbox = (props: CheckboxProps) => {
   const {

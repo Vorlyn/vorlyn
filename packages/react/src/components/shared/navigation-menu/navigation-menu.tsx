@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { cn } from "@vorlyn/utils";
 import { RenderIcon } from "@/components/shared/icon";
-import { NavigationMenuProps } from "./navigation-menu.types";
+import type { NavigationMenuProps } from "./navigation-menu.types";
 
 export const NavigationMenu = ({
   trigger,

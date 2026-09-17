@@ -2,7 +2,7 @@ import { Switch as DefaultSwitch } from "@/components/ui/switch";
 import { Label } from "../label";
 import { useId } from "react";
 import { cn } from "@vorlyn/utils";
-import { SwitchProps } from "./switch.types";
+import type { SwitchProps } from "./switch.types";
 
 export const Switch = ({
   id,

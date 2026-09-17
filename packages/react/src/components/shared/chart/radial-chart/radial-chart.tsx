@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/chart";
 import { LabelList, PolarGrid, RadialBar, RadialBarChart } from "recharts";
 import { cn } from "@vorlyn/utils";
-import { RadialChartProps } from "./radial-chart.types";
+import type { RadialChartProps } from "./radial-chart.types";
 
 export const RadialChart = <TData extends Record<string, unknown>>({
   data,

@@ -8,7 +8,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { cn } from "@vorlyn/utils";
-import { RadioProps } from "./radio.types";
+import type { RadioProps } from "./radio.types";
 
 export const Radio = ({
   id,

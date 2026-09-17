@@ -4,7 +4,7 @@ import { FieldLabel } from "../label/field-label";
 import { InputGroup as DefaultInputGroup } from "@/components/ui/input-group";
 import { InputField } from "./components/input-field";
 import { TextareaField } from "./components/textarea-field";
-import { InputGroupProps } from "./input-group.types";
+import type { InputGroupProps } from "./input-group.types";
 
 export const InputGroup = (props: InputGroupProps) => {
   const generatedId = useId();

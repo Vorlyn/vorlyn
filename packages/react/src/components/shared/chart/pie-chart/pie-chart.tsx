@@ -6,7 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { LabelList, Pie, PieChart as DefaultPieChart } from "recharts";
-import { PieChartProps } from "./pie-chart.types";
+import type { PieChartProps } from "./pie-chart.types";
 
 export const PieChart = <TData extends Record<string, unknown>>({
   data,

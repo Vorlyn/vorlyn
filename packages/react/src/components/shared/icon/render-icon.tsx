@@ -1,5 +1,5 @@
 import { Image } from "../image";
-import { RenderIconProps } from "./render-icon.types";
+import type { RenderIconProps } from "./render-icon.types";
 
 export const RenderIcon = ({
   src,

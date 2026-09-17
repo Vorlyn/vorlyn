@@ -14,7 +14,7 @@ import { ChevronDown, X } from "lucide-react";
 import { cn } from "@vorlyn/utils";
 import { Spinner } from "@/components/ui/spinner";
 import { preventTriggerPointerDown } from "@/lib";
-import { SelectProps } from "./select.types";
+import type { SelectProps } from "./select.types";
 
 export const Select = ({
   id,

@@ -1,5 +1,5 @@
 import { Slider as DefaultSlider } from "@/components/ui/slider";
-import { SliderProps } from "./slider.types";
+import type { SliderProps } from "./slider.types";
 
 export const Slider = ({
   min,

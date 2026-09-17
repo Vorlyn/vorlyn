@@ -3,7 +3,7 @@ import { Field } from "@/components/ui/field";
 import { FieldLabel } from "../label";
 import { cn } from "@vorlyn/utils";
 import { useCallback } from "react";
-import { ToggleGroupProps } from "./toggle-group.types";
+import type { ToggleGroupProps } from "./toggle-group.types";
 
 function isMultipleProps(
   props: ToggleGroupProps,
