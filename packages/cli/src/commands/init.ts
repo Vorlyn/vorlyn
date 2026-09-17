@@ -1,5 +1,10 @@
 import prompts from "prompts";
-import { saveConfig, DEFAULT_CONFIG, type VorlynConfig } from "../config.js";
+import {
+  saveConfig,
+  DEFAULT_CONFIG,
+  type VorlynConfig,
+  detectAliasConfigured,
+} from "../config.js";
 
 export async function initCommand(cwd: string = process.cwd()): Promise<void> {
   const response = await prompts([
@@ -29,5 +34,20 @@ export async function initCommand(cwd: string = process.cwd()): Promise<void> {
   };
 
   saveConfig(cwd, config);
+  const isConfigured = detectAliasConfigured(cwd, config.alias);
+  if (!isConfigured) {
+    console.log(
+      `\n⚠️  Could not find "${config.alias}*" in your tsconfig.json or jsconfig.json configuration.`,
+    );
+
+    console.log(
+      `   TypeScript may not be able to resolve imports using "${config.alias}".`,
+    );
+
+    console.log(
+      `   Example:\n   "compilerOptions": {\n     "paths": {\n       "${config.alias}*": ["./src/*"]\n     }\n   }`,
+    );
+  }
+
   console.log(`\n✅ vorlyn.json created.`);
 }
