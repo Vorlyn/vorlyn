@@ -29,7 +29,7 @@ function loadComponent(name: string): RegistryComponent {
   const filePath = join(REGISTRY_DIR, `${name}.json`);
   if (!existsSync(filePath)) {
     throw new Error(
-      `Component "${name}" not found in registry. Did you run "generate-registry"?`
+      `Component "${name}" was not found in the Vorlyn registry.`,
     );
   }
   return JSON.parse(readFileSync(filePath, "utf-8"));
@@ -38,7 +38,7 @@ function loadComponent(name: string): RegistryComponent {
 function resolveDependencyTree(
   name: string,
   visited: Set<string>,
-  resolved: RegistryComponent[]
+  resolved: RegistryComponent[],
 ): void {
   if (visited.has(name)) return;
   visited.add(name);
