@@ -792,8 +792,7 @@ export const registryConfig = [
       {
         sourcePath:
           "../../react/src/components/shared/input-group/components/input-field.tsx",
-        targetPath:
-          "components/shared/input-group/components/input-field.tsx",
+        targetPath: "components/shared/input-group/components/input-field.tsx",
       },
       {
         sourcePath:
@@ -828,8 +827,7 @@ export const registryConfig = [
       {
         sourcePath:
           "../../react/src/components/shared/kbd/components/button-group-kbd.tsx",
-        targetPath:
-          "components/shared/kbd/components/button-group-kbd.tsx",
+        targetPath: "components/shared/kbd/components/button-group-kbd.tsx",
       },
       {
         sourcePath:
@@ -872,8 +870,7 @@ export const registryConfig = [
       {
         sourcePath:
           "../../react/src/components/shared/navigation-menu/navigation-menu.tsx",
-        targetPath:
-          "components/shared/navigation-menu/navigation-menu.tsx",
+        targetPath: "components/shared/navigation-menu/navigation-menu.tsx",
       },
       {
         sourcePath:
@@ -930,8 +927,7 @@ export const registryConfig = [
         targetPath: "components/ui/progress.tsx",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/progress/progress.tsx",
+        sourcePath: "../../react/src/components/shared/progress/progress.tsx",
         targetPath: "components/shared/progress/progress.tsx",
       },
       {
@@ -1069,7 +1065,8 @@ export const registryConfig = [
       {
         sourcePath:
           "../../react/src/components/shared/chart/radial-chart/radial-chart.types.ts",
-        targetPath: "components/shared/chart/radial-chart/radial-chart.types.ts",
+        targetPath:
+          "components/shared/chart/radial-chart/radial-chart.types.ts",
       },
     ],
   },
@@ -1084,8 +1081,7 @@ export const registryConfig = [
         targetPath: "components/ui/checkbox.tsx",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/checkbox/checkbox.tsx",
+        sourcePath: "../../react/src/components/shared/checkbox/checkbox.tsx",
         targetPath: "components/shared/checkbox/checkbox.tsx",
       },
       {
@@ -1148,8 +1144,7 @@ export const registryConfig = [
         targetPath: "components/ui/combobox.tsx",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/combobox/combobox.tsx",
+        sourcePath: "../../react/src/components/shared/combobox/combobox.tsx",
         targetPath: "components/shared/combobox/combobox.tsx",
       },
       {
@@ -1191,8 +1186,18 @@ export const registryConfig = [
   {
     name: "table",
     type: "registry:ui",
-    dependencies: ["@tanstack/react-table", "@vorlyn/utils", "lucide-react"],
-    registryDependencies: ["button", "dropdown", "pagination", "icon"],
+    dependencies: [
+      "@tanstack/react-table@8.21.3",
+      "@vorlyn/utils",
+      "lucide-react",
+    ],
+    registryDependencies: [
+      "button",
+      "dropdown",
+      "pagination",
+      "icon",
+      "skeleton",
+    ],
     files: [
       {
         sourcePath: "../../react/src/components/ui/table.tsx",
@@ -1219,7 +1224,11 @@ export const registryConfig = [
   {
     name: "tabs",
     type: "registry:ui",
-    dependencies: ["@base-ui/react", "class-variance-authority", "@vorlyn/utils"],
+    dependencies: [
+      "@base-ui/react",
+      "class-variance-authority",
+      "@vorlyn/utils",
+    ],
     registryDependencies: ["icon"],
     files: [
       {
@@ -1251,8 +1260,7 @@ export const registryConfig = [
         targetPath: "components/ui/textarea.tsx",
       },
       {
-        sourcePath:
-          "../../react/src/components/shared/textarea/textarea.tsx",
+        sourcePath: "../../react/src/components/shared/textarea/textarea.tsx",
         targetPath: "components/shared/textarea/textarea.tsx",
       },
       {
@@ -1269,7 +1277,11 @@ export const registryConfig = [
   {
     name: "toggle-group",
     type: "registry:ui",
-    dependencies: ["@base-ui/react", "class-variance-authority", "@vorlyn/utils"],
+    dependencies: [
+      "@base-ui/react",
+      "class-variance-authority",
+      "@vorlyn/utils",
+    ],
     registryDependencies: [],
     files: [
       {
@@ -1319,6 +1331,18 @@ export const registryConfig = [
       {
         sourcePath: "../../react/src/components/shared/hover-card/index.ts",
         targetPath: "components/shared/hover-card/index.ts",
+      },
+    ],
+  },
+  {
+    name: "skeleton",
+    type: "registry:ui",
+    dependencies: ["@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/components/ui/skeleton.tsx",
+        targetPath: "components/ui/skeleton.tsx",
       },
     ],
   },
