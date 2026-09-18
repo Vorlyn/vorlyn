@@ -52,11 +52,13 @@ function resolveDependencyTree(
   resolved.push(component);
 }
 
-export function resolveComponent(name: string): ResolvedRegistry {
+export function resolveComponents(names: string[]): ResolvedRegistry {
   const visited = new Set<string>();
   const components: RegistryComponent[] = [];
 
-  resolveDependencyTree(name, visited, components);
+  for (const name of names) {
+    resolveDependencyTree(name, visited, components);
+  }
 
   const files: RegistryFile[] = [];
   const seenTargets = new Set<string>();
@@ -79,4 +81,8 @@ export function resolveComponent(name: string): ResolvedRegistry {
     files,
     dependencies: Array.from(dependencies),
   };
+}
+
+export function resolveComponent(name: string): ResolvedRegistry {
+  return resolveComponents([name]);
 }

@@ -20,9 +20,9 @@ program
 program
   .command("add")
   .description("Add a component to your project")
-  .argument("<component>", "name of the component to add")
-  .action(async (component: string) => {
-    await addCommand(component);
+  .argument("<components...>", "name of the component to add")
+  .action(async (components: string[]) => {
+    await addCommand(components);
   });
 
 program.parse();
