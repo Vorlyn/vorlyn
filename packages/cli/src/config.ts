@@ -27,31 +27,21 @@ export function saveConfig(cwd: string, config: VorlynConfig): void {
   writeFileSync(configPath, JSON.stringify(config, null, 2) + "\n");
 }
 
-export function detectAliasConfigured(
-  cwd: string,
-  alias: string,
-): boolean {
+export function detectAliasConfigured(cwd: string, alias: string): boolean {
   const aliasKey = alias.replace(/\/$/, "") + "/*";
+  const aliasPrefix = alias.replace(/\/$/, "");
 
   const visited = new Set<string>();
 
-  function checkConfig(filename: string): boolean {
+  function checkTsConfig(filename: string): boolean {
     const filePath = join(cwd, filename);
-
-    if (visited.has(filePath)) {
-      return false;
-    }
-
+    if (visited.has(filePath)) return false;
     visited.add(filePath);
-
-    if (!existsSync(filePath)) {
-      return false;
-    }
+    if (!existsSync(filePath)) return false;
 
     try {
       const raw = readFileSync(filePath, "utf-8");
       const parsed = JSON.parse(raw);
-
       const paths = parsed.compilerOptions?.paths ?? {};
 
       if (Object.keys(paths).some((key) => key === aliasKey)) {
@@ -59,24 +49,42 @@ export function detectAliasConfigured(
       }
 
       const references = parsed.references ?? [];
-
       for (const reference of references) {
         if (!reference.path) continue;
-
         const referencePath = reference.path.endsWith(".json")
           ? reference.path
           : `${reference.path}.json`;
-
-        if (checkConfig(referencePath)) {
-          return true;
-        }
+        if (checkTsConfig(referencePath)) return true;
       }
     } catch {
       return false;
     }
-
     return false;
   }
 
-  return checkConfig("tsconfig.json") || checkConfig("jsconfig.json");
+  function checkViteConfig(): boolean {
+    for (const filename of ["vite.config.ts", "vite.config.js"]) {
+      const filePath = join(cwd, filename);
+      if (!existsSync(filePath)) continue;
+
+      try {
+        const content = readFileSync(filePath, "utf-8");
+        if (content.includes("resolve") && content.includes(aliasPrefix)) {
+          return true;
+        }
+      } catch {
+        continue;
+      }
+    }
+    return false;
+  }
+
+  const tsConfigured = checkTsConfig("tsconfig.json") || checkTsConfig("jsconfig.json");
+  const viteExists = existsSync(join(cwd, "vite.config.ts")) || existsSync(join(cwd, "vite.config.js"));
+
+  if (viteExists) {
+    return tsConfigured && checkViteConfig();
+  }
+
+  return tsConfigured;
 }

@@ -37,15 +37,14 @@ export async function initCommand(cwd: string = process.cwd()): Promise<void> {
   const isConfigured = detectAliasConfigured(cwd, config.alias);
   if (!isConfigured) {
     console.log(
-      `\n⚠️  Could not find "${config.alias}*" in your tsconfig.json or jsconfig.json configuration.`,
+      `\n⚠️  Could not confirm "${config.alias}*" is configured for module resolution.`,
     );
-
+    console.log(`   Make sure it's set up in BOTH:`);
+    console.log(`   1. tsconfig.json (for TypeScript):`);
+    console.log(`      "paths": { "${config.alias}*": ["./src/*"] }`);
+    console.log(`   2. vite.config.ts (for the bundler, if using Vite):`);
     console.log(
-      `   TypeScript may not be able to resolve imports using "${config.alias}".`,
-    );
-
-    console.log(
-      `   Example:\n   "compilerOptions": {\n     "paths": {\n       "${config.alias}*": ["./src/*"]\n     }\n   }`,
+      `      resolve: { alias: { "@": path.resolve(__dirname, "./src") } }`,
     );
   }
 
