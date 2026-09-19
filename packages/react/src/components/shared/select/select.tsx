@@ -46,7 +46,7 @@ export const Select = ({
       (opt): opt is { label: string; value: string } => opt.value !== null,
     ) ?? [];
 
-  const handleClear = (e: React.MouseEvent) => {
+  const handleClear = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     onValueChange?.(null);
   };
@@ -91,7 +91,7 @@ export const Select = ({
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  handleClear;
+                  handleClear(e);
                 }
               }}
               className="ml-auto flex size-6 items-center justify-center rounded-full hover:bg-muted"
