@@ -313,6 +313,11 @@ export const registryConfig = [
       },
       {
         sourcePath:
+          "../../react/src/components/shared/button-group/button-group.utils.tsx",
+        targetPath: "components/shared/button-group/button-group.utils.tsx",
+      },
+      {
+        sourcePath:
           "../../react/src/components/shared/button-group/button-group.types.ts",
         targetPath: "components/shared/button-group/button-group.types.ts",
       },
@@ -598,6 +603,14 @@ export const registryConfig = [
         sourcePath: "../../react/src/components/shared/carousel/index.ts",
         targetPath: "components/shared/carousel/index.ts",
       },
+      {
+        sourcePath: "../../react/src/types/orientation.ts",
+        targetPath: "types/orientation.ts",
+      },
+      {
+        sourcePath: "../../react/src/types/index.ts",
+        targetPath: "types/index.ts",
+      },
     ],
   },
   {
@@ -635,7 +648,7 @@ export const registryConfig = [
   {
     name: "date-picker",
     type: "registry:ui",
-    dependencies: ["react-day-picker", "@vorlyn/utils", "lucide-react"],
+    dependencies: ["react-day-picker@9.13.1", "@vorlyn/utils", "lucide-react", "date-fns"],
     registryDependencies: ["field", "label"],
     files: [
       {
@@ -969,7 +982,7 @@ export const registryConfig = [
     name: "select",
     type: "registry:ui",
     dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
-    registryDependencies: ["field", "label", "spinner"],
+    registryDependencies: ["field", "label", "spinner", "lib"],
     files: [
       {
         sourcePath: "../../react/src/components/ui/select.tsx",
@@ -992,7 +1005,7 @@ export const registryConfig = [
   {
     name: "chart",
     type: "registry:ui",
-    dependencies: ["recharts", "@vorlyn/utils"],
+    dependencies: ["recharts", "@vorlyn/utils", "embla-carousel-autoplay"],
     registryDependencies: [],
     files: [
       {
@@ -1026,6 +1039,18 @@ export const registryConfig = [
         sourcePath:
           "../../react/src/components/shared/chart/bar-chart/bar-chart.types.ts",
         targetPath: "components/shared/chart/bar-chart/bar-chart.types.ts",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/bar-chart/components/horizontal-axis.tsx",
+        targetPath:
+          "components/shared/chart/bar-chart/components/horizontal-axis.tsx",
+      },
+      {
+        sourcePath:
+          "../../react/src/components/shared/chart/bar-chart/components/vertical-axis.tsx",
+        targetPath:
+          "components/shared/chart/bar-chart/components/vertical-axis.tsx",
       },
       {
         sourcePath:
@@ -1343,6 +1368,22 @@ export const registryConfig = [
       {
         sourcePath: "../../react/src/components/ui/skeleton.tsx",
         targetPath: "components/ui/skeleton.tsx",
+      },
+    ],
+  },
+  {
+    name: "lib",
+    type: "registry:ui",
+    dependencies: [],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/lib/event-handlers.ts",
+        targetPath: "lib/event-handlers.ts",
+      },
+      {
+        sourcePath: "../../react/src/lib/index.ts",
+        targetPath: "lib/index.ts",
       },
     ],
   },
