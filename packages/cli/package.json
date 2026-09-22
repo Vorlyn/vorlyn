@@ -7,6 +7,9 @@
     "vorlyn": "./dist/index.js"
   },
   "main": "./dist/index.js",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
