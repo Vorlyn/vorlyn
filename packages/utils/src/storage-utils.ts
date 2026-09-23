@@ -7,7 +7,7 @@ export const getLocalStorage = <T>(key: string): T | null => {
   if (getSavedValue === null) return null;
   
   try {
-    return JSON.parse(getSavedValue);
+    return JSON.parse(getSavedValue) as T;
   } catch {
     return null;
   }
