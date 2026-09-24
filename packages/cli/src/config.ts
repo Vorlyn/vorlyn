@@ -13,13 +13,21 @@ export const DEFAULT_CONFIG: VorlynConfig = {
 
 const CONFIG_FILENAME = "vorlyn.json";
 
+interface TsConfigLike {
+  compilerOptions?: {
+    paths?: Record<string, string[]>;
+  };
+  references?: { path: string }[];
+}
+
 export function loadConfig(cwd: string): VorlynConfig {
   const configPath = join(cwd, CONFIG_FILENAME);
   if (!existsSync(configPath)) {
     return DEFAULT_CONFIG;
   }
   const raw = readFileSync(configPath, "utf-8");
-  return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
+  const parsed = JSON.parse(raw) as Partial<VorlynConfig>;
+  return { ...DEFAULT_CONFIG, ...parsed };
 }
 
 export function saveConfig(cwd: string, config: VorlynConfig): void {
@@ -41,7 +49,7 @@ export function detectAliasConfigured(cwd: string, alias: string): boolean {
 
     try {
       const raw = readFileSync(filePath, "utf-8");
-      const parsed = JSON.parse(raw);
+      const parsed = JSON.parse(raw) as TsConfigLike;
       const paths = parsed.compilerOptions?.paths ?? {};
 
       if (Object.keys(paths).some((key) => key === aliasKey)) {
@@ -79,8 +87,11 @@ export function detectAliasConfigured(cwd: string, alias: string): boolean {
     return false;
   }
 
-  const tsConfigured = checkTsConfig("tsconfig.json") || checkTsConfig("jsconfig.json");
-  const viteExists = existsSync(join(cwd, "vite.config.ts")) || existsSync(join(cwd, "vite.config.js"));
+  const tsConfigured =
+    checkTsConfig("tsconfig.json") || checkTsConfig("jsconfig.json");
+  const viteExists =
+    existsSync(join(cwd, "vite.config.ts")) ||
+    existsSync(join(cwd, "vite.config.js"));
 
   if (viteExists) {
     return tsConfigured && checkViteConfig();

@@ -48,12 +48,12 @@ async function confirmOverwrite(existingFiles: string[]): Promise<boolean> {
   for (const file of existingFiles) {
     console.log(`  - ${file}`);
   }
-  const { overwrite } = await prompts({
+  const { overwrite } = (await prompts({
     type: "confirm",
     name: "overwrite",
     message: `Overwrite ${existingFiles.length} existing file(s)?`,
     initial: false,
-  });
+  })) as { overwrite?: boolean };
   return Boolean(overwrite);
 }
 
@@ -62,12 +62,12 @@ async function confirmInstall(dependencies: string[]): Promise<boolean> {
   for (const dep of dependencies) {
     console.log(`  - ${dep}`);
   }
-  const { install } = await prompts({
+  const { install } = (await prompts({
     type: "confirm",
     name: "install",
     message: `Install ${dependencies.length} package(s)?`,
     initial: true,
-  });
+  })) as { install?: boolean };
   return Boolean(install);
 }
 
@@ -122,7 +122,7 @@ export async function installComponent(
         console.log(`\nRunning: ${command}`);
         try {
           execSync(command, { cwd, stdio: "inherit" });
-        } catch (error) {
+        } catch {
           failed.push(dep);
         }
       }

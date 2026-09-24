@@ -32,7 +32,7 @@ function loadComponent(name: string): RegistryComponent {
       `Component "${name}" was not found in the Vorlyn registry.`,
     );
   }
-  return JSON.parse(readFileSync(filePath, "utf-8"));
+  return JSON.parse(readFileSync(filePath, "utf-8")) as RegistryComponent;
 }
 
 function resolveDependencyTree(

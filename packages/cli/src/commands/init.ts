@@ -29,8 +29,8 @@ export async function initCommand(cwd: string = process.cwd()): Promise<void> {
   }
 
   const config: VorlynConfig = {
-    baseDir: response.baseDir,
-    alias: response.alias,
+    baseDir: response.baseDir as string,
+    alias: response.alias as string,
   };
 
   saveConfig(cwd, config);
