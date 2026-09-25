@@ -26,6 +26,6 @@
     "@types/prompts": "^2.4.9",
     "eslint": "^9.39.1",
     "tsx": "^4.23.13",
-    "typescript": "^7.0.2"
+    "typescript": "^5.9.3"
   }
 }

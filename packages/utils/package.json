@@ -20,7 +20,7 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "typescript": "^7.0.2",
-    "eslint": "^9.39.1"
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3"
   }
 }
