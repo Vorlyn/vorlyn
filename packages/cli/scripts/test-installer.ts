@@ -12,4 +12,7 @@ async function main() {
   await installComponent(registry, TEST_PROJECT_DIR);
 }
 
-main();
+main().catch((err: unknown) => {
+  console.log(err);
+  process.exit(1);
+});
