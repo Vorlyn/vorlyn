@@ -102,5 +102,5 @@ export const getTableColumns = <TData, TValue>(
   enableRowSelection: boolean,
 ): ColumnDef<TData, TValue>[] =>
   enableRowSelection
-    ? [getSelectionColumn<TData>() as ColumnDef<TData, TValue>, ...columns]
+    ? [getSelectionColumn<TData>(), ...columns]
     : columns;

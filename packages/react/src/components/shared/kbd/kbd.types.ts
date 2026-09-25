@@ -1,19 +1,19 @@
 import type { ComponentProps, ReactElement, ReactNode } from "react";
-import { Button } from "../button";
-import { InputGroup } from "../input-group";
-import { Tooltip } from "../tooltip";
+import type { Button } from "../button";
+import type { InputGroup } from "../input-group";
+import type { Tooltip } from "../tooltip";
 
 type ComboPart =
   | { type: "text"; content: ReactNode }
   | { type: "keys"; keys: string[] };
 
-export type ComboModeProps = {
+export interface ComboModeProps {
   parts: ComboPart[];
   wrapperClassName?: string;
   className?: string;
-};
+}
 
-export type ButtonModeProps = {
+export interface ButtonModeProps {
   label: ReactNode;
   keys: string[];
   onClick: () => void;
@@ -23,9 +23,9 @@ export type ButtonModeProps = {
   >;
   wrapperClassName?: string;
   kbdClassName?: string;
-};
+}
 
-export type TooltipModeProps = {
+export interface TooltipModeProps {
   trigger: ReactElement;
   keys: string[];
   label?: ReactNode;
@@ -36,21 +36,21 @@ export type TooltipModeProps = {
   contentClassName?: string;
   triggerClassName?: string;
   kbdClassName?: string;
-};
+}
 
-type ButtonGroupItem = {
+interface ButtonGroupItem {
   id: string;
   buttonProps: ComponentProps<typeof Button>;
   keys?: string[];
   tooltipLabel?: ReactNode;
-};
+}
 
-export type ButtonGroupModeProps = {
+export interface ButtonGroupModeProps {
   items: ButtonGroupItem[];
   wrapperClassName?: string;
-};
+}
 
-export type InputKbdProps = {
+export interface InputKbdProps {
   label?: ReactNode;
   keys: string[];
   kbdClassName?: string;
@@ -58,7 +58,7 @@ export type InputKbdProps = {
     ComponentProps<typeof InputGroup>,
     "addonEnd" | "mode" | "label"
   >;
-};
+}
 
 export type KbdProps =
   | (ComboModeProps & { mode: "combo" })

@@ -107,7 +107,7 @@ export const Table = <TData, TValue>({
     ...(pagination && isServerSide && { manualPagination: true }),
     ...(pagination &&
       isServerSide && {
-        pageCount: Math.ceil((paginationProps!.totalRecords ?? 0) / pageSize),
+        pageCount: Math.ceil((paginationProps.totalRecords ?? 0) / pageSize),
       }),
     ...(pagination && {
       onPaginationChange: (updater) => {

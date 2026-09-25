@@ -36,7 +36,7 @@ export const DefaultCheckbox = ({
           id={fieldId}
           name={fieldId}
           checked={!!checked}
-          onCheckedChange={(value) => onCheckedChange?.(value as boolean)}
+          onCheckedChange={(value) => onCheckedChange?.(value)}
           required={required}
           aria-required={required}
           aria-invalid={isInvalid}

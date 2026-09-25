@@ -24,7 +24,7 @@ export const AlertDialog = ({
   cancel,
   confirm,
 }: AlertDialogProps) => {
-  const { label, isLoading, variant, ...confirmProps } = confirm ?? {};
+  const { label, variant, ...confirmProps } = confirm ?? {};
   return (
     <DefaultAlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogTrigger render={trigger} />

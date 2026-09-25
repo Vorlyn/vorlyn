@@ -16,11 +16,11 @@ export type BreadcrumbItemsConfig =
       icon?: ReactNode;
     };
 
-export type EllipsisItemConfig = {
+export interface EllipsisItemConfig {
   id: string;
   isEllipses: boolean;
   content: BreadcrumbItemsConfig[];
-};
+}
 
 export interface BreadCrumbsProps {
   items: BreadcrumbItemsConfig[];

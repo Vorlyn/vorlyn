@@ -1,9 +1,9 @@
 import type { ComponentProps, ReactNode } from "react";
-import { Button } from "../button/button";
-import { Dropdown } from "../dropdown/dropdown";
-import { Popover } from "../popover/popover";
-import { Input } from "../input/input";
-import { ButtonGroup } from "@/components/ui/button-group";
+import type { Button } from "../button/button";
+import type { Dropdown } from "../dropdown/dropdown";
+import type { Popover } from "../popover/popover";
+import type { Input } from "../input/input";
+import type { ButtonGroup } from "@/components/ui/button-group";
 
 export type ButtonGroupItem =
   | {

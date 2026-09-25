@@ -2,25 +2,21 @@ import type { ReactNode, Ref } from "react";
 
 export type SimpleItem = string;
 
-export type OptionItem<TValue extends string = string> = {
+export interface OptionItem<TValue extends string = string> {
   label: string;
   value: TValue;
-};
+}
 
-export type GroupItem<TGroup extends string = string> = {
+export interface GroupItem<TGroup extends string = string> {
   value: TGroup;
   items: readonly string[];
-};
+}
 
 export type SelectableItem = SimpleItem | OptionItem;
 
 export type SimpleList = SimpleItem[];
-export type OptionList<TValue extends string = string> = ReadonlyArray<
-  OptionItem<TValue>
->;
-export type GroupedList<TGroup extends string = string> = ReadonlyArray<
-  GroupItem<TGroup>
->;
+export type OptionList<TValue extends string = string> = readonly OptionItem<TValue>[];
+export type GroupedList<TGroup extends string = string> = readonly GroupItem<TGroup>[];
 
 export type AnyList = SimpleList | OptionList | GroupedList;
 
@@ -60,15 +56,15 @@ export type GroupedVariantProps = BaseComboboxProps & {
   onChange?: (value: string) => void;
 };
 
-type PopoverInternalSearchProps = {
+interface PopoverInternalSearchProps {
   searchValue?: undefined;
   onSearchChange?: undefined;
-};
+}
 
-type PopoverExternalSearchProps = {
+interface PopoverExternalSearchProps {
   searchValue: string;
   onSearchChange: (value: string) => void;
-};
+}
 
 export type PopoverVariantProps = BaseComboboxProps & {
   variant: "popover";

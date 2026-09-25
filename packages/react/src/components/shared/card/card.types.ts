@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import type { Card } from "@/components/ui/card";
 import type { ComponentProps, ReactNode } from "react";
 
 export interface CardProps extends Omit<

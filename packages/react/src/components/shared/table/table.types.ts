@@ -1,6 +1,6 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { ComponentProps, ReactNode } from "react";
-import { Pagination } from "../pagination";
+import type { Pagination } from "../pagination";
 
 export type FiltersConfig =
   | { type: "search"; key: string; placeholder?: string }

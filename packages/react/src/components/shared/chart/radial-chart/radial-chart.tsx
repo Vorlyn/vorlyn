@@ -42,12 +42,12 @@ export const RadialChart = <TData extends Record<string, unknown>>({
         {radialBar.map((radial) => (
           <RadialBar
             key={radial.dataKey}
-            dataKey={radial.dataKey as string}
+            dataKey={radial.dataKey}
             background
           >
             {radial.label && (
               <LabelList
-                dataKey={radial.label.dataKey as string}
+                dataKey={radial.label.dataKey}
                 position={radial.label.position ?? "insideStart"}
                 fontSize={radial.label.fontSize ?? 12}
                 className={cn(

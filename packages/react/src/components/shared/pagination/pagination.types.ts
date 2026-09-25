@@ -1,11 +1,11 @@
-type PaginationBase<T> = {
+interface PaginationBase<T> {
   records: T[];
   totalRecords?: number;
   currentPage: number;
   limit: number;
   onPageChange: (page: number) => void;
   className?: string;
-};
+}
 
 type DefaultPaginationConfig<T> = {
   mode: "default";

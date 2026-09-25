@@ -1,4 +1,4 @@
-type CheckboxBaseProps = {
+interface CheckboxBaseProps {
   id?: string;
   label: string;
   description?: string;
@@ -8,7 +8,7 @@ type CheckboxBaseProps = {
   orientation?: "horizontal" | "vertical" | "responsive";
   disabled?: boolean;
   isInvalid?: boolean;
-};
+}
 
 export type DefaultCheckboxProps = CheckboxBaseProps & {
   checked?: boolean;

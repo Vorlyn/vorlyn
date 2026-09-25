@@ -40,7 +40,7 @@ export const RadarChart = <TData extends Record<string, unknown>>({
             />
           }
         />
-        <PolarAngleAxis dataKey={angleAxisDataKey as string} />
+        <PolarAngleAxis dataKey={angleAxisDataKey!} />
         {grid && (
           <PolarGrid
             radialLines={radialLines}
@@ -52,7 +52,7 @@ export const RadarChart = <TData extends Record<string, unknown>>({
         {radar.map((r) => (
           <Radar
             key={r.dataKey}
-            dataKey={r.dataKey as string}
+            dataKey={r.dataKey}
             fill={r.fill ?? "var(--color-desktop)"}
             fillOpacity={r.fillOpacity ?? 0.6}
             stroke={r.stroke}

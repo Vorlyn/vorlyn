@@ -15,17 +15,17 @@ type AccordionBaseProps = Omit<
   className?: string;
 };
 
-type SingleAccordionProps = {
+interface SingleAccordionProps {
   multiple?: false;
   value?: string;
   onValueChange?: (value: string) => void;
-};
+}
 
-type MultipleAccordionProps = {
+interface MultipleAccordionProps {
   multiple: true;
   value?: string[];
   onValueChange?: (value: string[]) => void;
-};
+}
 
 export type AccordionProps = AccordionBaseProps &
   (SingleAccordionProps | MultipleAccordionProps);

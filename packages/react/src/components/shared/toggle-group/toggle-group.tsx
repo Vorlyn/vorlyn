@@ -26,9 +26,9 @@ export const ToggleGroup = (props: ToggleGroupProps) => {
   } = props;
 
   const groupValue = props.multiple
-    ? ((props.value as readonly string[]) ?? [])
+    ? ((props.value) ?? [])
     : props.value
-      ? [props.value as string]
+      ? [props.value]
       : [];
 
   const handleValueChange = useCallback(

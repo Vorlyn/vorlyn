@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { RenderIcon } from "@/components/shared/icon";
+import type { Badge } from "@/components/ui/badge";
+import type { RenderIcon } from "@/components/shared/icon";
 import type { ComponentProps } from "react";
 
 type BaseBadgeProps = Omit<

@@ -11,9 +11,9 @@ export const BarChartVerticalAxis = <TData extends Record<string, unknown>>({
 }: BarChartVerticalAxisProps<TData>) => {
   return (
     <>
-      <XAxis dataKey={xAxisDataKey as string} type="number" hide />
+      <XAxis dataKey={xAxisDataKey!} type="number" hide />
       <YAxis
-        dataKey={yAxisDataKey as string}
+        dataKey={yAxisDataKey!}
         type="category"
         tickLine={tickLine}
         tickMargin={tickMargin}

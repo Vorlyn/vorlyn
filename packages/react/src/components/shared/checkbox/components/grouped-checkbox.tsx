@@ -58,7 +58,7 @@ export const GroupCheckbox = ({
                 name={fieldId}
                 checked={checkedSet.has(option.value)}
                 onCheckedChange={(value) =>
-                  handleGroupChange(option.value, value as boolean)
+                  handleGroupChange(option.value, value)
                 }
                 aria-invalid={isInvalid}
                 disabled={disabled}

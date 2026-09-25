@@ -2,7 +2,7 @@ import type { HTMLInputTypeAttribute, ReactNode } from "react";
 
 type AlignTypes = "block-end" | "block-start" | "inline-end" | "inline-start";
 
-type BaseProps = {
+interface BaseProps {
   id?: string;
   label?: ReactNode;
   description?: ReactNode;
@@ -20,7 +20,7 @@ type BaseProps = {
   inputClassName?: string;
   className?: string;
   mode?: "input" | "textarea";
-};
+}
 
 export type SharedFieldProps = Pick<
   BaseProps,

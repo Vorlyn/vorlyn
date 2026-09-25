@@ -30,7 +30,7 @@ export const AreaChart = <TData extends Record<string, unknown>>({
       <DefaultAreaChart accessibilityLayer data={data}>
         <CartesianGrid vertical={showVerticalGridLines} />
         <XAxis
-          dataKey={xAxisDataKey as string}
+          dataKey={xAxisDataKey!}
           tickLine={tickLine}
           axisLine={axisLine}
           tickMargin={tickMargin}
@@ -52,8 +52,8 @@ export const AreaChart = <TData extends Record<string, unknown>>({
         {area.map((a) => (
           <Area
             key={a.dataKey}
-            dataKey={a.dataKey as string}
-            name={a.dataKey as string}
+            dataKey={a.dataKey}
+            name={a.dataKey}
             type={a.type ?? "natural"}
             fill={a.fill}
             fillOpacity={a.fillOpacity}

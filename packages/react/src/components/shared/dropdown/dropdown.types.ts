@@ -50,11 +50,11 @@ interface RadioGroupDropDownOptionLabel {
   items?: RadioGroupDropDownListItem[];
 }
 
-type BaseDropdownProps = {
+interface BaseDropdownProps {
   trigger: ReactElement;
   className?: string;
   itemClassName?: string;
-};
+}
 
 type DefaultDropdownProps = BaseDropdownProps & {
   mode: "default";

@@ -1,4 +1,4 @@
-import { ToggleGroup } from "@/components/ui/toggle-group";
+import type { ToggleGroup } from "@/components/ui/toggle-group";
 import type { ComponentProps, ReactNode } from "react";
 
 interface ToggleGroupItemConfig {
@@ -11,7 +11,7 @@ interface ToggleGroupItemConfig {
   disabled?: boolean;
 }
 
-type ToggleGroupBaseProps = {
+interface ToggleGroupBaseProps {
   options: ToggleGroupItemConfig[];
   label?: ReactNode;
   variant?: ComponentProps<typeof ToggleGroup>["variant"];
@@ -22,7 +22,7 @@ type ToggleGroupBaseProps = {
   className?: string;
   itemClassName?: string;
   labelClassName?: string;
-};
+}
 
 export type ToggleGroupProps =
   | (ToggleGroupBaseProps & {

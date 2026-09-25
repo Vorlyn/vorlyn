@@ -3,7 +3,7 @@ import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer"
 
 import { cn } from "@vorlyn/utils"
 
-type DrawerContextProps = {
+interface DrawerContextProps {
   hasSnapPoints: boolean
   modal: DrawerPrimitive.Root.Props["modal"]
   showSwipeHandle: boolean

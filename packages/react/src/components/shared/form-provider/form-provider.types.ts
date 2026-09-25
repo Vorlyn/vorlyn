@@ -5,16 +5,16 @@ import type {
   UseFormReturn,
 } from "react-hook-form";
 
-export type FormProviderProps<T extends FieldValues> = {
+export interface FormProviderProps<T extends FieldValues> {
   onSubmit: (data: T) => void | Promise<void>;
   defaultValues?: Record<string, unknown>;
   schema?: T;
   form: UseFormReturn<T>;
   children: React.ReactNode;
   className?: string;
-};
+}
 
-export type FormFieldWrapperProps<T extends FieldValues> = {
+export interface FormFieldWrapperProps<T extends FieldValues> {
   name: Path<T>;
   label?: string;
   description?: string;
@@ -23,4 +23,4 @@ export type FormFieldWrapperProps<T extends FieldValues> = {
     field: ControllerRenderProps<T, Path<T>>,
     isInvalid: boolean
   ) => React.ReactNode;
-};
+}

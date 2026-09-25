@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 
-type CollapsibleBasicProps = {
+interface CollapsibleBasicProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   trigger: ReactElement;
@@ -11,7 +11,7 @@ type CollapsibleBasicProps = {
   className?: string;
   contentClassName?: string;
   triggerClassName?: string;
-};
+}
 
 export interface CollapsibleBasicModeConfig extends CollapsibleBasicProps {
   mode: "basic";

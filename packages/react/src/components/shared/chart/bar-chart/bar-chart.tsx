@@ -68,7 +68,7 @@ export const BarChart = <TData extends Record<string, unknown>>({
         {bars.map((bar) => (
           <Bar
             key={bar.dataKey}
-            dataKey={bar.dataKey as string}
+            dataKey={bar.dataKey}
             fill={bar.fill ?? `var(--color-${bar.dataKey})`}
             radius={bar.radius}
           >

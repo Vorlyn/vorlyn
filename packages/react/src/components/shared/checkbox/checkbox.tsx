@@ -25,7 +25,7 @@ export const Checkbox = (props: CheckboxProps) => {
         label={label}
         description={description}
         options={props.options}
-        checked={props.checked as string[] | undefined}
+        checked={props.checked}
         onCheckedChange={props.onCheckedChange}
         required={required}
         disabled={disabled}
