@@ -32,3 +32,4 @@ config.bat
 
 packages/cli/registry/
 packages/cli/test-project/
+*.tsbuildinfo
