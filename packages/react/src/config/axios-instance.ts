@@ -1,4 +1,8 @@
-import axios, { type AxiosPromise, type AxiosRequestConfig } from "axios";
+import axios, {
+  type AxiosError,
+  type AxiosPromise,
+  type AxiosRequestConfig,
+} from "axios";
 import { env } from "./env";
 import { showErrorToast } from "@/components/shared/toast";
 import {
@@ -11,7 +15,12 @@ interface RetryableRequestConfig extends AxiosRequestConfig {
   _retry?: boolean;
 }
 
-let refreshPromise: AxiosPromise | null = null;
+interface RefreshResponsePayload {
+  access_token: string;
+}
+
+let refreshPromise: AxiosPromise<{ payload: RefreshResponsePayload }> | null =
+  null;
 
 const axiosInstance = axios.create({
   baseURL: env.VITE_API_BASE_URL,
@@ -20,18 +29,18 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = getLocalStorage(env.VITE_AUTH_TOKEN_SECRET);
+    const token = getLocalStorage<string>(env.VITE_AUTH_TOKEN_SECRET);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => Promise.reject(error),
+  (error: AxiosError) => Promise.reject(error),
 );
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  async (error) => {
+  async (error: AxiosError) => {
     if (error.code === "ERR_CANCELED") {
       return Promise.reject(error);
     }
@@ -59,11 +68,11 @@ axiosInstance.interceptors.response.use(
 
       originalRequest._retry = true;
       try {
-        if (!refreshPromise) {
-          refreshPromise = axiosInstance.get("refresh_api").finally(() => {
+        refreshPromise ??= axiosInstance
+          .get<{ payload: RefreshResponsePayload }>("refresh_api")
+          .finally(() => {
             refreshPromise = null;
           });
-        }
         const newToken = await refreshPromise;
         if (newToken) {
           const token = newToken.data?.payload?.access_token;
@@ -74,7 +83,7 @@ axiosInstance.interceptors.response.use(
 
           setLocalStorage(env.VITE_AUTH_TOKEN_SECRET, token);
 
-          originalRequest.headers = originalRequest.headers ?? {};
+          originalRequest.headers ??= {};
           originalRequest.headers.Authorization = `Bearer ${token}`;
 
           return axiosInstance(originalRequest);
@@ -84,7 +93,11 @@ axiosInstance.interceptors.response.use(
         showErrorToast({
           message: "Session expired. Please login again.",
         });
-        return Promise.reject(refreshError);
+        return Promise.reject(
+          refreshError instanceof Error
+            ? refreshError
+            : new Error("Token refresh failed"),
+        );
       }
     }
     return Promise.reject(error);
