@@ -23,7 +23,7 @@ export const FormProvider = <T extends FieldValues>({
       <form
         onSubmit={(e) => {
           e.stopPropagation();
-          form.handleSubmit(onSubmit)(e);
+          void form.handleSubmit(onSubmit)(e);
         }}
         className={className}
         noValidate
