@@ -11,7 +11,7 @@ export const BarChartHorizontalAxis = <TData extends Record<string, unknown>>({
 }: BarChartHorizontalAxisProps<TData>) => {
   return (
     <XAxis
-      dataKey={xAxisDataKey!}
+      dataKey={xAxisDataKey! as never}
       tickLine={tickLine}
       tickMargin={tickMargin}
       axisLine={axisLine}
