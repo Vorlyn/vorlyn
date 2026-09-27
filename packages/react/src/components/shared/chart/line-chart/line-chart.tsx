@@ -27,7 +27,7 @@ export const LineChart = <TData extends Record<string, unknown>>({
       <DefaultLineChart accessibilityLayer data={data}>
         <CartesianGrid vertical={showVerticalGridLines} />
         <XAxis
-          dataKey={xAxisDataKey!}
+          dataKey={xAxisDataKey! as never}
           tickLine={tickLine}
           axisLine={axisLine}
           tickMargin={tickMargin}

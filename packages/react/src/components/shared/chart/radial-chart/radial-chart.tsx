@@ -42,7 +42,7 @@ export const RadialChart = <TData extends Record<string, unknown>>({
         {radialBar.map((radial) => (
           <RadialBar
             key={radial.dataKey}
-            dataKey={radial.dataKey}
+            dataKey={radial.dataKey as never}
             background
           >
             {radial.label && (
