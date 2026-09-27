@@ -1,12 +1,15 @@
 {
   "name": "vorlyn",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "bin": {
     "vorlyn": "./dist/index.js"
   },
   "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "registry"
+  ],
   "engines": {
     "node": ">=22"
   },
@@ -15,7 +18,8 @@
     "dev": "tsc --watch",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "generate-registry": "tsx scripts/generate-registry.ts"
+    "generate-registry": "tsx scripts/generate-registry.ts",
+    "prepublishOnly": "pnpm generate-registry && pnpm build"
   },
   "dependencies": {
     "commander": "^12.1.0",
