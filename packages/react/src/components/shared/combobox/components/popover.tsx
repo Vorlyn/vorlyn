@@ -8,10 +8,7 @@ import {
   ComboboxTrigger,
   ComboboxValue,
 } from "@/components/ui/combobox";
-import type {
-  PopoverComboboxProps,
-  SelectableItem,
-} from "../combobox.types";
+import type { PopoverComboboxProps, SelectableItem } from "../combobox.types";
 import {
   getOptionLabel,
   getOptionValue,
@@ -153,11 +150,11 @@ export const Popover = ({
         <ComboboxList>
           {(item) => (
             <ComboboxItem
-              key={getOptionValue(item)}
-              value={item}
+              key={getOptionValue(item as SelectableItem)}
+              value={item as SelectableItem}
               className={contentClassName}
             >
-              {getOptionLabel(item)}
+              {getOptionLabel(item as SelectableItem)}
             </ComboboxItem>
           )}
         </ComboboxList>

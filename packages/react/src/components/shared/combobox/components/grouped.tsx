@@ -28,7 +28,7 @@ export const Grouped = ({
   required,
   contentClassName,
 }: GroupedComboboxProps) => {
-  const selectableOptions = options.filter((group) => ({
+  const selectableOptions = options.map((group) => ({
     ...group,
     items: group.items.filter((item) => item !== null),
   }));
@@ -55,12 +55,14 @@ export const Grouped = ({
       <ComboboxContent>
         <ComboboxEmpty>{fallback}</ComboboxEmpty>
         <ComboboxList>
-          {(group, index) => (
+          {(group: (typeof selectableOptions)[number], index) => (
             <ComboboxGroup key={group.value} items={group.items}>
               {index > 0 && <ComboboxSeparator />}
               <ComboboxLabel>{group.value}</ComboboxLabel>
               <ComboboxCollection>
-                {(item) => (
+                {(
+                  item: (typeof selectableOptions)[number]["items"][number],
+                ) => (
                   <ComboboxItem
                     key={`${group.value}-${item}`}
                     value={item}

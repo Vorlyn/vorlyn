@@ -8,10 +8,7 @@ import {
 } from "@/components/ui/combobox";
 import { InputGroupAddon } from "@/components/ui/input-group";
 import { getOptionLabel, getOptionValue } from "../combobox.utils";
-import type {
-  DefaultComboboxProps,
-  SelectableItem,
-} from "../combobox.types";
+import type { DefaultComboboxProps, SelectableItem } from "../combobox.types";
 
 export const Default = ({
   id,
@@ -62,11 +59,11 @@ export const Default = ({
         <ComboboxList>
           {(item) => (
             <ComboboxItem
-              key={getOptionValue(item)}
-              value={item}
+              key={getOptionValue(item as SelectableItem)}
+              value={item as SelectableItem}
               className={contentClassName}
             >
-              {getOptionLabel(item)}
+              {getOptionLabel(item as SelectableItem)}
             </ComboboxItem>
           )}
         </ComboboxList>

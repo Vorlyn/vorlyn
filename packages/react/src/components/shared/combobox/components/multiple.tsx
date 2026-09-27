@@ -10,10 +10,7 @@ import {
   ComboboxValue,
   useComboboxAnchor,
 } from "@/components/ui/combobox";
-import type {
-  MultipleComboboxProps,
-  SelectableItem,
-} from "../combobox.types";
+import type { MultipleComboboxProps, SelectableItem } from "../combobox.types";
 import { getOptionLabel, getOptionValue } from "../combobox.utils";
 
 export const Multiple = ({
@@ -51,7 +48,7 @@ export const Multiple = ({
     >
       <ComboboxChips ref={anchor} className="w-full h-auto min-h-0">
         <ComboboxValue>
-          {(values) => (
+          {(values: SelectableItem[]) => (
             <>
               {Array.isArray(values) &&
                 values.map((value: SelectableItem) => (
@@ -78,11 +75,11 @@ export const Multiple = ({
         <ComboboxList>
           {(item) => (
             <ComboboxItem
-              key={getOptionValue(item)}
-              value={item}
+              key={getOptionValue(item as SelectableItem)}
+              value={item as SelectableItem}
               className={contentClassName}
             >
-              {getOptionLabel(item)}
+              {getOptionLabel(item as SelectableItem)}
             </ComboboxItem>
           )}
         </ComboboxList>
