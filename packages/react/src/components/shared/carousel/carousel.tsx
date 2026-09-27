@@ -102,7 +102,7 @@ export const Carousel = <T,>({
       </DefaultCarousel>
       {showDots && count > 0 && (
         <div className="flex items-center gap-1.5">
-          {[...Array(count)].map((_, index) => (
+          {Array.from({ length: count }).map((_, index) => (
             <Button
               key={`dot-${index}`}
               onClick={() => apiInternal.current?.scrollTo(index)}

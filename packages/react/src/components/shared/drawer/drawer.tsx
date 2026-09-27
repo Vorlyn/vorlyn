@@ -27,8 +27,8 @@ export const Drawer = ({
   confirm,
   cancel,
 }: DrawerProps) => {
-  const confirmLabel = confirm?.label || "Submit";
-  const cancelLabel = cancel?.label || "Cancel";
+  const confirmLabel = confirm?.label ?? "Submit";
+  const cancelLabel = cancel?.label ?? "Cancel";
   return (
     <DefaultDrawer
       open={open}

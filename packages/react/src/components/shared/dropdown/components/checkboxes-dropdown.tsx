@@ -16,7 +16,7 @@ export const CheckboxesDropdown = ({
   return (
     <>
       {options.map((option) => {
-        const items = option.items || [];
+        const items = option.items ?? [];
         return (
           <Fragment key={option.id}>
             <DropdownMenuGroup>

@@ -53,6 +53,7 @@ export const Pagination = <T,>(props: PaginationProps<T>) => {
               }
             }}
             disabled={
+              // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- boolean OR intended, not a null/undefined fallback
               disabled || (canPrev !== undefined ? !canPrev : safePage === 1)
             }
           />
@@ -68,6 +69,7 @@ export const Pagination = <T,>(props: PaginationProps<T>) => {
               }
             }}
             disabled={
+              // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- boolean OR intended, not a null/undefined fallback
               disabled ||
               (canNext !== undefined ? !canNext : safePage === totalPages)
             }
@@ -92,7 +94,7 @@ export const Pagination = <T,>(props: PaginationProps<T>) => {
             label="Show per page"
             options={rowsPerPage}
             onValueChange={(value) => {
-              if(!value) return;
+              if (!value) return;
               onPageSizeChange?.(value);
               onPageChange(1);
             }}

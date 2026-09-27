@@ -1,6 +1,6 @@
 export const getPagination = (page: number, total: number) => {
-  if (total <= 7) return [...Array(total)].map((_, i) => i + 1);
-  const pagination: (number | "start-ellipsis" | 'end-ellipsis')[] = [];
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const pagination: (number | "start-ellipsis" | "end-ellipsis")[] = [];
 
   pagination.push(1);
 

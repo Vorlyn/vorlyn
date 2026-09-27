@@ -19,7 +19,7 @@ export const RadioGroupsDropdown = ({
     <>
       <DropdownMenuGroup>
         {options.map((option) => {
-          const items = option.items || [];
+          const items = option.items ?? [];
           return (
             <Fragment key={option.id}>
               <DropdownMenuLabel>{option.label}</DropdownMenuLabel>

@@ -68,8 +68,11 @@ export const Select = ({
       <DefaultSelect
         items={renderOptions}
         value={value ?? ""}
-        onValueChange={(v) => onValueChange?.(v || null)}
-        disabled={disabled || isLoading}
+        onValueChange={(v) => onValueChange?.(v ?? null)}
+        disabled={
+          // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- boolean OR intended, not a null/undefined fallback
+          disabled || isLoading
+        }
       >
         <SelectTrigger
           id={fieldId}

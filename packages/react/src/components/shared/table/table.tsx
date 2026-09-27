@@ -164,7 +164,7 @@ export const Table = <TData, TValue>({
   return (
     <div className={cn("space-y-2 mx-2", tableWrapperClassName)}>
       {/* filters */}
-      {(filters || enableColumnVisibility) && (
+      {(filters ?? enableColumnVisibility) && (
         <div
           className={cn(
             "flex justify-end items-center gap-2",
@@ -226,17 +226,15 @@ export const Table = <TData, TValue>({
           </TableHeader>
           <TableBody>
             {isLoading ? (
-              <>
-                {[...Array(skeletonLoaderSize)].map((_, i) => (
-                  <TableRow key={`skeleton-row-${i}`}>
-                    {table.getVisibleLeafColumns().map((column) => (
-                      <TableCell key={column.id}>
-                        <Skeleton className="h-4 w-full" />
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </>
+              Array.from({ length: skeletonLoaderSize }).map((_, i) => (
+                <TableRow key={`skeleton-row-${i}`}>
+                  {table.getVisibleLeafColumns().map((column) => (
+                    <TableCell key={column.id}>
+                      <Skeleton className="h-4 w-full" />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
             ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow

@@ -22,7 +22,7 @@ export const DefaultDropdown = ({
   return (
     <>
       {options.map((option) => {
-        const items = option.items || [];
+        const items = option.items ?? [];
         return (
           <DropdownMenuGroup key={option.id}>
             {option.label && (
