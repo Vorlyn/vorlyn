@@ -17,10 +17,27 @@ interface ResolvedRegistry {
 
 type PackageManager = "pnpm" | "yarn" | "npm" | "bun";
 
+function findLockfileDir(startDir: string): string {
+  let dir = startDir;
+  while (true) {
+    if (
+      existsSync(join(dir, "pnpm-lock.yaml")) ||
+      existsSync(join(dir, "yarn.lock")) ||
+      existsSync(join(dir, "bun.lock"))
+    ) {
+      return dir;
+    }
+    const parent = dirname(dir);
+    if (parent === dir) return startDir;
+    dir = parent;
+  }
+}
+
 function detectPackageManager(cwd: string): PackageManager {
-  if (existsSync(join(cwd, "pnpm-lock.yaml"))) return "pnpm";
-  if (existsSync(join(cwd, "yarn.lock"))) return "yarn";
-  if (existsSync(join(cwd, "bun.lock"))) return "bun";
+  const dir = findLockfileDir(cwd);
+  if (existsSync(join(dir, "pnpm-lock.yaml"))) return "pnpm";
+  if (existsSync(join(dir, "yarn.lock"))) return "yarn";
+  if (existsSync(join(dir, "bun.lock"))) return "bun";
   return "npm";
 }
 
@@ -115,13 +132,14 @@ export async function installComponent(
   if (registry.dependencies.length > 0) {
     const shouldInstall = await confirmInstall(registry.dependencies);
     if (shouldInstall) {
+      const installDir = findLockfileDir(cwd);
       const pm = detectPackageManager(cwd);
       const failed: string[] = [];
       for (const dep of registry.dependencies) {
         const command = getInstallCommand(pm, [dep]);
         console.log(`\nRunning: ${command}`);
         try {
-          execSync(command, { cwd, stdio: "inherit" });
+          execSync(command, { cwd: installDir, stdio: "inherit" });
         } catch {
           failed.push(dep);
         }
