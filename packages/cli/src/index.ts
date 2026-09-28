@@ -2,15 +2,28 @@
 import { Command } from "commander";
 import { addCommand } from "./commands/add.js";
 import { initCommand } from "./commands/init.js";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+interface PackageJson {
+  version: string;
+}
+
+const packageJson = JSON.parse(
+  readFileSync(
+    fileURLToPath(new URL("../package.json", import.meta.url)),
+    "utf-8",
+  ),
+) as unknown as PackageJson;
 
 const program = new Command();
 
 program
   .name("vorlyn")
   .description("CLI for adding Vorlyn components to your project")
-  .version("0.0.1");
+  .version(packageJson.version);
 
-  program
+program
   .command("init")
   .description("Initialize Vorlyn config in your project")
   .action(async () => {
