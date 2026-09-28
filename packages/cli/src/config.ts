@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
 
 export interface VorlynConfig {
   baseDir: string;
@@ -18,6 +18,16 @@ interface TsConfigLike {
     paths?: Record<string, string[]>;
   };
   references?: { path: string }[];
+}
+
+export function findProjectRoot(cwd: string): string {
+  let dir = cwd;
+  while (true) {
+    if (existsSync(join(dir, CONFIG_FILENAME))) return dir;
+    const parent = dirname(dir);
+    if (parent === dir) return cwd;
+    dir = parent;
+  }
 }
 
 export function loadConfig(cwd: string): VorlynConfig {

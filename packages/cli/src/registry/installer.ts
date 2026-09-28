@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import { execSync } from "child_process";
 import prompts from "prompts";
-import { loadConfig } from "../config.js";
+import { findProjectRoot, loadConfig } from "../config.js";
 
 interface RegistryFile {
   path: string;
@@ -92,7 +92,11 @@ export async function installComponent(
   registry: ResolvedRegistry,
   cwd: string = process.cwd(),
 ): Promise<void> {
-  const config = loadConfig(cwd);
+  const projectRoot = findProjectRoot(cwd);
+  if (projectRoot !== cwd) {
+    console.log(`Using project root: ${projectRoot}\n`);
+  }
+  const config = loadConfig(projectRoot);
 
   const existingFiles = registry.files.filter((file) =>
     existsSync(join(cwd, config.baseDir, file.target)),
@@ -122,7 +126,7 @@ export async function installComponent(
   }
 
   for (const file of filesToWrite) {
-    const fullPath = join(cwd, config.baseDir, file.target);
+    const fullPath = join(projectRoot, config.baseDir, file.target);
     const content = rewriteAlias(file.content, config.alias);
     mkdirSync(dirname(fullPath), { recursive: true });
     writeFileSync(fullPath, content);
@@ -132,8 +136,8 @@ export async function installComponent(
   if (registry.dependencies.length > 0) {
     const shouldInstall = await confirmInstall(registry.dependencies);
     if (shouldInstall) {
-      const installDir = findLockfileDir(cwd);
-      const pm = detectPackageManager(cwd);
+      const installDir = findLockfileDir(projectRoot);
+      const pm = detectPackageManager(projectRoot);
       const failed: string[] = [];
       for (const dep of registry.dependencies) {
         const command = getInstallCommand(pm, [dep]);
@@ -152,7 +156,7 @@ export async function installComponent(
     } else {
       console.log(
         "\nSkipped dependency install. Run manually:\n  " +
-          getInstallCommand(detectPackageManager(cwd), registry.dependencies),
+          getInstallCommand(detectPackageManager(projectRoot), registry.dependencies),
       );
     }
   }
