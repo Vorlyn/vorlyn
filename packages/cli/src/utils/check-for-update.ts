@@ -7,7 +7,7 @@ import https from "https";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const packageJsonPath = join(__dirname, "../../package.json");
 const CACHE_DIR = join(homedir(), ".vorlyn");
-const CACHE_FILE = join(CACHE_DIR, "update-check.json");
+const CACHE_FILE = join(CACHE_DIR, "update-for-check.json");
 const CHECK_INTERVAL_MS = 1000 * 60 * 60 * 24;
 
 interface PackageManifest {
