@@ -1,33 +1,73 @@
 # Vorlyn CLI
 
-The `vorlyn` CLI — installs components from the Vorlyn registry directly into your project as editable source code.
+The `vorlyn` CLI installs components from the Vorlyn registry directly into your project as editable source code.
 
 ## Status
 
-Work in progress. Not yet published to npm — currently usable only via local development link (`pnpm link --global`).
+The CLI is published on npm and available for use.
+
+Vorlyn is still actively evolving, so some features and supported project configurations may change as the project develops.
 
 ## What & Why
 
-Instead of installing a component library as an npm dependency, `vorlyn` copies real component source files into your own project (similar in spirit to shadcn/ui). You own and can freely edit every component you add — there's no black-box package to work around.
+Instead of installing a component library as an npm dependency, `vorlyn` copies real component source files into your own project, similar in spirit to shadcn/ui.
 
-## Installation
+You own the source code of every component you add. The installed components are editable files inside your project rather than black-box components locked behind a package dependency.
+
+## Usage
+
+You can run Vorlyn without installing it globally:
 
 ```bash
 npx vorlyn init
 ```
 
-> Note: not yet published to npm. Until then, use a local link: `pnpm link --global` from `packages/cli`, then run `vorlyn` from your target project.
+Then add components:
+
+```bash
+npx vorlyn add button
+```
+
+You can also install the CLI globally if you prefer:
+
+```bash
+npm install -g vorlyn
+```
+
+Then use:
+
+```bash
+vorlyn init
+vorlyn add button
+```
 
 ## Commands
 
 ### `vorlyn init`
 
-Sets up Vorlyn in your project. Prompts for:
+Initializes Vorlyn in your project.
 
-- `baseDir` — where components will be installed (default: `src`)
-- `alias` — the import alias used inside installed component files (default: `@/`)
+The command prompts for:
 
-Saves these to a `vorlyn.json` config file in your project root. If your project's alias isn't detected in `tsconfig.json`/`jsconfig.json` (and, for Vite projects, `vite.config.ts`), a warning is printed — `vorlyn init` does not modify your config files automatically.
+* `baseDir` — where components will be installed. Default: `src`
+* `alias` — the import alias used inside installed component files. Default: `@/`
+
+The configuration is saved to a `vorlyn.json` file in your project root.
+
+Example:
+
+```json
+{
+  "baseDir": "src",
+  "alias": "@/"
+}
+```
+
+During initialization, Vorlyn checks whether the configured alias is already present in your project's TypeScript/JavaScript configuration.
+
+For Vite projects, it also checks the Vite configuration.
+
+If the alias is not detected, Vorlyn prints a warning. It does **not** modify your project configuration files automatically.
 
 ### `vorlyn add <components...>`
 
@@ -35,50 +75,111 @@ Installs one or more components and their dependencies into your project.
 
 ```bash
 vorlyn add button
+
 vorlyn add button badge avatar
 ```
 
-- Resolves and installs any components the requested component(s) depend on internally (shared dependencies are only installed once).
-- Detects your package manager (pnpm, yarn, bun, or npm) from your lockfile and installs any required npm dependencies.
-- If a target file already exists, you'll be asked before it's overwritten; declining only skips the conflicting file(s) — other new files from the same component are still installed.
+Vorlyn will:
+
+* Resolve components from the Vorlyn registry.
+* Resolve internal registry dependencies automatically.
+* Install shared dependencies only once.
+* Copy component source files into your project.
+* Rewrite the configured import alias inside installed files.
+* Detect your package manager from the project's lockfile.
+* Install required npm dependencies using pnpm, yarn, bun, or npm.
+* Ask before overwriting existing files.
+
+If you decline an overwrite, only the conflicting files are skipped. Other new files from the requested component can still be installed.
 
 ## Configuration
 
-`vorlyn.json` (created by `vorlyn init`):
+Vorlyn stores project-specific configuration in `vorlyn.json`.
 
-| Key | Default | Description |
-|---|---|---|
-| `baseDir` | `src` | Base directory where components are installed |
-| `alias` | `@/` | Import alias rewritten inside installed component files |
+| Key       | Default | Description                                             |
+| --------- | ------- | ------------------------------------------------------- |
+| `baseDir` | `src`   | Base directory where components are installed           |
+| `alias`   | `@/`    | Import alias rewritten inside installed component files |
+
+Example:
+
+```json
+{
+  "baseDir": "src",
+  "alias": "@/"
+}
+```
+
+### Alias configuration
+
+Vorlyn does not configure aliases for you.
+
+For example, if you use:
+
+```json
+{
+  "alias": "@/"
+}
+```
+
+your project should already have the corresponding alias configured for both TypeScript and your bundler where required.
+
+For Vite projects, this generally means configuring the alias in both the TypeScript configuration and Vite configuration.
 
 ## Requirements
 
-- Node.js >= 22
-- Tested with Vite projects only; other bundlers/frameworks not yet verified
-- Package manager: pnpm, yarn, bun, or npm
+* Node.js >= 22
+* pnpm, yarn, bun, or npm
+* Vite projects are currently the primary tested environment
 
-## Known Limitations
+Other frameworks and bundlers may work, but they are not currently verified as part of the supported workflow.
 
-- Not yet published to npm — `npx vorlyn` does not yet work for end users
-- Alias detection is warn-only; it does not modify `tsconfig.json`/`vite.config.ts` for you
-- Registry JSON (`packages/cli/registry/`) is currently generated locally and is not yet wired into a prepublish build step
+## Registry
+
+Vorlyn components are maintained in the `packages/react` package and are generated into the CLI registry.
+
+The registry contains the component source files, external npm dependencies, and internal Vorlyn registry dependencies required to install each component.
+
+The CLI resolves registry dependencies recursively, so installing a component can automatically install the other Vorlyn components it depends on.
+
+## Development
+
+Vorlyn is a pnpm monorepo.
+
+```text
+packages/
+├── cli/         # The vorlyn CLI
+├── react/       # React components
+└── utils/       # @vorlyn/utils
+
+apps/
+└── playground/  # Local component playground
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Generate the CLI registry:
+
+```bash
+npm --filter cli generate-registry
+```
+
+The generated registry is used by the CLI during development and packaging.
 
 ## Contributing
 
-Vorlyn is currently maintained solo, and this project is still actively evolving. Contributions, issues, and suggestions are welcome.
+Vorlyn is currently maintained as a solo project and is actively evolving.
 
-This is a pnpm monorepo:
+Contributions, issues, bug reports, and suggestions are welcome.
 
-- `packages/react` — the source of all UI components
-- `packages/cli` — this package, the `vorlyn` CLI
-- `packages/utils` — `@vorlyn/utils`, a small published npm package
-- `apps/playground` — a Vite app for testing components locally
-
-To get started locally:
+Before contributing, make sure the registry is generated after making changes to components:
 
 ```bash
-pnpm install
-pnpm --filter cli generate-registry
+npm --filter cli generate-registry
 ```
 
 A dedicated contribution guide will be added as the project stabilizes.
