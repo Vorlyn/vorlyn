@@ -4,6 +4,7 @@ import { addCommand } from "./commands/add.js";
 import { initCommand } from "./commands/init.js";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { checkForUpdate } from "./utils/check-for-update.js";
 
 interface PackageJson {
   version: string;
@@ -37,5 +38,9 @@ program
   .action(async (components: string[]) => {
     await addCommand(components);
   });
+
+program.hook("preAction", async () => {
+  await checkForUpdate();
+});
 
 program.parse();
