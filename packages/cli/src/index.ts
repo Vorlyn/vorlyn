@@ -43,4 +43,4 @@ program.hook("preAction", async () => {
   await checkForUpdate();
 });
 
-program.parse();
+await program.parseAsync();
