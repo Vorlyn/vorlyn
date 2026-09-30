@@ -1,4 +1,4 @@
-import { isAxiosError, type AxiosRequestConfig } from "axios";
+import axios, { isAxiosError, type AxiosRequestConfig } from "axios";
 import axiosInstance from "./axios-instance";
 import { ApiError } from "./api-error";
 
@@ -12,7 +12,7 @@ interface ApiErrorPayload {
 
 const handleError = (error: unknown) => {
   if (isAxiosError(error)) {
-    if (error.code === "ERR_CANCELED") {
+    if (axios.isCancel(error)) {
       throw error;
     }
 
