@@ -41,7 +41,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
-    if (error.code === "ERR_CANCELED") {
+    if (axios.isCancel(error)) {
       return Promise.reject(error);
     }
     if (!error.response) {
@@ -68,11 +68,15 @@ axiosInstance.interceptors.response.use(
 
       originalRequest._retry = true;
       try {
-        refreshPromise ??= axiosInstance
-          .get<{ payload: RefreshResponsePayload }>("refresh_api")
-          .finally(() => {
-            refreshPromise = null;
-          });
+          refreshPromise ??= axios
+            .post(
+              "refresh_api",
+              { refresh_token: "refreshToken" },
+              { baseURL: env.VITE_API_BASE_URL },
+            )
+            .finally(() => {
+              refreshPromise = null;
+            });
         const newToken = await refreshPromise;
         if (newToken) {
           const token = newToken.data?.payload?.access_token;
