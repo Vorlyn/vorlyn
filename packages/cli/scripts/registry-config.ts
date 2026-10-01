@@ -648,7 +648,12 @@ export const registryConfig = [
   {
     name: "date-picker",
     type: "registry:ui",
-    dependencies: ["react-day-picker@9.13.1", "@vorlyn/utils", "lucide-react", "date-fns"],
+    dependencies: [
+      "react-day-picker@9.13.1",
+      "@vorlyn/utils",
+      "lucide-react",
+      "date-fns",
+    ],
     registryDependencies: ["field", "label"],
     files: [
       {
@@ -872,7 +877,6 @@ export const registryConfig = [
       "class-variance-authority",
       "@vorlyn/utils",
       "lucide-react",
-      "react-router-dom",
     ],
     registryDependencies: ["icon"],
     files: [
