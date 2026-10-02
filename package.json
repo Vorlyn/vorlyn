@@ -6,11 +6,13 @@
   "packageManager": "pnpm@11.22.0",
   "scripts": {
     "dev": "turbo run dev",
+    "release": "turbo run build --filter=vorlyn --filter=@vorlyn/utils && changeset publish",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
     "eslint": "^10.11.0",
     "eslint-plugin-react-hooks": "^7.1.1",
