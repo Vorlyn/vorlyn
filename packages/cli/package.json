@@ -13,6 +13,11 @@
   "engines": {
     "node": ">=22"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vorlyn/vorlyn.git",
+    "directory": "packages/cli"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

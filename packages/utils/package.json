@@ -10,6 +10,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vorlyn/vorlyn.git",
+    "directory": "packages/utils"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint .",
