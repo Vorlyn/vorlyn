@@ -99,7 +99,7 @@ export async function installComponent(
   const config = loadConfig(projectRoot);
 
   const existingFiles = registry.files.filter((file) =>
-    existsSync(join(cwd, config.baseDir, file.target)),
+    existsSync(join(projectRoot, config.baseDir, file.target)),
   );
 
   let filesToWrite = registry.files;
