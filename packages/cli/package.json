@@ -1,6 +1,6 @@
 {
   "name": "vorlyn",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "bin": {
     "vorlyn": "./dist/index.js"
