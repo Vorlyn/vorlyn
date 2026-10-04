@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import { execSync } from "child_process";
 import prompts from "prompts";
@@ -16,6 +16,30 @@ interface ResolvedRegistry {
 }
 
 type PackageManager = "pnpm" | "yarn" | "npm" | "bun";
+
+interface PackageJson {
+  dependencies?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+}
+
+function getPackageName(spec: string): string {
+  const versionAt = spec.lastIndexOf("@");
+  return versionAt > 0 ? spec.slice(0, versionAt) : spec;
+}
+
+function getInstalledPackages(projectRoot: string): Set<string> {
+  const pkgPath = join(projectRoot, "package.json");
+  if (!existsSync(pkgPath)) return new Set();
+  try {
+    const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as PackageJson;
+    return new Set([
+      ...Object.keys(pkg.dependencies ?? {}),
+      ...Object.keys(pkg.devDependencies ?? {}),
+    ]);
+  } catch {
+    return new Set();
+  }
+}
 
 function findLockfileDir(startDir: string): string {
   let dir = startDir;
@@ -41,11 +65,15 @@ function detectPackageManager(cwd: string): PackageManager {
   return "npm";
 }
 
-function getInstallCommand(pm: PackageManager, packages: string[]): string {
+function getInstallCommand(
+  pm: PackageManager,
+  packages: string[],
+  atWorkspaceRoot = false,
+): string {
   const pkgList = packages.join(" ");
   switch (pm) {
     case "pnpm":
-      return `pnpm add ${pkgList}`;
+      return `pnpm add ${atWorkspaceRoot ? "-w " : ""}${pkgList}`;
     case "yarn":
       return `yarn add ${pkgList}`;
     case "npm":
@@ -133,17 +161,24 @@ export async function installComponent(
     console.log(`✅ ${join(config.baseDir, file.target)}`);
   }
 
-  if (registry.dependencies.length > 0) {
-    const shouldInstall = await confirmInstall(registry.dependencies);
+  const installed = getInstalledPackages(projectRoot);
+  const missingDependencies = registry.dependencies.filter(
+    (dep) => !installed.has(getPackageName(dep)),
+  );
+
+  if (missingDependencies.length > 0) {
+    const pm = detectPackageManager(projectRoot);
+    const atWorkspaceRoot = existsSync(
+      join(projectRoot, "pnpm-workspace.yaml"),
+    );
+    const shouldInstall = await confirmInstall(missingDependencies);
     if (shouldInstall) {
-      const installDir = findLockfileDir(projectRoot);
-      const pm = detectPackageManager(projectRoot);
       const failed: string[] = [];
-      for (const dep of registry.dependencies) {
-        const command = getInstallCommand(pm, [dep]);
+      for (const dep of missingDependencies) {
+        const command = getInstallCommand(pm, [dep], atWorkspaceRoot);
         console.log(`\nRunning: ${command}`);
         try {
-          execSync(command, { cwd: installDir, stdio: "inherit" });
+          execSync(command, { cwd: projectRoot, stdio: "inherit" });
         } catch {
           failed.push(dep);
         }
@@ -156,9 +191,11 @@ export async function installComponent(
     } else {
       console.log(
         "\nSkipped dependency install. Run manually:\n  " +
-          getInstallCommand(detectPackageManager(projectRoot), registry.dependencies),
+          getInstallCommand(pm, missingDependencies, atWorkspaceRoot),
       );
     }
+  } else if (registry.dependencies.length > 0) {
+    console.log("\nAll required packages are already installed.");
   }
 
   console.log("\nDone.");
