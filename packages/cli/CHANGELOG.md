@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.1.11
+
+### Patch Changes
+
+- 803a2c1: Detect the CLI's own package manager for the update notice's upgrade command
+
 ## 0.1.10
 
 ### Patch Changes
