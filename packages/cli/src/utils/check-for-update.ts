@@ -3,6 +3,7 @@ import { homedir } from "os";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import https from "https";
+import { detectCliPackageManager, getUpgradeCommand } from "./package-manager.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const packageJsonPath = join(__dirname, "../../package.json");
@@ -18,8 +19,6 @@ interface PackageManifest {
 interface UpdateCache {
   lastChecked: number;
 }
-
-type PackageManager = "npm" | "pnpm" | "yarn" | "bun";
 
 function getCurrentPackageInfo(): PackageManifest {
   const raw = readFileSync(packageJsonPath, "utf-8");
@@ -48,27 +47,6 @@ function shouldCheck(): boolean {
   const cache = readCache();
   if (!cache) return true;
   return Date.now() - cache.lastChecked > CHECK_INTERVAL_MS;
-}
-
-function detectInvokingPackageManager(): PackageManager {
-  const userAgent = process.env.npm_config_user_agent ?? "";
-  if (userAgent.startsWith("pnpm")) return "pnpm";
-  if (userAgent.startsWith("yarn")) return "yarn";
-  if (userAgent.startsWith("bun")) return "bun";
-  return "npm";
-}
-
-function getUpgradeCommand(pm: PackageManager, pkgName: string): string {
-  switch (pm) {
-    case "pnpm":
-      return `pnpm add -g ${pkgName}`;
-    case "yarn":
-      return `yarn global add ${pkgName}`;
-    case "bun":
-      return `bun add -g ${pkgName}`;
-    case "npm":
-      return `npm install -g ${pkgName}`;
-  }
 }
 
 async function fetchLatestVersion(pkgName: string): Promise<string | null> {
@@ -117,7 +95,7 @@ export async function checkForUpdate(): Promise<void> {
 
   if (!latest || !isNewerVersion(latest, version)) return;
 
-  const pm = detectInvokingPackageManager();
+  const pm = detectCliPackageManager();
   const upgradeCommand = getUpgradeCommand(pm, name);
 
   console.log(
