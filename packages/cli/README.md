@@ -28,6 +28,8 @@ Then add components:
 npx vorlyn add button
 ```
 
+`pnpm dlx vorlyn ...` and `bunx vorlyn ...` work the same way.
+
 You can also install the CLI globally if you prefer:
 
 ```bash
@@ -49,8 +51,8 @@ Initializes Vorlyn in your project.
 
 The command prompts for:
 
-* `baseDir` — where components will be installed. Default: `src`
-* `alias` — the import alias used inside installed component files. Default: `@/`
+- `baseDir` — where components will be installed. Default: `src`
+- `alias` — the import alias used inside installed component files. Default: `@/`
 
 The configuration is saved to a `vorlyn.json` file in your project root.
 
@@ -81,16 +83,17 @@ vorlyn add button badge avatar
 
 Vorlyn will:
 
-* Resolve components from the Vorlyn registry.
-* Resolve internal registry dependencies automatically.
-* Install shared dependencies only once.
-* Copy component source files into your project.
-* Rewrite the configured import alias inside installed files.
-* Detect your package manager from the project's lockfile.
-* Install required npm dependencies using pnpm, yarn, bun, or npm.
-* Ask before overwriting existing files.
+- Resolve components from the Vorlyn registry, including the other Vorlyn components they depend on (for example, `button` also installs `spinner`, `icon` and `image`).
+- Find your project root by looking for `vorlyn.json` in the current and parent folders, so you can run it from a subdirectory.
+- Copy component source files into your project and rewrite the configured import alias inside them.
+- Ask before overwriting existing files.
+- Detect your package manager from the nearest lockfile.
+- Ask once before installing npm dependencies, and skip the ones already listed in your `package.json`.
+- Run the install in your project root. In a pnpm workspace, that is the package that contains `vorlyn.json`.
 
 If you decline an overwrite, only the conflicting files are skipped. Other new files from the requested component can still be installed.
+
+If no `vorlyn.json` is found, Vorlyn falls back to the defaults (`baseDir: src`, alias `@/`) and works relative to the current folder. Run `vorlyn init` in your project root first.
 
 ## Configuration
 
@@ -126,11 +129,18 @@ your project should already have the corresponding alias configured for both Typ
 
 For Vite projects, this generally means configuring the alias in both the TypeScript configuration and Vite configuration.
 
+## Update notifications
+
+At most once every 24 hours, the CLI checks the npm registry for a newer version of `vorlyn` and prints a short notice with an upgrade command for the package manager it appears to have been installed with. This is a network request to `registry.npmjs.org` with a short timeout. Failures are ignored silently and never block the command. The time of the last check is stored in `~/.vorlyn/`.
+
+There is currently no option to disable this check.
+
 ## Requirements
 
-* Node.js >= 22
-* pnpm, yarn, bun, or npm
-* Vite projects are currently the primary tested environment
+- Node.js >= 22
+- Tested with pnpm on macOS and bun on Windows. yarn and npm are supported in the code but not yet verified, and only a pnpm workspace has been tried.
+- Vite projects are currently the primary tested environment.
+- Tailwind CSS (the components use Tailwind v4 syntax) with theme CSS variables such as `--muted`, `--popover`, `--foreground` and `--ring` defined in your project. Without them the components render unstyled.
 
 Other frameworks and bundlers may work, but they are not currently verified as part of the supported workflow.
 
@@ -148,24 +158,25 @@ Vorlyn is a pnpm monorepo.
 
 ```text
 packages/
-├── cli/         # The vorlyn CLI
-├── react/       # React components
-└── utils/       # @vorlyn/utils
+├── cli/          # The vorlyn CLI
+├── react/        # React components
+├── react-query/  # @vorlyn/react-query (private, not published)
+└── utils/        # @vorlyn/utils
 
 apps/
-└── playground/  # Local component playground
+└── playground/   # Local component playground
 ```
 
 Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 Generate the CLI registry:
 
 ```bash
-npm --filter cli generate-registry
+pnpm --filter vorlyn generate-registry
 ```
 
 The generated registry is used by the CLI during development and packaging.
@@ -179,7 +190,13 @@ Contributions, issues, bug reports, and suggestions are welcome.
 Before contributing, make sure the registry is generated after making changes to components:
 
 ```bash
-npm --filter cli generate-registry
+pnpm --filter vorlyn generate-registry
+```
+
+If your change affects the `vorlyn` CLI, `@vorlyn/utils`, or any component in `packages/react`, add a changeset describing it:
+
+```bash
+pnpm changeset
 ```
 
 A dedicated contribution guide will be added as the project stabilizes.
