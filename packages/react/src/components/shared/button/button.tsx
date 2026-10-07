@@ -20,8 +20,10 @@ export const Button = ({
   rightIconClassName,
   endSlot,
   endSlotClassName,
+  disabled,
   ...rest
 }: ButtonProps) => {
+  const isDisabled = Boolean(disabled) || Boolean(isLoading);
   const isLabel = label != null && label !== "";
   const typeofLabel = typeof label === "string" ? label : undefined;
   return (
@@ -29,7 +31,7 @@ export const Button = ({
       ref={ref}
       variant={variant}
       size={size}
-      disabled={Boolean(rest.disabled ?? isLoading)}
+      disabled={isDisabled}
       aria-busy={isLoading}
       aria-label={ariaLabel ?? typeofLabel}
       type={rest.type ?? "button"}
