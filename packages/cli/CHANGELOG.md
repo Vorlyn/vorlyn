@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.1.12
+
+### Patch Changes
+
+- aa02959: keep button disabled while loading when disabled is false
+
 ## 0.1.11
 
 ### Patch Changes
