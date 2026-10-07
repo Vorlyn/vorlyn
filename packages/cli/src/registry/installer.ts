@@ -116,6 +116,14 @@ async function confirmInstall(dependencies: string[]): Promise<boolean> {
   return Boolean(install);
 }
 
+function printFileGroup(title: string, files: string[]): void {
+  if (files.length === 0) return;
+  console.log(`\n${title} (${files.length}):`);
+  for (const file of files) {
+    console.log(`  ✅ ${file}`);
+  }
+}
+
 export async function installComponent(
   registry: ResolvedRegistry,
   cwd: string = process.cwd(),
@@ -130,41 +138,61 @@ export async function installComponent(
     existsSync(join(projectRoot, config.baseDir, file.target)),
   );
 
+  const existingTargets = new Set(existingFiles.map((f) => f.target));
+
   let filesToWrite = registry.files;
 
   if (existingFiles.length > 0) {
     const shouldOverwrite = await confirmOverwrite(
-      existingFiles.map((f) => f.target),
+      existingFiles.map((f) => join(config.baseDir, f.target)),
     );
     if (!shouldOverwrite) {
-      const existingTargets = new Set(existingFiles.map((f) => f.target));
       filesToWrite = registry.files.filter(
         (f) => !existingTargets.has(f.target),
       );
       console.log(`\nSkipping ${existingFiles.length} existing file(s).`);
-      if (filesToWrite.length > 0) {
-        console.log(`Proceeding with ${filesToWrite.length} new file(s):`);
-        for (const f of filesToWrite) {
-          console.log(`  - ${f.target}`);
-        }
-      } else {
+      if (filesToWrite.length === 0) {
         console.log("No new files to add.");
       }
     }
   }
+
+  const overwritten: string[] = [];
+  const created: string[] = [];
 
   for (const file of filesToWrite) {
     const fullPath = join(projectRoot, config.baseDir, file.target);
     const content = rewriteAlias(file.content, config.alias);
     mkdirSync(dirname(fullPath), { recursive: true });
     writeFileSync(fullPath, content);
-    console.log(`✅ ${join(config.baseDir, file.target)}`);
+    const displayPath = join(config.baseDir, file.target);
+    if (existingTargets.has(file.target)) {
+      overwritten.push(displayPath);
+    } else {
+      created.push(displayPath);
+    }
   }
 
+  printFileGroup("Overwritten", overwritten);
+  printFileGroup("Created", created);
+
   const installed = getInstalledPackages(projectRoot);
-  const missingDependencies = registry.dependencies.filter(
-    (dep) => !installed.has(getPackageName(dep)),
-  );
+  const alreadyInstalled: string[] = [];
+  const missingDependencies: string[] = [];
+  for (const dep of registry.dependencies) {
+    if (installed.has(getPackageName(dep))) {
+      alreadyInstalled.push(dep);
+    } else {
+      missingDependencies.push(dep);
+    }
+  }
+
+  if (alreadyInstalled.length > 0) {
+    console.log("\nAlready in your package.json:");
+    for (const dep of alreadyInstalled) {
+      console.log(`  - ${dep}`);
+    }
+  }
 
   if (missingDependencies.length > 0) {
     const pm = detectPackageManager(projectRoot);
@@ -195,7 +223,7 @@ export async function installComponent(
       );
     }
   } else if (registry.dependencies.length > 0) {
-    console.log("\nAll required packages are already installed.");
+    console.log("\nNo new packages to install.");
   }
 
   console.log("\nDone.");
