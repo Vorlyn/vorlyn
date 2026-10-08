@@ -1,5 +1,12 @@
 # vorlyn
 
+## 0.1.13
+
+### Patch Changes
+
+- 5567c65: Show overwritten and created files separately and list dependencies already in package.json
+- 6a53cca: Warn after `vorlyn init` and `vorlyn add` when Tailwind CSS is missing from your package.json or older than v4. Vorlyn components use Tailwind v4 syntax and render unstyled without it.
+
 ## 0.1.12
 
 ### Patch Changes
