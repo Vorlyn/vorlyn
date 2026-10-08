@@ -6,8 +6,20 @@ import {
   detectAliasConfigured,
 } from "../config.js";
 import { warnIfTailwindUnsupported } from "../utils/tailwind.js";
+import { findPackageJsonDir } from "../utils/package-json.js";
 
 export async function initCommand(cwd: string = process.cwd()): Promise<void> {
+  const projectRoot = findPackageJsonDir(cwd);
+  if (projectRoot === null) {
+    console.error(
+      "\n❌ No package.json found in this folder or any parent folder.\n" +
+        "   Run `vorlyn init` inside your project.",
+    );
+    process.exit(1);
+  }
+  if (projectRoot !== cwd) {
+    console.log(`Using project root: ${projectRoot}\n`);
+  }
   const response = await prompts([
     {
       type: "text",
@@ -34,8 +46,8 @@ export async function initCommand(cwd: string = process.cwd()): Promise<void> {
     alias: response.alias as string,
   };
 
-  saveConfig(cwd, config);
-  const isConfigured = detectAliasConfigured(cwd, config.alias);
+  saveConfig(projectRoot, config);
+  const isConfigured = detectAliasConfigured(projectRoot, config.alias);
   if (!isConfigured) {
     console.log(
       `\n⚠️  Could not confirm "${config.alias}*" is configured for module resolution.`,
@@ -49,7 +61,7 @@ export async function initCommand(cwd: string = process.cwd()): Promise<void> {
     );
   }
 
-  warnIfTailwindUnsupported(cwd);
+  warnIfTailwindUnsupported(projectRoot);
 
   console.log(`\n✅ vorlyn.json created.`);
 }

@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
 
 interface PackageJson {
   dependencies?: Record<string, string>;
@@ -19,5 +19,15 @@ export function readDependencies(projectRoot: string): Record<string, string> {
     return { ...pkg.devDependencies, ...pkg.dependencies };
   } catch {
     return {};
+  }
+}
+
+export function findPackageJsonDir(startDir: string): string | null {
+  let dir = startDir;
+  while (true) {
+    if (existsSync(join(dir, "package.json"))) return dir;
+    const parent = dirname(dir);
+    if (parent === dir) return null;
+    dir = parent;
   }
 }
