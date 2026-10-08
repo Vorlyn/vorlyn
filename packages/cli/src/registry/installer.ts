@@ -1,8 +1,9 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import { execSync } from "child_process";
 import prompts from "prompts";
 import { findProjectRoot, loadConfig } from "../config.js";
+import { getPackageName, readDependencies } from "../utils/package-json.js";
 
 interface RegistryFile {
   path: string;
@@ -16,30 +17,6 @@ interface ResolvedRegistry {
 }
 
 type PackageManager = "pnpm" | "yarn" | "npm" | "bun";
-
-interface PackageJson {
-  dependencies?: Record<string, string>;
-  devDependencies?: Record<string, string>;
-}
-
-function getPackageName(spec: string): string {
-  const versionAt = spec.lastIndexOf("@");
-  return versionAt > 0 ? spec.slice(0, versionAt) : spec;
-}
-
-function getInstalledPackages(projectRoot: string): Set<string> {
-  const pkgPath = join(projectRoot, "package.json");
-  if (!existsSync(pkgPath)) return new Set();
-  try {
-    const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as PackageJson;
-    return new Set([
-      ...Object.keys(pkg.dependencies ?? {}),
-      ...Object.keys(pkg.devDependencies ?? {}),
-    ]);
-  } catch {
-    return new Set();
-  }
-}
 
 function findLockfileDir(startDir: string): string {
   let dir = startDir;
@@ -176,7 +153,7 @@ export async function installComponent(
   printFileGroup("Overwritten", overwritten);
   printFileGroup("Created", created);
 
-  const installed = getInstalledPackages(projectRoot);
+  const installed = new Set(Object.keys(readDependencies(projectRoot)));
   const alreadyInstalled: string[] = [];
   const missingDependencies: string[] = [];
   for (const dep of registry.dependencies) {
