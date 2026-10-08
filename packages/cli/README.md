@@ -71,6 +71,8 @@ For Vite projects, it also checks the Vite configuration.
 
 If the alias is not detected, Vorlyn prints a warning. It does **not** modify your project configuration files automatically.
 
+Run it from anywhere inside your project. Vorlyn creates `vorlyn.json` in the nearest parent folder that contains a `package.json`, and stops with an error if there is none.
+
 ### `vorlyn add <components...>`
 
 Installs one or more components and their dependencies into your project.
@@ -93,7 +95,7 @@ Vorlyn will:
 
 If you decline an overwrite, only the conflicting files are skipped. Other new files from the requested component can still be installed.
 
-If no `vorlyn.json` is found, Vorlyn falls back to the defaults (`baseDir: src`, alias `@/`) and works relative to the current folder. Run `vorlyn init` in your project root first.
+`vorlyn add` requires a `vorlyn.json`. If none is found in the current or any parent folder, it stops with an error. Run `vorlyn init` in your project root first.
 
 ## Configuration
 
