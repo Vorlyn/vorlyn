@@ -1,5 +1,7 @@
 import { resolveComponents } from "../registry/resolver.js";
 import { installComponent } from "../registry/installer.js";
+import { warnIfTailwindUnsupported } from "../utils/tailwind.js";
+import { findProjectRoot } from "../config.js";
 
 export async function addCommand(componentNames: string[]): Promise<void> {
   try {
@@ -15,6 +17,8 @@ export async function addCommand(componentNames: string[]): Promise<void> {
     console.log();
 
     await installComponent(registry, process.cwd());
+    warnIfTailwindUnsupported(findProjectRoot(process.cwd()));
+    console.log("\nDone.");
   } catch (error) {
     if (error instanceof Error) {
       console.error(`\n❌ ${error.message}`);

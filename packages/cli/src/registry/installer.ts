@@ -202,6 +202,4 @@ export async function installComponent(
   } else if (registry.dependencies.length > 0) {
     console.log("\nNo new packages to install.");
   }
-
-  console.log("\nDone.");
 }

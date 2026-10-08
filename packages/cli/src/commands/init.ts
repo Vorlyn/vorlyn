@@ -5,6 +5,7 @@ import {
   type VorlynConfig,
   detectAliasConfigured,
 } from "../config.js";
+import { warnIfTailwindUnsupported } from "../utils/tailwind.js";
 
 export async function initCommand(cwd: string = process.cwd()): Promise<void> {
   const response = await prompts([
@@ -47,6 +48,8 @@ export async function initCommand(cwd: string = process.cwd()): Promise<void> {
       `      resolve: { alias: { "@": path.resolve(__dirname, "./src") } }`,
     );
   }
+
+  warnIfTailwindUnsupported(cwd);
 
   console.log(`\n✅ vorlyn.json created.`);
 }
