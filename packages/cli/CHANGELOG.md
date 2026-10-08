@@ -1,5 +1,12 @@
 # vorlyn
 
+## 0.2.0
+
+### Minor Changes
+
+- 63b6c54: init now looks for the nearest parent folder with a package.json, creates vorlyn.json there and runs the alias and Tailwind checks against it. It stops with an error if no package.json is found.
+- 77db277: Add now stops with a clear error when no vorlyn.json is found instead of writing files with the default config relative to the current folder.
+
 ## 0.1.13
 
 ### Patch Changes
