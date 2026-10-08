@@ -20,7 +20,7 @@ interface TsConfigLike {
   references?: { path: string }[];
 }
 
-export function findProjectRoot(cwd: string): string {
+export function findConfigDir(cwd: string): string {
   let dir = cwd;
   while (true) {
     if (existsSync(join(dir, CONFIG_FILENAME))) return dir;
@@ -28,6 +28,10 @@ export function findProjectRoot(cwd: string): string {
     if (parent === dir) return cwd;
     dir = parent;
   }
+}
+
+export function findProjectRoot(cwd: string): string {
+  return findConfigDir(cwd) ?? cwd;
 }
 
 export function loadConfig(cwd: string): VorlynConfig {
