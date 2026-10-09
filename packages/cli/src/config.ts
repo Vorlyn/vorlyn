@@ -20,12 +20,12 @@ interface TsConfigLike {
   references?: { path: string }[];
 }
 
-export function findConfigDir(cwd: string): string {
+export function findConfigDir(cwd: string): string | null {
   let dir = cwd;
   while (true) {
     if (existsSync(join(dir, CONFIG_FILENAME))) return dir;
     const parent = dirname(dir);
-    if (parent === dir) return cwd;
+    if (parent === dir) return null;
     dir = parent;
   }
 }
