@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.3.0
+
+### Minor Changes
+
+- 52a19db: Add the `use-debounce` and `use-is-mobile` hooks to the registry. Install them with `vorlyn add use-debounce use-is-mobile`; they are copied into `hooks/` and `constants/` under your base directory.
+
 ## 0.2.1
 
 ### Patch Changes
