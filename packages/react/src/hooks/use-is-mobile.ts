@@ -1,4 +1,4 @@
-import { SIDEBAR_DESKTOP_BREAKPOINT_PX } from "@/constants/break-points";
+import { DESKTOP_BREAKPOINT_PX } from "@/constants/break-points";
 import { useState, useEffect, useCallback } from "react";
 
 export const useIsMobile = () => {
@@ -7,7 +7,7 @@ export const useIsMobile = () => {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
-      `(min-width: ${SIDEBAR_DESKTOP_BREAKPOINT_PX}px)`,
+      `(min-width: ${DESKTOP_BREAKPOINT_PX}px)`,
     );
 
     const handleChange = () => {
