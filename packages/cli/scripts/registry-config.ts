@@ -1391,4 +1391,40 @@ export const registryConfig = [
       },
     ],
   },
+  {
+    name: "use-debounce",
+    type: "registry:hook",
+    dependencies: [],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/hooks/use-debounce.ts",
+        targetPath: "hooks/use-debounce.ts",
+      },
+    ],
+  },
+  {
+    name: "break-points",
+    type: "registry:constants",
+    dependencies: [],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/constants/break-points.ts",
+        targetPath: "constants/break-points.ts",
+      },
+    ],
+  },
+  {
+    name: "use-is-mobile",
+    type: "registry:hook",
+    dependencies: [],
+    registryDependencies: ["break-points"],
+    files: [
+      {
+        sourcePath: "../../react/src/hooks/use-is-mobile.ts",
+        targetPath: "hooks/use-is-mobile.ts",
+      },
+    ],
+  },
 ];
