@@ -1,3 +1,3 @@
 export { apiClient } from "./api-client";
-export { env } from "./env";
+export { apiConfig } from "./api-config";
 export { ApiError } from "./api-error";

@@ -1,35 +1,81 @@
 import axios, {
   type AxiosError,
-  type AxiosPromise,
-  type AxiosRequestConfig,
+  type InternalAxiosRequestConfig,
 } from "axios";
-import { env } from "./env";
-import { showErrorToast } from "@/components/shared/toast";
 import {
   getLocalStorage,
   removeLocalStorageItem,
   setLocalStorage,
 } from "@vorlyn/utils";
+import { apiConfig } from "./api-config";
+import { SessionExpiredError } from "./refresh-strategies";
 
-interface RetryableRequestConfig extends AxiosRequestConfig {
+interface RetryableRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
 }
 
-interface RefreshResponsePayload {
-  access_token: string;
-}
+const NETWORK_ERROR_COOLDOWN_MS = 5000;
 
-let refreshPromise: AxiosPromise<{ payload: RefreshResponsePayload }> | null =
-  null;
+let refreshPromise: Promise<string> | null = null;
+let lastNetworkErrorAt = 0;
 
 const axiosInstance = axios.create({
-  baseURL: env.VITE_API_BASE_URL,
-  timeout: 15000,
+  baseURL: apiConfig.baseURL,
+  timeout: apiConfig.timeoutMs,
 });
+
+const normalizePath = (value: string): string =>
+  value.replace(/\?.*$/, "").replace(/^\/+|\/+$/g, "");
+
+const isPublicEndpoint = (url: string | undefined): boolean => {
+  if (!url) return false;
+  const path = normalizePath(url);
+  return apiConfig.publicEndpoints.some((endpoint) => {
+    const target = normalizePath(endpoint);
+    return path === target || path.endsWith(`/${target}`);
+  });
+};
+
+const isAuthRejection = (error: unknown): boolean =>
+  axios.isAxiosError(error) &&
+  (error.response?.status === 401 || error.response?.status === 403);
+
+const endSession = (): void => {
+  if (!getLocalStorage<string>(apiConfig.tokenKey)) return;
+  removeLocalStorageItem(apiConfig.tokenKey);
+  if (apiConfig.refreshTokenKey) {
+    removeLocalStorageItem(apiConfig.refreshTokenKey);
+  }
+  apiConfig.onSessionExpired?.();
+  if (window.location.pathname !== apiConfig.loginPath) {
+    window.location.href = apiConfig.loginPath;
+  }
+};
+
+const notifyNetworkError = (error: AxiosError): void => {
+  const now = Date.now();
+  if (now - lastNetworkErrorAt < NETWORK_ERROR_COOLDOWN_MS) return;
+  lastNetworkErrorAt = now;
+  apiConfig.onNetworkError?.(error);
+};
+
+const refreshOnce = (): Promise<string> => {
+  const refresh = apiConfig.refreshAccessToken;
+  if (!refresh) {
+    return Promise.reject(
+      new SessionExpiredError("This API has no token refresh"),
+    );
+  }
+  refreshPromise ??= refresh().finally(() => {
+    refreshPromise = null;
+  });
+  return refreshPromise;
+};
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = getLocalStorage<string>(env.VITE_AUTH_TOKEN_SECRET);
+    if (isPublicEndpoint(config.url)) return config;
+    const token = getLocalStorage<string>(apiConfig.tokenKey);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -45,66 +91,40 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(error);
     }
     if (!error.response) {
-      showErrorToast({
-        message: "Network Error",
-        description: "Please check your internet connection and try again.",
-      });
-
+      notifyNetworkError(error);
       return Promise.reject(error);
     }
-    const isRefreshEndpoint = error.config?.url?.includes("refresh") ?? false;
-    if (error.response.status === 401 && isRefreshEndpoint) {
-      removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
 
+    const originalRequest = error.config as RetryableRequestConfig | undefined;
+    if (error.response.status !== 401 || !originalRequest) {
       return Promise.reject(error);
     }
-    const originalRequest = error.config as RetryableRequestConfig;
-    if (error.response.status === 401 && !isRefreshEndpoint) {
-      if (originalRequest._retry) {
-        removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
-
-        return Promise.reject(error);
-      }
-
-      originalRequest._retry = true;
-      try {
-          refreshPromise ??= axios
-            .post(
-              "refresh_api",
-              { refresh_token: "refreshToken" },
-              { baseURL: env.VITE_API_BASE_URL },
-            )
-            .finally(() => {
-              refreshPromise = null;
-            });
-        const newToken = await refreshPromise;
-        if (newToken) {
-          const token = newToken.data?.payload?.access_token;
-
-          if (!token) {
-            throw new Error("Refresh response did not contain an access token");
-          }
-
-          setLocalStorage(env.VITE_AUTH_TOKEN_SECRET, token);
-
-          originalRequest.headers ??= {};
-          originalRequest.headers.Authorization = `Bearer ${token}`;
-
-          return axiosInstance(originalRequest);
-        }
-      } catch (refreshError) {
-        removeLocalStorageItem(env.VITE_AUTH_TOKEN_SECRET);
-        showErrorToast({
-          message: "Session expired. Please login again.",
-        });
-        return Promise.reject(
-          refreshError instanceof Error
-            ? refreshError
-            : new Error("Token refresh failed"),
-        );
-      }
+    if (
+      isPublicEndpoint(originalRequest.url) ||
+      !originalRequest.headers.Authorization
+    ) {
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
+    if (originalRequest._retry) {
+      endSession();
+      return Promise.reject(error);
+    }
+    originalRequest._retry = true;
+
+    try {
+      const token = await refreshOnce();
+      setLocalStorage(apiConfig.tokenKey, token);
+      originalRequest.headers.Authorization = `Bearer ${token}`;
+      return axiosInstance(originalRequest);
+    } catch (refreshError) {
+      if (
+        refreshError instanceof SessionExpiredError ||
+        isAuthRejection(refreshError)
+      ) {
+        endSession();
+      }
+      return Promise.reject(error);
+    }
   },
 );
 
