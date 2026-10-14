@@ -9,6 +9,8 @@ export interface ApiConfig {
   loginPath: string;
   publicEndpoints: string[];
   refreshAccessToken?: () => Promise<string>;
+  extractResponse: (body: unknown) => unknown;
+  extractErrorMessage: (body: unknown) => string | undefined;
   onNetworkError?: (error: AxiosError) => void;
   onSessionExpired?: () => void;
 }
@@ -28,6 +30,12 @@ export const apiConfig: ApiConfig = {
   refreshTokenKey,
   loginPath: "/auth/login",
   publicEndpoints: ["/auth/login", "/auth/register", "/auth/forgot-password"],
+  extractResponse: (body) =>
+    body !== null && typeof body === "object" && "payload" in body
+      ? body.payload
+      : body,
+  extractErrorMessage: (body) =>
+    (body as { message?: string } | undefined)?.message,
   refreshAccessToken: tokenBasedRefreshStrategy({
     baseURL,
     timeoutMs,
