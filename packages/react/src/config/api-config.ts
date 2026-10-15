@@ -23,6 +23,26 @@ const extractAccessToken = (body: unknown): string | undefined =>
   (body as { payload?: { access_token?: string } } | undefined)?.payload
     ?.access_token;
 
+    const isRecord = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === "object";
+
+const asString = (value: unknown): string | undefined =>
+  typeof value === "string" && value !== "" ? value : undefined;
+
+const extractResponse = (body: unknown): unknown =>
+  isRecord(body) && "payload" in body ? body.payload : body;
+
+const extractErrorMessage = (body: unknown): string | undefined => {
+  if (!isRecord(body)) return asString(body);
+  return (
+    asString(body.message) ??
+    asString(body.error) ??
+    (isRecord(body.error) ? asString(body.error.message) : undefined) ??
+    asString(body.detail) ??
+    asString(body.title)
+  );
+};
+
 export const apiConfig: ApiConfig = {
   baseURL,
   timeoutMs,
@@ -30,12 +50,8 @@ export const apiConfig: ApiConfig = {
   refreshTokenKey,
   loginPath: "/auth/login",
   publicEndpoints: ["/auth/login", "/auth/register", "/auth/forgot-password"],
-  extractResponse: (body) =>
-    body !== null && typeof body === "object" && "payload" in body
-      ? body.payload
-      : body,
-  extractErrorMessage: (body) =>
-    (body as { message?: string } | undefined)?.message,
+  extractResponse,
+  extractErrorMessage,
   refreshAccessToken: tokenBasedRefreshStrategy({
     baseURL,
     timeoutMs,

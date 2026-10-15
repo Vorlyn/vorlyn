@@ -1,7 +1,4 @@
-import axios, {
-  type AxiosError,
-  type InternalAxiosRequestConfig,
-} from "axios";
+import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
 import {
   getLocalStorage,
   removeLocalStorageItem,
@@ -23,6 +20,12 @@ const axiosInstance = axios.create({
   baseURL: apiConfig.baseURL,
   timeout: apiConfig.timeoutMs,
 });
+
+if (!apiConfig.baseURL) {
+  console.warn(
+    "[vorlyn] apiConfig.baseURL is empty. Set it in config/api-config.ts.",
+  );
+}
 
 const normalizePath = (value: string): string =>
   value.replace(/\?.*$/, "").replace(/^\/+|\/+$/g, "");
@@ -117,6 +120,14 @@ axiosInstance.interceptors.response.use(
       originalRequest.headers.Authorization = `Bearer ${token}`;
       return axiosInstance(originalRequest);
     } catch (refreshError) {
+      if (
+        axios.isAxiosError(refreshError) &&
+        refreshError.response?.status === 404
+      ) {
+        console.warn(
+          "[vorlyn] The refresh endpoint returned 404. Check refreshPath in config/api-config.ts.",
+        );
+      }
       if (
         refreshError instanceof SessionExpiredError ||
         isAuthRejection(refreshError)
