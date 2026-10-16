@@ -106,10 +106,9 @@ Vorlyn is currently maintained solo, and this project is still actively evolving
 
 This is a pnpm monorepo:
 
-- `packages/react` — this package, the source of all UI components
+- `packages/react` — this package, the source of all UI components, hooks and the API layer
 - `packages/cli` — the `vorlyn` CLI (registry generator + `init`/`add` commands)
 - `packages/utils` — `@vorlyn/utils`, a small published npm package
-- `packages/react-query` — `@vorlyn/react-query`, the Axios API layer and TanStack Query helpers (private, not yet published)
 - `apps/playground` — a Vite app for testing components locally
 
 To get started locally:
