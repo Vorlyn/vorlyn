@@ -1,4 +1,4 @@
-import { apiClient } from "@vorlyn/react";
+import { apiClient } from "@/config/api-client";
 import {
   useMutation,
   useQuery,
