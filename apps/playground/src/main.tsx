@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { apiConfig, showErrorToast, showInfoToast, Toaster, TooltipProvider } from "@vorlyn/react";
+import { Toaster, TooltipProvider, registerAuthSync } from "@vorlyn/react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
@@ -23,23 +23,7 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-apiConfig.onNetworkError = () => showErrorToast({
-    message: "Network Error",
-    description: "Please check your internet connection and try again.",
-  });
-  apiConfig.onSessionExpired = () =>
-  showInfoToast({ message: "Session expired. Please login again." });
-
-window.addEventListener("storage", (event) => {
-  if (event.key === apiConfig.tokenKey && event.newValue === null) {
-    showInfoToast({
-      message: "Your session has been expired!",
-      description: "Please login again to continue your actions.",
-    });
-    window.location.href = "/auth/login";
-  }
-});
+registerAuthSync();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
