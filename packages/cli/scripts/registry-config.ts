@@ -1427,4 +1427,68 @@ export const registryConfig = [
       },
     ],
   },
+  {
+    name: "axios-instance",
+    type: "registry:config",
+    dependencies: ["axios@^1.17.0", "@vorlyn/utils"],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/config/axios-instance.ts",
+        targetPath: "config/axios-instance.ts",
+      },
+      {
+        sourcePath: "../../react/src/config/api-config.ts",
+        targetPath: "config/api-config.ts",
+      },
+      {
+        sourcePath: "../../react/src/config/refresh-strategies.ts",
+        targetPath: "config/refresh-strategies.ts",
+      },
+      {
+        sourcePath: "../../react/src/config/auth-sync.ts",
+        targetPath: "config/auth-sync.ts",
+      },
+    ],
+  },
+  {
+    name: "api-client",
+    type: "registry:config",
+    dependencies: ["axios@^1.17.0"],
+    registryDependencies: ["axios-instance"],
+    files: [
+      {
+        sourcePath: "../../react/src/config/api-client.ts",
+        targetPath: "config/api-client.ts",
+      },
+      {
+        sourcePath: "../../react/src/config/api-error.ts",
+        targetPath: "config/api-error.ts",
+      },
+    ],
+  },
+  {
+    name: "react-query",
+    type: "registry:hook",
+    dependencies: ["@tanstack/react-query@^5.102.0", "axios@^1.17.0"],
+    registryDependencies: ["api-client"],
+    files: [
+      {
+        sourcePath: "../../react/src/hooks/react-query/index.ts",
+        targetPath: "hooks/react-query/index.ts",
+      },
+      {
+        sourcePath: "../../react/src/hooks/react-query/use-tanstack-query.ts",
+        targetPath: "hooks/react-query/use-tanstack-query.ts",
+      },
+      {
+        sourcePath: "../../react/src/hooks/react-query/tanstack-query.utils.ts",
+        targetPath: "hooks/react-query/tanstack-query.utils.ts",
+      },
+      {
+        sourcePath: "../../react/src/config/query-client.ts",
+        targetPath: "config/query-client.ts",
+      },
+    ],
+  },
 ];
