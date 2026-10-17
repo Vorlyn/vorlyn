@@ -10,16 +10,24 @@ export const buildAndSend = async <TResponse, TData>(
   data: TData,
   config: AxiosRequestConfig,
 ): Promise<TResponse> => {
+  const resolvedUrl = typeof url === "function" ? url(data) : url;
+
   if (data instanceof FormData) {
-    const resolvedUrl = typeof url === "function" ? url(data) : url;
     const payload = new FormData();
-    for (const [key, value] of data.entries()) {
+    data.forEach((value, key) => {
       if (key !== "id") payload.append(key, value);
-    }
+    });
     return method(resolvedUrl, payload, config);
   }
-  const resolvedUrl = typeof url === "function" ? url(data) : url;
-  const { id, ...rest } = data as Record<string, unknown>;
-  const payload = typeof url === "function" ? rest : data;
-  return method(resolvedUrl, payload, config);
+
+  if (typeof url !== "function") {
+    return method(resolvedUrl, data, config);
+  }
+
+  const body = Object.fromEntries(
+    Object.entries(data as Record<string, unknown>).filter(
+      ([key]) => key !== "id",
+    ),
+  );
+  return method(resolvedUrl, body, config);
 };
