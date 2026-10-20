@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.4.0
+
+### Minor Changes
+
+- 7ae9638: Add the API layer to the registry. `vorlyn add axios-instance` installs an Axios instance with token refresh and cross-tab logout, configured through `config/api-config.ts`; `vorlyn add api-client` adds a typed client on top of it; `vorlyn add react-query` adds TanStack Query hooks and a ready-made QueryClient. Edit `api-config.ts` to match your backend.
+
 ## 0.3.0
 
 ### Minor Changes
