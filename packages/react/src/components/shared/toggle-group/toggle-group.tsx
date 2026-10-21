@@ -1,8 +1,10 @@
-import { ToggleGroup as DefaultToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import {
+  ToggleGroup as DefaultToggleGroup,
+  ToggleGroupItem,
+} from "@/components/ui/toggle-group";
 import { Field } from "@/components/ui/field";
 import { FieldLabel } from "../label";
 import { cn } from "@vorlyn/utils";
-import { useCallback } from "react";
 import type { ToggleGroupProps } from "./toggle-group.types";
 
 function isMultipleProps(
@@ -25,31 +27,25 @@ export const ToggleGroup = (props: ToggleGroupProps) => {
     labelClassName,
   } = props;
 
-  const groupValue = props.multiple
-    ? ((props.value) ?? [])
+  const groupValue = isMultipleProps(props)
+    ? (props.value ?? [])
     : props.value
       ? [props.value]
       : [];
 
-  const handleValueChange = useCallback(
-    (vals: readonly string[]) => {
-      if (isMultipleProps(props)) {
-        props.onValueChange([...vals]);
-      } else {
-        props.onValueChange(vals[0] ?? "");
-      }
-    },
-    [props],
-  );
+  const handleValueChange = (vals: readonly string[]) => {
+    if (isMultipleProps(props)) {
+      props.onValueChange([...vals]);
+    } else {
+      props.onValueChange(vals[0] ?? "");
+    }
+  };
 
   if (!options.length) return null;
   return (
     <Field>
       {label && (
-        <FieldLabel
-          label={label}
-          className={cn("mb-1", labelClassName)}
-        />
+        <FieldLabel label={label} className={cn("mb-1", labelClassName)} />
       )}
       <DefaultToggleGroup
         variant={variant}
