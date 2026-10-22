@@ -22,12 +22,12 @@ export const Label = ({
       )}
       {...rest}
     >
-      <span className="text-secondary-900">{label}</span>
+      <span className="text-foreground">{label}</span>
 
-      {required && <span className="font-normal text-error-500">*</span>}
+      {required && <span className="font-normal text-destructive-500">*</span>}
 
       {helper && (
-        <span className="text-xs text-secondary-800 ml-0.5">{helper}</span>
+        <span className="text-xs text-muted-foreground ml-0.5">{helper}</span>
       )}
     </DefaultLabel>
   );
