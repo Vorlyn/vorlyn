@@ -31,3 +31,5 @@ dist-ssr
 
 packages/cli/registry/
 packages/cli/test-project/
+
+tsconfig.tsbuildinfo
