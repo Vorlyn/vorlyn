@@ -6,29 +6,27 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
+permissions: {}
 
 jobs:
   release:
+    if: github.repository == 'Vorlyn/vorlyn'
     runs-on: ubuntu-latest
+    environment: npm-publish
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v6
-
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@<SHA>
+      - uses: pnpm/action-setup@<SHA>
+      - uses: actions/setup-node@<SHA>
         with:
           node-version: 22
-
       - name: Upgrade npm (trusted publishing needs 11.5.1+)
-        run: npm install -g npm@latest
-
-      - run: pnpm install --frozen-lockfile
-
-      - uses: changesets/action@v2
+        run: npm install -g npm@<exact tested version>
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - uses: changesets/action@<SHA>
         with:
           publish-script: pnpm release
           github-token: ${{ secrets.GITHUB_TOKEN }}
