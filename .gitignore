@@ -26,10 +26,8 @@ dist-ssr
 .env
 .env.development
 .env.production
-config.bat
 
 .turbo/*
 
 packages/cli/registry/
 packages/cli/test-project/
-*.tsbuildinfo
