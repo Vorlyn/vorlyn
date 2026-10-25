@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.4.2
+
+### Patch Changes
+
+- 9ab1098: Label now uses the standard foreground and muted-foreground theme tokens instead of custom secondary-900, secondary-800 and error-500 colors, so it renders correctly in projects that do not define those tokens.
+
 ## 0.4.1
 
 ### Patch Changes
