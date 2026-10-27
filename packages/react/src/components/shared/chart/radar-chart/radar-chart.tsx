@@ -5,7 +5,12 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart as DefaultRadarChart } from "recharts";
+import {
+  PolarAngleAxis,
+  PolarGrid,
+  Radar,
+  RadarChart as DefaultRadarChart,
+} from "recharts";
 import type { RadarChartProps } from "./radar-chart.types";
 
 export const RadarChart = <TData extends Record<string, unknown>>({
@@ -49,11 +54,13 @@ export const RadarChart = <TData extends Record<string, unknown>>({
             gridType={gridType}
           />
         )}
-        {radar.map((r) => (
+        {radar.map((r, i) => (
           <Radar
             key={r.dataKey}
             dataKey={r.dataKey as never}
-            fill={r.fill ?? "var(--color-desktop)"}
+            fill={
+              r.fill ?? `var(--color-${r.dataKey}, var(--chart-${(i % 5) + 1}))`
+            }
             fillOpacity={r.fillOpacity ?? 0.6}
             stroke={r.stroke}
             strokeWidth={r.strokeWidth ?? 2}
