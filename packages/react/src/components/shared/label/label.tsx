@@ -24,7 +24,7 @@ export const Label = ({
     >
       <span className="text-foreground">{label}</span>
 
-      {required && <span className="font-normal text-destructive-500">*</span>}
+      {required && <span className="font-normal text-destructive">*</span>}
 
       {helper && (
         <span className="text-xs text-muted-foreground ml-0.5">{helper}</span>
