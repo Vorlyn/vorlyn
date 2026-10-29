@@ -1,4 +1,13 @@
-export const registryConfig = [
+interface RegistryConfigItem {
+  name: string;
+  type: string;
+  dependencies: string[];
+  registryDependencies: string[];
+  message?: string;
+  files: { sourcePath: string; targetPath: string }[];
+}
+
+export const registryConfig: RegistryConfigItem[] = [
   {
     name: "image",
     type: "registry:ui",
@@ -1450,6 +1459,8 @@ export const registryConfig = [
         targetPath: "config/auth-sync.ts",
       },
     ],
+    message:
+      "Edit config/api-config.ts to match your backend, and store the access token under tokenKey after login.",
   },
   {
     name: "api-client",
@@ -1490,5 +1501,7 @@ export const registryConfig = [
         targetPath: "config/query-client.ts",
       },
     ],
+    message:
+      "Wrap your app with QueryClientProvider using the exported queryClient, and call registerAuthSync() once.",
   },
 ];

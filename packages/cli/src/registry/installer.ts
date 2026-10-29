@@ -14,6 +14,7 @@ interface RegistryFile {
 interface ResolvedRegistry {
   files: RegistryFile[];
   dependencies: string[];
+  messages: string[];
 }
 
 type PackageManager = "pnpm" | "yarn" | "npm" | "bun";
@@ -98,6 +99,14 @@ function printFileGroup(title: string, files: string[]): void {
   console.log(`\n${title} (${files.length}):`);
   for (const file of files) {
     console.log(`  ✅ ${file}`);
+  }
+}
+
+function printMessages(messages: string[]): void {
+  if (messages.length === 0) return;
+  console.log("\nNext steps:");
+  for (const message of messages) {
+    console.log(`  - ${message}`);
   }
 }
 
@@ -202,4 +211,5 @@ export async function installComponent(
   } else if (registry.dependencies.length > 0) {
     console.log("\nNo new packages to install.");
   }
+  printMessages(registry.messages);
 }

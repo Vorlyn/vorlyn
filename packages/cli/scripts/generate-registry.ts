@@ -22,6 +22,7 @@ for (const component of registryConfig) {
     type: component.type,
     dependencies: component.dependencies,
     registryDependencies: component.registryDependencies,
+    message: component.message,
     files,
   };
 
