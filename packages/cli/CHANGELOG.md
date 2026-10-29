@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.5.0
+
+### Minor Changes
+
+- a2cba09: Registry items can now carry a note that the CLI prints after install. axios-instance and react-query use it to explain the config file and the provider setup.
+
 ## 0.4.3
 
 ### Patch Changes
