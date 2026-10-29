@@ -17,12 +17,14 @@ interface RegistryComponent {
   dependencies: string[];
   registryDependencies: string[];
   files: RegistryFile[];
+  message?: string;
 }
 
 interface ResolvedRegistry {
   components: RegistryComponent[];
   files: RegistryFile[];
   dependencies: string[];
+  messages: string[];
 }
 
 function loadComponent(name: string): RegistryComponent {
@@ -63,8 +65,12 @@ export function resolveComponents(names: string[]): ResolvedRegistry {
   const files: RegistryFile[] = [];
   const seenTargets = new Set<string>();
   const dependencies = new Set<string>();
+  const messages: string[] = [];
 
   for (const component of components) {
+    if (component.message && !messages.includes(component.message)) {
+      messages.push(component.message);
+    }
     for (const dep of component.dependencies) {
       dependencies.add(dep);
     }
@@ -80,6 +86,7 @@ export function resolveComponents(names: string[]): ResolvedRegistry {
     components,
     files,
     dependencies: Array.from(dependencies),
+    messages,
   };
 }
 
