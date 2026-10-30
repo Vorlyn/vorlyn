@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.5.1
+
+### Patch Changes
+
+- d4fe45d: When installing a registry item's dependencies fails, the CLI now prints the command to run manually for the packages that failed.
+
 ## 0.5.0
 
 ### Minor Changes
