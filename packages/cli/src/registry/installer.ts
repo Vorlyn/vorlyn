@@ -198,8 +198,10 @@ export async function installComponent(
         }
       }
       if (failed.length > 0) {
+        console.error(`\n⚠️  Failed to install: ${failed.join(", ")}`);
         console.error(
-          `\n⚠️  Failed to install: ${failed.join(", ")}\nInstall manually once available.`,
+          "Install them manually:\n  " +
+            getInstallCommand(pm, failed, atWorkspaceRoot),
         );
       }
     } else {
