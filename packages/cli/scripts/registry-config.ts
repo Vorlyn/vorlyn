@@ -1511,4 +1511,18 @@ export const registryConfig: RegistryConfigItem[] = [
     message:
       "Wrap your app with QueryClientProvider using the exported queryClient, and call registerAuthSync() once.",
   },
+  {
+    name: "theme",
+    type: "registry:theme",
+    dependencies: ["tw-animate-css@^1.4.0"],
+    registryDependencies: [],
+    message:
+      'Import the theme in your main CSS, right after @import "tailwindcss": @import "./vorlyn-theme.css"; (adjust the path if your CSS is not next to it).',
+    files: [
+      {
+        sourcePath: "../../react/src/vorlyn-theme.css",
+        targetPath: "vorlyn-theme.css",
+      },
+    ],
+  },
 ];
