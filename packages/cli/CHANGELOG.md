@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.5.2
+
+### Patch Changes
+
+- 1d3b6bb: Fix the combobox registry item so it also installs the input and textarea components it imports.
+
 ## 0.5.1
 
 ### Patch Changes
