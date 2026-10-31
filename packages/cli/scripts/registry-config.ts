@@ -1175,7 +1175,14 @@ export const registryConfig: RegistryConfigItem[] = [
     name: "combobox",
     type: "registry:ui",
     dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
-    registryDependencies: ["button", "input-group", "label", "icon"],
+    registryDependencies: [
+      "button",
+      "input",
+      "input-group",
+      "label",
+      "icon",
+      "textarea",
+    ],
     files: [
       {
         sourcePath: "../../react/src/components/ui/combobox.tsx",
