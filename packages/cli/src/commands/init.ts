@@ -7,6 +7,37 @@ import {
 } from "../config.js";
 import { warnIfTailwindUnsupported } from "../utils/tailwind.js";
 import { findPackageJsonDir } from "../utils/package-json.js";
+import { detectTheme } from "../utils/theme.js";
+import { installComponent } from "../registry/installer.js";
+import { resolveComponents } from "../registry/resolver.js";
+
+async function offerTheme(projectRoot: string): Promise<void> {
+  const status = detectTheme(projectRoot);
+
+  if (status === "present") {
+    console.log(
+      "\nTheme variables already found in your CSS, skipping the Vorlyn theme.",
+    );
+    return;
+  }
+
+  const { addTheme } = (await prompts({
+    type: "confirm",
+    name: "addTheme",
+    message:
+      status === "unknown"
+        ? "Could not find your main CSS file. Add the Vorlyn theme (vorlyn-theme.css) anyway?"
+        : "Add the Vorlyn theme (vorlyn-theme.css)?",
+    initial: status === "missing",
+  })) as { addTheme?: boolean };
+
+  if (!addTheme) {
+    console.log("You can add it later with `vorlyn add theme`.");
+    return;
+  }
+
+  await installComponent(resolveComponents(["theme"]), projectRoot);
+}
 
 export async function initCommand(cwd: string = process.cwd()): Promise<void> {
   const projectRoot = findPackageJsonDir(cwd);
@@ -60,6 +91,8 @@ export async function initCommand(cwd: string = process.cwd()): Promise<void> {
       `      resolve: { alias: { "@": path.resolve(__dirname, "./src") } }`,
     );
   }
+
+  await offerTheme(projectRoot);
 
   warnIfTailwindUnsupported(projectRoot);
 
