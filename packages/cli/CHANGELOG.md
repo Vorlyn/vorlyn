@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.7.0
+
+### Minor Changes
+
+- 7bf686a: vorlyn init now offers to install the Vorlyn theme when no theme variables are found in your CSS, and skips it when they already exist.
+
 ## 0.6.0
 
 ### Minor Changes
