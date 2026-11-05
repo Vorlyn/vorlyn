@@ -1,18 +1,18 @@
 # Vorlyn CLI
 
-The `vorlyn` CLI installs components from the Vorlyn registry directly into your project as editable source code.
+The `vorlyn` CLI installs components, hooks, an API layer and a theme from the Vorlyn registry directly into your project as editable source code.
 
 ## Status
 
 The CLI is published on npm and available for use.
 
-Vorlyn is still actively evolving, so some features and supported project configurations may change as the project develops.
+Vorlyn is still actively evolving and is below 1.0, so features, registry items and supported project configurations may change between versions.
 
 ## What & Why
 
-Instead of installing a component library as an npm dependency, `vorlyn` copies real component source files into your own project, similar in spirit to shadcn/ui.
+Instead of installing a component library as an npm dependency, `vorlyn` copies real source files into your own project, similar in spirit to shadcn/ui.
 
-You own the source code of every component you add. The installed components are editable files inside your project rather than black-box components locked behind a package dependency.
+You own the source code of everything you add. Installed files are editable files inside your project rather than black-box components locked behind a package dependency.
 
 ## Usage
 
@@ -52,7 +52,11 @@ Initializes Vorlyn in your project.
 The command prompts for:
 
 - `baseDir` — where components will be installed. Default: `src`
-- `alias` — the import alias used inside installed component files. Default: `@/`
+- `alias` — the import alias used inside installed files. Default: `@/`
+- **theme** — whether to install the Vorlyn theme (see [Theme](#theme)). The prompt is only shown when it makes sense:
+  - theme variables already found in your CSS: the step is skipped
+  - theme variables not found: asked, default **yes**
+  - could not tell (no known CSS file found): asked, default **no**
 
 The configuration is saved to a `vorlyn.json` file in your project root.
 
@@ -65,37 +69,88 @@ Example:
 }
 ```
 
-During initialization, Vorlyn checks whether the configured alias is already present in your project's TypeScript/JavaScript configuration.
-
-For Vite projects, it also checks the Vite configuration.
+During initialization, Vorlyn checks whether the configured alias is already present in your project's TypeScript/JavaScript configuration. For Vite projects, it also checks the Vite configuration.
 
 If the alias is not detected, Vorlyn prints a warning. It does **not** modify your project configuration files automatically.
 
 Run it from anywhere inside your project. Vorlyn creates `vorlyn.json` in the nearest parent folder that contains a `package.json`, and stops with an error if there is none.
 
-### `vorlyn add <components...>`
+### `vorlyn add <items...>`
 
-Installs one or more components and their dependencies into your project.
+Installs one or more registry items and their dependencies into your project.
 
 ```bash
 vorlyn add button
 
 vorlyn add button badge avatar
+
+vorlyn add use-debounce
+
+vorlyn add theme
 ```
 
 Vorlyn will:
 
-- Resolve components from the Vorlyn registry, including the other Vorlyn components they depend on (for example, `button` also installs `spinner`, `icon` and `image`).
+- Resolve items from the Vorlyn registry, including the other Vorlyn items they depend on (for example, `button` also installs `spinner`, `icon` and `image`).
 - Find your project root by looking for `vorlyn.json` in the current and parent folders, so you can run it from a subdirectory.
-- Copy component source files into your project and rewrite the configured import alias inside them.
+- Copy source files into your project and rewrite the configured import alias inside them.
 - Ask before overwriting existing files.
 - Detect your package manager from the nearest lockfile.
 - Ask once before installing npm dependencies, and skip the ones already listed in your `package.json`.
 - Run the install in your project root. In a pnpm workspace, that is the package that contains `vorlyn.json`.
+- Print **Next steps** after the install when an item needs something from you (for example, an item that expects a config file to be edited). Messages from all installed items are collected, de-duplicated and printed once, at the very end.
 
-If you decline an overwrite, only the conflicting files are skipped. Other new files from the requested component can still be installed.
+If you decline an overwrite, only the conflicting files are skipped. Other new files from the requested item can still be installed.
 
 `vorlyn add` requires a `vorlyn.json`. If none is found in the current or any parent folder, it stops with an error. Run `vorlyn init` in your project root first.
+
+#### If the dependency install fails
+
+Installing npm dependencies can fail for reasons that have nothing to do with Vorlyn, for example a peer dependency conflict (`ERESOLVE`) already present in your project's dependency tree.
+
+When that happens, Vorlyn still copies the files and then prints the exact install command for the packages that failed, so you can run it yourself. Vorlyn never adds flags such as `--legacy-peer-deps` on its own; whether to use them is your decision.
+
+## What's in the registry
+
+| Kind | Items |
+| --- | --- |
+| Components | Around 49 UI components, such as `button`, `badge`, `avatar`, `dialog`, `select`, `combobox`, `accordion`, `carousel` |
+| Hooks | `use-debounce`, `use-is-mobile`, `break-points` |
+| API layer | `axios-instance`, `api-client`, `react-query` |
+| Theme | `theme` |
+
+Components are built on [Base UI](https://base-ui.com) primitives (not Radix) and use Tailwind CSS v4 syntax. Shared components only use the standard shadcn token names (`background`, `foreground`, `primary`, `muted`, `destructive`, `border`, `ring`, and so on), so they work with any theme that defines them.
+
+Icons come from [`lucide-react`](https://lucide.dev), which is installed as a dependency when a component needs it.
+
+## Theme
+
+Components rely on theme CSS variables such as `--muted`, `--popover`, `--foreground` and `--ring`. Without them they render unstyled.
+
+If your project does not have these variables yet, the `theme` item gives you a starting point:
+
+```bash
+vorlyn add theme
+```
+
+(or accept the prompt during `vorlyn init`). This installs a `vorlyn-theme.css` file (by default `src/vorlyn-theme.css`) and the `tw-animate-css` dependency. The file contains:
+
+- the neutral shadcn theme variables for light and dark mode (`:root`, `.dark`)
+- the `@theme inline` token mapping, including chart and sidebar tokens and the radius scale
+- the accordion animations used by the Base UI accordion
+- a `no-scrollbar` utility
+
+It does **not** include `@import "tailwindcss"`, fonts or `@source` rules. Those stay yours.
+
+Vorlyn does not edit your CSS. After installing the theme, add this line to your main CSS file yourself, after your Tailwind import:
+
+```css
+@import "./vorlyn-theme.css";
+```
+
+If you already use shadcn/ui and have its theme variables, you do not need this item. `vorlyn init` looks for existing theme variables in `src/index.css`, `src/App.css`, `src/app/globals.css`, `app/globals.css` and `styles/globals.css`, and skips the theme step when it finds them.
+
+The theme is based on the shadcn/ui neutral theme (MIT License).
 
 ## Configuration
 
@@ -103,8 +158,8 @@ Vorlyn stores project-specific configuration in `vorlyn.json`.
 
 | Key       | Default | Description                                             |
 | --------- | ------- | ------------------------------------------------------- |
-| `baseDir` | `src`   | Base directory where components are installed           |
-| `alias`   | `@/`    | Import alias rewritten inside installed component files |
+| `baseDir` | `src`   | Base directory where files are installed                |
+| `alias`   | `@/`    | Import alias rewritten inside installed files           |
 
 Example:
 
@@ -131,6 +186,14 @@ your project should already have the corresponding alias configured for both Typ
 
 For Vite projects, this generally means configuring the alias in both the TypeScript configuration and Vite configuration.
 
+## Working with shadcn/ui
+
+Vorlyn components and shadcn/ui components share a similar structure but are built on different primitives (Base UI vs Radix). Avoid installing both into the same `components/ui` folder: running `shadcn add` could overwrite Vorlyn's files. If you want to use both, give one of them a separate base directory.
+
+## Updating installed files
+
+Running `vorlyn add` again for an item you already installed will ask before overwriting its files. Anything you edited in those files is replaced if you confirm, so commit your changes first and review the diff afterwards.
+
 ## Update notifications
 
 At most once every 24 hours, the CLI checks the npm registry for a newer version of `vorlyn` and prints a short notice with an upgrade command for the package manager it appears to have been installed with. This is a network request to `registry.npmjs.org` with a short timeout. Failures are ignored silently and never block the command. The time of the last check is stored in `~/.vorlyn/`.
@@ -140,19 +203,25 @@ There is currently no option to disable this check.
 ## Requirements
 
 - Node.js >= 22
-- Tested with pnpm on macOS and bun on Windows. yarn and npm are supported in the code but not yet verified, and only a pnpm workspace has been tried.
+- Tailwind CSS v4 and the `@/` import alias (or the alias you configured) set up in your project.
+- Theme CSS variables defined in your project (see [Theme](#theme)).
+- Tested with pnpm on macOS and with bun. yarn and npm are supported in the code but not yet verified, and only a pnpm workspace has been tried.
 - Vite projects are currently the primary tested environment.
-- Tailwind CSS (the components use Tailwind v4 syntax) with theme CSS variables such as `--muted`, `--popover`, `--foreground` and `--ring` defined in your project. Without them the components render unstyled.
 
 Other frameworks and bundlers may work, but they are not currently verified as part of the supported workflow.
 
+## Known limitations
+
+- Some generated files are checked by your project's own TypeScript and ESLint settings, which can be stricter than Vorlyn's. For example, the default Vite ESLint setup may report a `react-refresh/only-export-components` warning for `button`.
+- `lucide-react` is used directly for icons; swapping it for another icon library means editing the installed files.
+
 ## Registry
 
-Vorlyn components are maintained in the `packages/react` package and are generated into the CLI registry.
+Vorlyn items are maintained in the `packages/react` package and are generated into the CLI registry.
 
-The registry contains the component source files, external npm dependencies, and internal Vorlyn registry dependencies required to install each component.
+The registry contains the source files, external npm dependencies, and internal Vorlyn registry dependencies required to install each item.
 
-The CLI resolves registry dependencies recursively, so installing a component can automatically install the other Vorlyn components it depends on.
+The CLI resolves registry dependencies recursively, so installing one item can automatically install the other Vorlyn items it depends on.
 
 ## Development
 
@@ -161,8 +230,7 @@ Vorlyn is a pnpm monorepo.
 ```text
 packages/
 ├── cli/          # The vorlyn CLI
-├── react/        # React components
-├── react-query/  # @vorlyn/react-query (private, not published)
+├── react/        # Source for the registry (private)
 └── utils/        # @vorlyn/utils
 
 apps/
@@ -195,7 +263,7 @@ Before contributing, make sure the registry is generated after making changes to
 pnpm --filter vorlyn generate-registry
 ```
 
-If your change affects the `vorlyn` CLI, `@vorlyn/utils`, or any component in `packages/react`, add a changeset describing it:
+If your change affects the `vorlyn` CLI, `@vorlyn/utils`, or any item in `packages/react`, add a changeset describing it:
 
 ```bash
 pnpm changeset
