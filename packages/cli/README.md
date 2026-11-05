@@ -112,9 +112,11 @@ When that happens, Vorlyn still copies the files and then prints the exact insta
 
 ## What's in the registry
 
+The registry currently has around 49 items in total (components, hooks and the API layer together).
+
 | Kind | Items |
 | --- | --- |
-| Components | Around 49 UI components, such as `button`, `badge`, `avatar`, `dialog`, `select`, `combobox`, `accordion`, `carousel` |
+| Components | UI components, including Vorlyn wrappers and components taken directly from shadcn/ui, such as `button`, `badge`, `avatar`, `dialog`, `select`, `combobox`, `accordion`, `carousel` |
 | Hooks | `use-debounce`, `use-is-mobile`, `break-points` |
 | API layer | `axios-instance`, `api-client`, `react-query` |
 | Theme | `theme` |
