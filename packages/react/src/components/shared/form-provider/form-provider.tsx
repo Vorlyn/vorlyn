@@ -38,6 +38,7 @@ export const FormFieldWrapper = <T extends FieldValues>({
   name,
   label,
   description,
+  required,
   className,
   children,
 }: FormFieldWrapperProps<T>) => {
@@ -50,10 +51,13 @@ export const FormFieldWrapper = <T extends FieldValues>({
       render={({ field, fieldState }) => (
         <Field
           data-invalid={fieldState.invalid}
-          className={cn("w-full space-y-2", className)}
+          className={cn("w-full", className)}
         >
-          {label && <FieldLabel label={label} />}
-          {children(field, fieldState.invalid)}
+          {label && <FieldLabel label={label} required={required} />}
+          {children(
+            { ...field, "aria-invalid": fieldState.invalid },
+            fieldState.invalid,
+          )}
           {description && <FieldDescription>{description}</FieldDescription>}
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
         </Field>
