@@ -18,9 +18,10 @@ export interface FormFieldWrapperProps<T extends FieldValues> {
   name: Path<T>;
   label?: string;
   description?: string;
+  required?: boolean;
   className?: string;
   children: (
-    field: ControllerRenderProps<T, Path<T>>,
-    isInvalid: boolean
+    field: ControllerRenderProps<T, Path<T>> & { "aria-invalid": boolean },
+    invalid: boolean
   ) => React.ReactNode;
 }
