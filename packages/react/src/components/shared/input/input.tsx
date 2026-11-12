@@ -29,6 +29,10 @@ export const Input = ({
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const errorId = error ? `${inputId}-error` : undefined;
+  const descriptionId = description ? `${inputId}-description` : undefined;
+  const describedBy =
+  [rest["aria-describedby"], descriptionId, errorId].filter(Boolean).join(" ") ||
+  undefined;
   return (
     <Field>
       {label && (
@@ -57,7 +61,7 @@ export const Input = ({
           onChange={onChange}
           onClick={onClick}
           aria-invalid={!!error}
-          aria-errormessage={errorId}
+          aria-describedby={describedBy}
           aria-required={required}
           className={cn(leftIcon && "pl-9", rightIcon && "pr-9", className)}
           {...rest}
@@ -74,7 +78,10 @@ export const Input = ({
         )}
       </div>
       {description && (
-        <FieldDescription className={cn("text-xs mt-1!", descriptionClassName)}>
+        <FieldDescription
+          id={descriptionId}
+          className={cn("text-xs mt-1!", descriptionClassName)}
+        >
           {description}
         </FieldDescription>
       )}
