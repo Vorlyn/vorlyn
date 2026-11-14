@@ -1,5 +1,12 @@
 # vorlyn
 
+## 0.8.0
+
+### Minor Changes
+
+- 099ed41: Add an optional `id` prop to `FormProvider`. Buttons outside the form, such as a dialog footer, can now submit it with `form="<id>"`.
+- 8f821a2: Replace `showCloseControls` on `Dialog` with `showCloseButton`, which only controls the X button. The footer now renders when `cancel` or `confirm` is provided. Also keeps the default "Cancel" label when `cancel.label` is undefined.
+
 ## 0.7.1
 
 ### Patch Changes
