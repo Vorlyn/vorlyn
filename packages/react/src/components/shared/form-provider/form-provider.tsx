@@ -13,6 +13,7 @@ import { cn } from "@vorlyn/utils";
 import { FieldLabel } from "../label/field-label";
 
 export const FormProvider = <T extends FieldValues>({
+  id,
   onSubmit,
   form,
   children,
@@ -21,6 +22,7 @@ export const FormProvider = <T extends FieldValues>({
   return (
     <HookFormProvider {...form}>
       <form
+        id={id}
         onSubmit={(e) => {
           e.stopPropagation();
           void form.handleSubmit(onSubmit)(e);

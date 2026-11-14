@@ -6,6 +6,7 @@ import type {
 } from "react-hook-form";
 
 export interface FormProviderProps<T extends FieldValues> {
+  id?: string;
   onSubmit: (data: T) => void | Promise<void>;
   defaultValues?: Record<string, unknown>;
   schema?: T;
@@ -22,6 +23,6 @@ export interface FormFieldWrapperProps<T extends FieldValues> {
   className?: string;
   children: (
     field: ControllerRenderProps<T, Path<T>> & { "aria-invalid": boolean },
-    invalid: boolean
+    invalid: boolean,
   ) => React.ReactNode;
 }
