@@ -1,5 +1,11 @@
 # vorlyn
 
+## 0.7.1
+
+### Patch Changes
+
+- d810c16: Fix FormFieldWrapper not passing the invalid state to its input, so invalid fields now get a proper aria-invalid and the red border and ring.
+
 ## 0.7.0
 
 ### Minor Changes
