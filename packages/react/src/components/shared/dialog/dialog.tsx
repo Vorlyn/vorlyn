@@ -24,10 +24,11 @@ export const Dialog = ({
   bodyClassName,
   contentClassName,
   footerClassName,
-  showCloseControls,
+  showCloseButton,
   open,
   onOpenChange,
 }: DialogProps) => {
+  const hasFooter = cancel !== undefined || confirm !== undefined;
   return (
     <DefaultDialog open={open} onOpenChange={onOpenChange}>
       {trigger && <DialogTrigger render={trigger} />}
@@ -36,7 +37,7 @@ export const Dialog = ({
           "flex max-h-[90vh] min-w-full md:min-w-2xl flex-col gap-0 overflow-hidden p-0",
           className,
         )}
-        showCloseButton={showCloseControls}
+        showCloseButton={showCloseButton}
       >
         <DialogHeader className={cn("shrink-0 px-4 pt-4", headerClassName)}>
           {title && <DialogTitle>{title}</DialogTitle>}
@@ -47,13 +48,13 @@ export const Dialog = ({
         >
           <div className={cn("py-4", contentClassName)}>{children}</div>
         </div>
-        {!!showCloseControls && (
+        {hasFooter && (
           <DialogFooter className={cn("mx-0 mb-0 shrink-0", footerClassName)}>
             <DialogClose
               render={
                 <Button
-                  label={cancel?.label ?? "Cancel"}
                   {...cancel}
+                  label={cancel?.label ?? "Cancel"}
                   variant="outline"
                 />
               }
