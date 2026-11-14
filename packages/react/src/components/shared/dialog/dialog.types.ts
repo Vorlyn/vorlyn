@@ -13,7 +13,7 @@ export interface DialogProps {
   bodyClassName?: string;
   contentClassName?: string;
   footerClassName?: string;
-  showCloseControls?: boolean;
+  showCloseButton?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
