@@ -469,7 +469,7 @@ export const registryConfig: RegistryConfigItem[] = [
     name: "dialog",
     type: "registry:ui",
     dependencies: ["@base-ui/react", "@vorlyn/utils", "lucide-react"],
-    registryDependencies: ["button"],
+    registryDependencies: ["button", "form-id-context"],
     files: [
       {
         sourcePath: "../../react/src/components/ui/dialog.tsx",
@@ -762,7 +762,7 @@ export const registryConfig: RegistryConfigItem[] = [
     name: "form-provider",
     type: "registry:ui",
     dependencies: ["react-hook-form", "@vorlyn/utils"],
-    registryDependencies: ["field", "label"],
+    registryDependencies: ["field", "label", "form-id-context"],
     files: [
       {
         sourcePath:
@@ -1404,6 +1404,18 @@ export const registryConfig: RegistryConfigItem[] = [
       {
         sourcePath: "../../react/src/lib/index.ts",
         targetPath: "lib/index.ts",
+      },
+    ],
+  },
+  {
+    name: "form-id-context",
+    type: "registry:ui",
+    dependencies: [],
+    registryDependencies: [],
+    files: [
+      {
+        sourcePath: "../../react/src/lib/form-id-context.ts",
+        targetPath: "lib/form-id-context.ts",
       },
     ],
   },

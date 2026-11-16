@@ -11,6 +11,8 @@ import {
 import type { DialogProps } from "./dialog.types";
 import { cn } from "@vorlyn/utils";
 import { Button } from "../button";
+import { FormIdContext } from "@/lib/form-id-context";
+import { useId } from "react";
 
 export const Dialog = ({
   trigger,
@@ -29,40 +31,52 @@ export const Dialog = ({
   onOpenChange,
 }: DialogProps) => {
   const hasFooter = cancel !== undefined || confirm !== undefined;
+  const formId = useId();
   return (
     <DefaultDialog open={open} onOpenChange={onOpenChange}>
-      {trigger && <DialogTrigger render={trigger} />}
-      <DialogContent
-        className={cn(
-          "flex max-h-[90vh] min-w-full md:min-w-2xl flex-col gap-0 overflow-hidden p-0",
-          className,
-        )}
-        showCloseButton={showCloseButton}
-      >
-        <DialogHeader className={cn("shrink-0 px-4 pt-4", headerClassName)}>
-          {title && <DialogTitle>{title}</DialogTitle>}
-          {description && <DialogDescription>{description}</DialogDescription>}
-        </DialogHeader>
-        <div
-          className={cn("min-h-0 flex-1 overflow-y-auto px-4", bodyClassName)}
+      <FormIdContext value={formId}>
+        {trigger && <DialogTrigger render={trigger} />}
+        <DialogContent
+          className={cn(
+            "flex max-h-[90vh] min-w-full md:min-w-2xl flex-col gap-0 overflow-hidden p-0",
+            className,
+          )}
+          showCloseButton={showCloseButton}
         >
-          <div className={cn("py-4", contentClassName)}>{children}</div>
-        </div>
-        {hasFooter && (
-          <DialogFooter className={cn("mx-0 mb-0 shrink-0", footerClassName)}>
-            <DialogClose
-              render={
+          <DialogHeader className={cn("shrink-0 px-4 pt-4", headerClassName)}>
+            {title && <DialogTitle>{title}</DialogTitle>}
+            {description && (
+              <DialogDescription>{description}</DialogDescription>
+            )}
+          </DialogHeader>
+          <div
+            className={cn("min-h-0 flex-1 overflow-y-auto px-4", bodyClassName)}
+          >
+            <div className={cn("py-4", contentClassName)}>{children}</div>
+          </div>
+          {hasFooter && (
+            <DialogFooter className={cn("mx-0 mb-0 shrink-0", footerClassName)}>
+              <DialogClose
+                render={
+                  <Button
+                    {...cancel}
+                    label={cancel?.label ?? "Cancel"}
+                    variant="outline"
+                  />
+                }
+              />
+              {confirm && (
                 <Button
-                  {...cancel}
-                  label={cancel?.label ?? "Cancel"}
-                  variant="outline"
+                  variant="default"
+                  type="submit"
+                  form={formId}
+                  {...confirm}
                 />
-              }
-            />
-            {confirm && <Button variant="default" {...confirm} />}
-          </DialogFooter>
-        )}
-      </DialogContent>
+              )}
+            </DialogFooter>
+          )}
+        </DialogContent>
+      </FormIdContext>
     </DefaultDialog>
   );
 };
