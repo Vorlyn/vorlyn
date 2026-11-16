@@ -11,6 +11,7 @@ import {
 import { Field, FieldDescription, FieldError } from "@/components/ui/field";
 import { cn } from "@vorlyn/utils";
 import { FieldLabel } from "../label/field-label";
+import { useFormId } from "@/lib/form-id-context";
 
 export const FormProvider = <T extends FieldValues>({
   id,
@@ -19,10 +20,11 @@ export const FormProvider = <T extends FieldValues>({
   children,
   className,
 }: FormProviderProps<T>) => {
+  const contextFormId = useFormId();
   return (
     <HookFormProvider {...form}>
       <form
-        id={id}
+        id={id ?? contextFormId}
         onSubmit={(e) => {
           e.stopPropagation();
           void form.handleSubmit(onSubmit)(e);
